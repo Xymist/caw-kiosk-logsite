@@ -1,24 +1,3 @@
 ## README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Companion site for the CAW kiosk data logger. Receives uploads from the various kiosks, parses them into a SQLite database and generates reports for end users on the operation of the terminals.
