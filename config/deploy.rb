@@ -1,17 +1,15 @@
-server '82.70.248.237', port: your_port_num, roles: [:web, :app, :db], primary: true
+server '82.70.248.237', port: 8080, roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'git@github.com:Xymist/caw-kiosk-logsite.git'
+set :repo_url,        'caw@82.70.248.237/~/apps/caw-kiosk-logsite/caw-kiosk-logsite.git'
 set :application,     'caw-kiosk-logsite'
-set :user,            'caw-deploy'
+set :user,            'caw'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
-
-# Don't change these unless you know what you're doing
 set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}" # This needs to be something else; TODO: Ask Alok
+set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
