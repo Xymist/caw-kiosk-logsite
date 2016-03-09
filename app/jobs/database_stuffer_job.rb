@@ -2,19 +2,21 @@ class DatabaseStufferJob < ApplicationJob
   queue_as :default
 
   def perform()
-    log_files = Dir['../assets/kiosk_logs/*']
-
-    log_files.each do |logfile|
+    f = File.open("app/jobs/logs/stuffer.log","w")
+    Dir.glob('app/assets/kiosk_logs/*.log').each do |logfile|
+      logname = logfile.split("/")
+      kiosk = logname.split(".")
       access_data = IO.readlines(logfile)
       access_data.each do |data|
-        time_stamp = data[0]
-        hostname = data[1]
-        topicname = data[2]
+        split_data = data.split()
+        time_stamp = split_data[0]
+        hostname = split_data[1]
+        topicname = split_data[2]
         host = Host.find_or_create_by(name: hostname)
         topic = host.topics.find_or_create_by(location: topicname)
-        topic.visits.create(time_stamp: time_stamp)
+        topic.visits.create(time_stamp: time_stamp, kiosk: kiosk[0])
       end
     end
-    DatabaseStufferJob.set(wait: 24.hours).perform_later() # Sets the job to run again a day later
+    f.close
   end
 end

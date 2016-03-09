@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160308214810) do
 
   create_table "visits", force: :cascade do |t|
     t.integer  "time_stamp"
+    t.string   "kiosk"
     t.integer  "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
