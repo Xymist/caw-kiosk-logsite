@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CawKioskLogsite</title>
+    <title> <%= "Kiosk Data Repository" || @title %> </title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
 

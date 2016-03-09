@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logs
-    
+    @hosts = Host.all
   end
 
 end

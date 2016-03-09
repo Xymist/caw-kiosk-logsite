@@ -4,7 +4,7 @@ class DatabaseStufferJob < ApplicationJob
   def perform()
     Dir.glob('app/assets/kiosk_logs/*.log').each do |logfile|
       logname = logfile.split("/")
-      kiosk = logname.split(".")
+      kiosk = logname[3].split(".")
       access_data = IO.readlines(logfile)
       access_data.each do |data|
         split_data = data.split()
@@ -16,6 +16,5 @@ class DatabaseStufferJob < ApplicationJob
         topic.visits.create(time_stamp: time_stamp, kiosk: kiosk[0])
       end
     end
-    DatabaseStufferJob.set.(wait_until: Date.tomorrow.midnight).perform_later()
   end
 end
