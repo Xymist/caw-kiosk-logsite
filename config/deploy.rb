@@ -1,6 +1,6 @@
-server '82.70.248.237', port: 8080, roles: [:web, :app, :db], primary: true
+server '82.70.248.237', port: 22, roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'caw@82.70.248.237/~/apps/caw-kiosk-logsite/caw-kiosk-logsite.git'
+set :repo_url,        'git@github.com:Xymist/caw-kiosk-logsite.git'
 set :application,     'caw-kiosk-logsite'
 set :user,            'caw'
 set :puma_threads,    [4, 16]
@@ -47,8 +47,8 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
+      unless `git rev-parse HEAD` == `git rev-parse github/master`
+        puts "WARNING: HEAD is not the same as github/master"
         puts "Run `git push` to sync changes."
         exit
       end
