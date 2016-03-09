@@ -1,4 +1,4 @@
-server 'ALOK MAIN SERVER', port: your_port_num, roles: [:web, :app, :db], primary: true
+server '82.70.248.237', port: your_port_num, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:Xymist/caw-kiosk-logsite.git'
 set :application,     'caw-kiosk-logsite'
@@ -20,7 +20,7 @@ set :puma_error_log,  "#{release_path}/log/puma.access.log"
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
-set :puma_init_active_record, true  # Change to false when not using ActiveRecord
+set :puma_init_active_record, true
 
 ## Defaults:
 # set :scm,           :git
