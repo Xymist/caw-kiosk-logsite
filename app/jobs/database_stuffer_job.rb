@@ -2,7 +2,6 @@ class DatabaseStufferJob < ApplicationJob
   queue_as :default
 
   def perform()
-    f = File.open("app/jobs/logs/stuffer.log","w")
     Dir.glob('app/assets/kiosk_logs/*.log').each do |logfile|
       logname = logfile.split("/")
       kiosk = logname.split(".")
@@ -17,6 +16,6 @@ class DatabaseStufferJob < ApplicationJob
         topic.visits.create(time_stamp: time_stamp, kiosk: kiosk[0])
       end
     end
-    f.close
+    DatabaseStufferJob.set.(wait_until: Date.tomorrow.midnight).perform_later()
   end
 end
