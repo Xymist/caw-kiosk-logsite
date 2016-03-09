@@ -10,6 +10,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'puma'
 gem 'bcrypt', '~> 3.1.7'
+gem 'sass-rails'
+gem 'bootstrap-sass', '3.3.6'
+gem 'font-awesome-sass', '~> 4.5.0'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'byebug'

@@ -5,4 +5,9 @@ class ApplicationController < ActionController::Base
   def home
 
   end
+
+  def logs
+    
+  end
+
 end
