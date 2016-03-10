@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   get 'logs', to: "application#logs"
   get 'home', to: "application#home"
+  get 'status', to: "application#status"
 end

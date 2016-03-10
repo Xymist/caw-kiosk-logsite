@@ -5,7 +5,7 @@
     <% host.topics.each do |topic| %>
       <h4><%=topic.location%></h4>
       <% topic.visits.each do |visit| %>
-        <p><%=visit.kiosk%>: <%=Time.at(visit.time_stamp).to_s.chomp(' +0000')%></p>
+        <p><%=visit.kiosk.name%>: <%=Time.at(visit.time_stamp).to_s.chomp(' +0000')%></p>
       <%end%>
     <%end%>
   </div>

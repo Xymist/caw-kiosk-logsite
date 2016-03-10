@@ -1,4 +1,18 @@
-
+<h1>Kiosk Status</h1>
+<% @kiosks.each do |kiosk| %>
+  <div class="col-md-3">
+    <h3><%=kiosk.name%></h3>
+      <p>Address: <%=kiosk.address%></p>
+      <p>Contact: <%=kiosk.contact%></p>
+    <h3>Last Contact</h3>
+      <p><%=kiosk.heartbeats.last.created_at%></p>
+      <% if kiosk.heartbeats.last.created_at > 1.hour.ago %>
+        <p class="greentext">Connected</p>
+      <%else%>
+        <p class="redtext">Unconnected</p>
+      <%end%>
+  </div>
+<%end%>
 
 <script>
 $(document).ready(function() {

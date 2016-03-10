@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     @hosts = Host.all
   end
 
+  def status
+    @kiosks = Kiosk.all
+  end
+
 end
