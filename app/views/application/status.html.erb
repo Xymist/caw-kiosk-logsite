@@ -1,15 +1,15 @@
 <h1>Kiosk Status</h1>
 <% @kiosks.each do |kiosk| %>
   <div class="col-md-3">
-    <h3><%=kiosk.name%></h3>
+    <h2><%=kiosk.name.capitalize%></h2>
       <p>Address: <%=kiosk.address%></p>
       <p>Contact: <%=kiosk.contact%></p>
     <h3>Last Contact</h3>
       <p><%=kiosk.heartbeats.last.created_at%></p>
       <% if kiosk.heartbeats.last.created_at > 1.hour.ago %>
-        <p class="greentext">Connected</p>
+        <h4 class="greentext"><strong>Connected</strong></h4>
       <%else%>
-        <p class="redtext">Unconnected</p>
+        <h4 class="redtext"><strong>Unconnected</strong></h4>
       <%end%>
   </div>
 <%end%>

@@ -1,0 +1,4 @@
+<% h = Heartbeat.new
+h.kiosk = Kiosk.find_or_create_by(name: @kiosk)
+h.save
+%>

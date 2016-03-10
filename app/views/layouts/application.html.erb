@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> <%= "Kiosk Data Repository" || @title %> </title>
+    <title><%= @title ? @title : "Kiosk Data Repository" %></title>
+
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 

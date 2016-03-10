@@ -8,10 +8,16 @@ class ApplicationController < ActionController::Base
 
   def logs
     @hosts = Host.all
+    @title = "Logs"
   end
 
   def status
     @kiosks = Kiosk.all
+    @title = "Kiosk Status"
+  end
+
+  def heartbeat
+    @kiosk = params[:kiosk]
   end
 
 end
