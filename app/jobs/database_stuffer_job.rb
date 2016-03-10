@@ -4,7 +4,7 @@ class DatabaseStufferJob < ApplicationJob
   def perform()
     Dir.glob('app/assets/kiosk_logs/*.log').each do |logfile|
       logname = logfile.split("/")
-      kiosk = logname[3].split(".")
+      kiosk = logname[-1].split(".")
       access_data = IO.readlines(logfile)
       access_data.each do |data|
         split_data = data.split()
@@ -13,7 +13,8 @@ class DatabaseStufferJob < ApplicationJob
         topicname = split_data[2]
         host = Host.find_or_create_by(name: hostname)
         topic = host.topics.find_or_create_by(location: topicname)
-        topic.visits.create(time_stamp: time_stamp, kiosk: kiosk[0])
+        kiosk_name = Kiosk.find_or_create_by(name: kiosk[0])
+        topic.visits.create(time_stamp: time_stamp, kiosk_id: kiosk_name.id)
       end
     end
   end

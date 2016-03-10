@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308214810) do
+ActiveRecord::Schema.define(version: 20160310153928) do
+
+  create_table "heartbeats", force: :cascade do |t|
+    t.integer  "kiosk_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "heartbeats", ["kiosk_id"], name: "index_heartbeats_on_kiosk_id"
 
   create_table "hosts", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "kiosks", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,10 +46,10 @@ ActiveRecord::Schema.define(version: 20160308214810) do
 
   create_table "visits", force: :cascade do |t|
     t.integer  "time_stamp"
-    t.string   "kiosk"
     t.integer  "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "kiosk_id"
   end
 
   add_index "visits", ["topic_id"], name: "index_visits_on_topic_id"
