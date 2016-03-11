@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+kiosks = Kiosk.create([
+  {name: 'gp-godalming',  address: 'The Mill Surgery, Catteshall Mill, Catteshall Rd, Godalming, GU7 1JW',   contact: 'Robin Forward - robin.forward@nhs.net'},
+  {name: 'gp-farnham',    address: 'Farnham Centre for Health, Hale Road, Farnham, GU9 9QS',                 contact: 'Deji Bajomo - deji.bajomo@property.nhs.uk'},
+  {name: 'gp-cranleigh',  address: 'Cranleigh Medical Practice, 18 High St, Cranleigh, GU6 8AE',             contact: 'Jackie Stockill - jacqueline.stockill@nhs.net'},
+  {name: 'furniturelink', address: 'Unit 4, Deaconsfield, Cathedral Hill, Guildford, GU2 8YT',               contact: 'Various - 01483 506504'},
+  {name: 'ageuk',         address: 'Age UK, William Road, Guildford, GU1 4QZ',                               contact: 'David Hahn - 01483 503414'},
+  {name: 'waverley',      address: 'Godalming CA, New Montrose House, 36 Bridge Street, Godalming, GU7 1HP', contact: 'Michele Taylor - admin@farnhamcab.cabnet.org.uk'},
+  {name: 'ash',           address: 'Ash CA, Ash Hill Rd, Ash, Aldershot, GU12 5DP',                          contact: ''},
+  {name: 'guildford',     address: 'Guildford CA, 15 Haydon Place, City Centre, Guildford, GU1 4LL',         contact: ''}
+  ])
+  
