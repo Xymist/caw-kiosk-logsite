@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def heartbeat
+    render :layout => false
     @kiosk = params[:kiosk]
   end
 

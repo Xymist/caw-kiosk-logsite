@@ -4,9 +4,9 @@
     <h2><%=kiosk.name.capitalize%></h2>
       <p>Address: <%=kiosk.address%></p>
       <p>Contact: <%=kiosk.contact%></p>
-    <h3>Last Contact</h3>
+    <h3>Last Status Update:</h3>
       <p><%=kiosk.heartbeats.last.created_at%></p>
-      <% if kiosk.heartbeats.last.created_at > 1.hour.ago %>
+      <% if kiosk.heartbeats.last.created_at > 15.minutes.ago %>
         <h4 class="greentext"><strong>Connected</strong></h4>
       <%else%>
         <h4 class="redtext"><strong>Unconnected</strong></h4>
