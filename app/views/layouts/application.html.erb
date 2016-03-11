@@ -12,7 +12,11 @@
   </head>
 
   <body>
-    <%= render 'partials/header' %>
-    <%= yield %>
+    <div class="header-container col-xs-12">
+      <%= render 'partials/header' %>
+    </div>
+    <div class="main-container col-xs-12">
+      <%= yield %>
+    </div>
   </body>
 </html>

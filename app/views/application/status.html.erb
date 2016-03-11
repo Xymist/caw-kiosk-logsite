@@ -1,19 +1,26 @@
-<h1>Kiosk Status</h1>
-<% @kiosks.each do |kiosk| %>
-  <div class="col-md-3">
-    <h2><%=kiosk.name.capitalize%></h2>
-      <p>Address: <%=kiosk.address%></p>
-      <p>Contact: <%=kiosk.contact%></p>
-    <h3>Last Status Update:</h3>
-      <p><%=kiosk.heartbeats.last.created_at%></p>
-      <% if kiosk.heartbeats.last.created_at > 15.minutes.ago %>
-        <h4 class="greentext"><strong>Connected</strong></h4>
+<h1 class="title-line">Kiosk Status</h1>
+<div class="ui grid">
+  <% @kiosks.each do |kiosk| %>
+    <div class="four wide column report-panel">
+      <h2><%=kiosk.name.upcase%></h2>
+        <p><strong>Address:</strong></p>
+        <p><%=kiosk.address%></p>
+        <p><strong>Contact:</strong></p>
+        <p><%=kiosk.contact%></p>
+      <h3>Last Status Update:</h3>
+      <% if kiosk.heartbeats.last%>
+        <p><%=kiosk.heartbeats.last.created_at%></p>
+        <% if kiosk.heartbeats.last.created_at > 15.minutes.ago %>
+          <h4 class="greentext"><strong>Connected</strong></h4>
+        <%else%>
+          <h4 class="redtext"><strong>Disconnected</strong></h4>
+        <%end%>
       <%else%>
-        <h4 class="redtext"><strong>Unconnected</strong></h4>
+        <h4 class="redtext"><strong>Kiosk Not Initialised</strong></h4>
       <%end%>
-  </div>
-<%end%>
-
+    </div>
+  <%end%>
+</div>
 <script>
 $(document).ready(function() {
   $('#status_breadcrumb').addClass('active');

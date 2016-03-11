@@ -30,4 +30,28 @@
 
  body{
    background-color: #f5f5f5;
+   padding-left: 5em;
+   padding-right: 5em;
  }
+
+ .header-container{
+   display: block;
+   background-color: #f5f5f5;
+   padding-top: 1em;
+   padding-bottom: 1em;
+ }
+
+ .main-container{
+   display: block;
+   background-color: #ecfdff;
+   padding-top: 3em;
+   border-radius: 10px;
+ }
+
+ .report-panel{
+   padding: 1em;
+ }
+
+.title-line{
+  padding-bottom: 1em;
+}
