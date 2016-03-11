@@ -1,19 +1,15 @@
-<h1 class="title-line">All Logs</h1>
-<div class="ui stackable four column grid">
-  <% @kiosks.each do |kiosk| %>
+<h1 class="title-line">All Logs By Kiosk</h1>
+<div class="ui stackable doubling four column grid">
+  <% @kiosks.order(:name).each do |kiosk| %>
     <div class="column report-panel">
-      <h2><%=kiosk.name%></h2>
+      <h2><%=kiosk.name.upcase%></h2>
+      <% visit_array = [] %>
       <%@hosts.each do |host|
-        if host.visits.where(kiosk: kiosk).count > 0%>
-          <h3 class="log-hostname"><%=host.name%></h3>
-        <%end%>
-        <% host.topics.each do |topic|
-          if topic.visits.where(kiosk: kiosk).count >0%>
-            <h5 class="log-topicname"><%=topic.location.gsub(/,/,' > ')%></h5>
-            <p class="log-topicname">Visits: <%=topic.visits.where(kiosk: kiosk).count%></p>
-          <%end%>
-        <%end%>
+        if host.visits.where(kiosk: kiosk).count > 0
+          visit_array << ["#{host.name}", host.visits.where(kiosk: kiosk).count]
+        end%>
       <%end%>
+      <%= pie_chart visit_array %>
     </div>
    <%end%>
 </div>

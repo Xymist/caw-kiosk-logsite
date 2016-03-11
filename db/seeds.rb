@@ -8,3 +8,16 @@ kiosks = Kiosk.create([
   {name: 'ash',           address: 'Ash CA, Ash Hill Road, Ash, Aldershot, GU12 5DP',                contact: 'Karen Creeth - '},
   {name: 'guildford',     address: 'Guildford CA, 15 Haydon Place, City Centre, Guildford, GU1 4LL', contact: 'Erica Sandford - '}
   ])
+
+hosts = Host.create([
+  {name: 'gp-godalming-(Kiosk)'},
+  {name: 'gp-farnham-(Kiosk)'},
+  {name: 'gp-cranleigh-(Kiosk)'},
+  {name: 'furniturelink-(Kiosk)'},
+  {name: 'ageuk-(Kiosk)'},
+  {name: 'waverley-(Kiosk)'},
+  {name: 'ash-(Kiosk)'},
+  {name: 'guildford-(Kiosk)'},
+  {name: 'ageuk.co.uk'},
+  {name: 'citizensadvice.org.uk'}
+  ])
