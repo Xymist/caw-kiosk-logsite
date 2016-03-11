@@ -23,4 +23,11 @@ class ApplicationController < ActionController::Base
     @kiosk = params[:kiosk]
   end
 
+  def kiosk_log
+    @kiosk = Kiosk.find(params[:id])
+    @hosts = Host.all
+    @title = "Kiosk Data"
+    @visits = Visit.all
+  end
+
 end
