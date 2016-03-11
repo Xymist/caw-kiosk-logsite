@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get 'home', to: "application#home"
   get 'status', to: "application#status"
   get 'heartbeat', to: "application#heartbeat"
+
 end
