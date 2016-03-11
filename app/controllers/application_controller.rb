@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   def logs
     @hosts = Host.all
     @title = "Logs"
+    @kiosks = Kiosk.all
+    @visits = Visit.all
   end
 
   def status

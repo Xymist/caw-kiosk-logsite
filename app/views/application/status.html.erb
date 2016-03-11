@@ -1,7 +1,7 @@
 <h1 class="title-line">Kiosk Status</h1>
-<div class="ui grid">
+<div class="ui stackable four column grid">
   <% @kiosks.each do |kiosk| %>
-    <div class="four wide column report-panel">
+    <div class="column report-panel">
       <h2><%=kiosk.name.upcase%></h2>
         <p><strong>Address:</strong></p>
         <p><%=kiosk.address%></p>

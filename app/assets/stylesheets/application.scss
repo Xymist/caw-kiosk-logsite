@@ -45,6 +45,7 @@
    display: block;
    background-color: #ecfdff;
    padding-top: 3em;
+   padding-bottom: 3em;
    border-radius: 10px;
  }
 
@@ -54,4 +55,11 @@
 
 .title-line{
   padding-bottom: 1em;
+}
+
+.log-hostname{
+  padding-left: 1em;
+}
+.log-topicname{
+  padding-left: 2em;
 }

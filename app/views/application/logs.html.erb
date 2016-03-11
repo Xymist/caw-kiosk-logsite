@@ -1,17 +1,23 @@
 <h1 class="title-line">All Logs</h1>
-<div class="ui grid">
-  <% @hosts.order(:name).each do |host| %>
-    <div class="four wide column report-panel">
-      <h2><%=host.name%></h2>
-      <% host.topics.order(:location).each do |topic| %>
-        <h4><%=topic.location.gsub(/[,]/,' > ')%></h4>
-        <% topic.visits.each do |visit| %>
-          <p><%=visit.kiosk.name%>: <%=Time.at(visit.time_stamp).to_s.chomp(' +0000')%></p>
+<div class="ui stackable four column grid">
+  <% @kiosks.each do |kiosk| %>
+    <div class="column report-panel">
+      <h2><%=kiosk.name%></h2>
+      <%@hosts.each do |host|
+        if host.visits.where(kiosk: kiosk).count > 0%>
+          <h3 class="log-hostname"><%=host.name%></h3>
+        <%end%>
+        <% host.topics.each do |topic|
+          if topic.visits.where(kiosk: kiosk).count >0%>
+            <h5 class="log-topicname"><%=topic.location.gsub(/,/,' > ')%></h5>
+            <p class="log-topicname">Visits: <%=topic.visits.where(kiosk: kiosk).count%></p>
+          <%end%>
         <%end%>
       <%end%>
     </div>
-  <%end%>
+   <%end%>
 </div>
+
 <script>
 $(document).ready(function() {
   $('#logs_breadcrumb').addClass('active');
