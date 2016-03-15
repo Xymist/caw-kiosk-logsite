@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
     @hosts = Host.all
     @title = "Kiosk Data"
     @visits = Visit.all
+    @topics = Topic.all
   end
 
 end
