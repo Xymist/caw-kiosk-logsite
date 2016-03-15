@@ -8,8 +8,8 @@ class DatabaseStufferJob < ApplicationJob
       kiosk = logname[-1].split(".")
       access_data = IO.readlines(logfile)
       access_data.each do |data|
-        split_data = data.split()
-        time_stamp = DateTime.strptime(split_data[0],'%s')
+        split_data = data.split('|')
+        time_stamp = split_data[0]
         hostname = split_data[1]
         topicname = split_data[2]
         host = Host.find_or_create_by(name: hostname)

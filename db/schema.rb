@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160310153928) do
   add_index "topics", ["host_id"], name: "index_topics_on_host_id"
 
   create_table "visits", force: :cascade do |t|
-    t.integer  "time_stamp"
+    t.datetime "time_stamp"
     t.integer  "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
