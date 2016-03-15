@@ -11,7 +11,14 @@
     <%= pie_chart visit_array%>
   </div>
   <div class="column">
-    <h3>Clicks, by time of day:</h3>
+    <h3>Clicks, by hour of day:</h3>
     <%= column_chart @kiosk.visits.group_by_hour_of_day(:time_stamp).count %>
+  </div>
+  <div class="column">
+    <h3>Kiosk Topic Search Frequency</h3>
+    <%topic_array = [] %>
+    <%@topics.each do |topic|
+      topic_array << ["#{topic.name}", @kiosk.visits.where(topic: topic).count]
+    end%>
   </div>
 </div>
