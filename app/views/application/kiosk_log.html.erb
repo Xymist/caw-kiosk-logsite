@@ -18,7 +18,10 @@
     <h3>Kiosk Topic Search Frequency</h3>
     <%topic_array = [] %>
     <%@topics.each do |topic|
-      topic_array << ["#{topic.name}", @kiosk.visits.where(topic: topic).count]
+      if topic.host.name == @kiosk.name + "-(Kiosk)"
+        topic_array << ["#{topic.location}", @kiosk.visits.where(topic: topic).count]
+      end
     end%>
+    <%= pie_chart topic_array%>
   </div>
 </div>

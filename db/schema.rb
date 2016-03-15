@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20160310153928) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "heartbeats", force: :cascade do |t|
     t.integer  "kiosk_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "heartbeats", ["kiosk_id"], name: "index_heartbeats_on_kiosk_id"
+  add_index "heartbeats", ["kiosk_id"], name: "index_heartbeats_on_kiosk_id", using: :btree
 
   create_table "hosts", force: :cascade do |t|
     t.string   "name"
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160310153928) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "topics", ["host_id"], name: "index_topics_on_host_id"
+  add_index "topics", ["host_id"], name: "index_topics_on_host_id", using: :btree
 
   create_table "visits", force: :cascade do |t|
     t.datetime "time_stamp"
@@ -52,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160310153928) do
     t.integer  "kiosk_id"
   end
 
-  add_index "visits", ["topic_id"], name: "index_visits_on_topic_id"
+  add_index "visits", ["topic_id"], name: "index_visits_on_topic_id", using: :btree
 
+  add_foreign_key "heartbeats", "kiosks"
 end

@@ -4,8 +4,13 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: caw
+  password: caw,./
+  pool: 5
+  database: caw-kiosk-logsite-development
 
 test:
   <<: *default
