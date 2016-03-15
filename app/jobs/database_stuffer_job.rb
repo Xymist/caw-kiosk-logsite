@@ -11,9 +11,9 @@ class DatabaseStufferJob < ApplicationJob
         split_data = data.split('|')
         time_stamp = split_data[0]
         hostname = split_data[1]
-        topicname = split_data[2]
+        topicnames = split_data[2].split(',')
         host = Host.find_or_create_by(name: hostname)
-        topic = host.topics.find_or_create_by(location: topicname)
+        topic = host.topics.find_or_create_by(location: topicnames[0].chomp)
         kiosk_name = Kiosk.find_or_create_by(name: kiosk[0])
         topic.visits.find_or_create_by(time_stamp: time_stamp, kiosk_id: kiosk_name.id)
       end

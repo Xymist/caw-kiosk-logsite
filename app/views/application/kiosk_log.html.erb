@@ -1,5 +1,6 @@
 <h1 class="title-line"><%=@kiosk.name.upcase%></h1>
 <div class="ui stackable doubling two column grid">
+
   <div class="column">
     <h3>Visits, by location:</h3>
     <% visit_array = [] %>
@@ -10,10 +11,12 @@
     <%end%>
     <%= pie_chart visit_array%>
   </div>
+
   <div class="column">
     <h3>Clicks, by hour of day:</h3>
     <%= column_chart @kiosk.visits.group_by_hour_of_day(:time_stamp).count %>
   </div>
+
   <div class="column">
     <h3>Kiosk Topic Search Frequency</h3>
     <%topic_array = [] %>
@@ -24,4 +27,22 @@
     end%>
     <%= pie_chart topic_array%>
   </div>
+
+  <div class="column">
+    <h3>General Topic Search Frequency</h3>
+    <% topic_visits = {} %>
+    <%@topics.each do |topic|
+      location = topic.location
+      if topic.host.name == @kiosk.name + "-(Kiosk)"
+        break
+      end
+      if topic_visits[location]
+        topic_visits[location] += 1
+      else
+        topic_visits[location] = 1
+      end
+    end%>
+    <%= pie_chart topic_visits%>
+  </div>
+
 </div>
