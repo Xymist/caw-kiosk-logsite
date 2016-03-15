@@ -9,7 +9,7 @@ class DatabaseStufferJob < ApplicationJob
       access_data = IO.readlines(logfile)
       access_data.each do |data|
         split_data = data.split()
-        time_stamp = split_data[0]
+        time_stamp = DateTime.strptime(split_data[0],'%s')
         hostname = split_data[1]
         topicname = split_data[2]
         host = Host.find_or_create_by(name: hostname)
