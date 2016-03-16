@@ -1,6 +1,29 @@
 <h1>Kiosk Logger</h1>
 <p>This is the homepage for the Citizens Advice Waverley touchscreen kiosk logger.</p>
-<button class="btn btn-success">Under Construction</button>
+
+
+<h2 style="text-align: center;">Overall System Statistics</h2>
+
+<div class="ui stackable doubling two column grid">
+
+  <div class="column">
+    <h3 style="text-align: center;">Users Overall</h3>
+    <%= pie_chart @users, height: "500px"%>
+  </div>
+
+  <div class="column">
+    <h3 style="text-align: center;">Total Pageviews Overall</h3>
+    <%kiosk_pageviews = []
+    @kiosks.each do |kiosk|
+      kiosk_pageviews << ["#{kiosk.name}", kiosk.visits.count]
+    end
+    %>
+    <%= column_chart kiosk_pageviews, height: "500px"%>
+  </div>
+
+</div>
+
+
 <script>
 $(document).ready(function() {
   $('#home_breadcrumb').addClass('active');
