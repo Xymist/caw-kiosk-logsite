@@ -33,18 +33,16 @@
     <% topic_visits = {} %>
     <%@topics.each do |topic|
       location = topic.location
-      if topic.host.name == @kiosk.name + "-(Kiosk)"
-        break
-      end
       if topic_visits[location]
         topic_visits[location] += 1
       else
         topic_visits[location] = 1
       end
     end%>
-    <%= pie_chart topic_visits%>
+    <% topic_visits%>
+    <%= pie_chart topic_visits.except("home")%>
   </div>
-  
+
 </div>
 
 <script>
