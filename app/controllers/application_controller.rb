@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   def home
     @kiosks = Kiosk.all
     @users = users
+    @visits = Visit.all
   end
 
   def logs

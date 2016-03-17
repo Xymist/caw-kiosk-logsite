@@ -6,11 +6,17 @@
 
   <div class="column">
     <h3 style="text-align: center;">Users Overall</h3>
+    <%= content_tag :h1, :style => "text-align: center;", :class => 'counter', :datastop => @users.values.inject(&:+) do %>
+      <%=@users.values.inject(&:+)%>
+    <% end %>
     <%= pie_chart @users, height: "500px"%>
   </div>
 
   <div class="column">
     <h3 style="text-align: center;">Total Pageviews Overall</h3>
+    <%= content_tag :h1, :style => "text-align: center;", :class => 'counter', :datastop => @visits.count do %>
+      <%=@visits.count%>
+    <% end %>
     <%kiosk_pageviews = []
     @kiosks.each do |kiosk|
       kiosk_pageviews << ["#{kiosk.name}", kiosk.visits.count]
@@ -25,5 +31,15 @@
 <script>
 $(document).ready(function() {
   $('#home_breadcrumb').addClass('active');
+});
+$('.counter').each(function () {
+  var $this = $(this);
+  jQuery({ Counter: 0 }).animate({ Counter: $this.attr('datastop') }, {
+    duration: 1000,
+    easing: 'swing',
+    step: function (now) {
+      $this.text(Math.ceil(now));
+    }
+  });
 });
 </script>
