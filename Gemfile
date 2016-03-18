@@ -17,6 +17,7 @@ gem 'autoprefixer-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'chartkick'
 gem 'groupdate'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   gem 'byebug'
