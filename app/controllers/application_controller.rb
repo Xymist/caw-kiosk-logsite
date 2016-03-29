@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
     @kiosks = Kiosk.all
     @users = users
     @visits = Visit.all
+    @title = "Home"
   end
 
   def logs

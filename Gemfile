@@ -18,6 +18,8 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'chartkick'
 gem 'groupdate'
 gem 'delayed_job_active_record'
+gem "daemons"
+gem "whenever"
 
 group :development, :test do
   gem 'byebug'
