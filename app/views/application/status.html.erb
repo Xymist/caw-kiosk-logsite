@@ -18,6 +18,14 @@
       <%else%>
         <h4 class="redtext"><strong>Kiosk Not Initialised</strong></h4>
       <%end%>
+
+      <h3>Last Data Update:</h3>
+      <% if kiosk.visits.last%>
+        <p><%=kiosk.visits.last.created_at%></p>
+      <%else%>
+        <h4 class="redtext"><strong>Kiosk Not Initialised</strong></h4>
+      <%end%>
+
     </div>
   <%end%>
 </div>
