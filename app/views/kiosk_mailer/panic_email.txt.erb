@@ -1,5 +1,6 @@
 Kiosk Down Notification
 =======================
 
-The kiosk "<%=@kiosk%>" is not communicating with the server.
+The kiosk "<%=@kiosk.capitalize%>" is not communicating with the server.
+Last contact was made at <%=Kiosk.find_by(name: @kiosk).heartbeats.last.created_at%>
 <%=link_to("Click here", @url)%> for the status summary.

@@ -3,6 +3,6 @@ class KioskMailer < ApplicationMailer
   def panic_email(kiosk)
     @kiosk = kiosk
     @url  = 'http://82.70.248.237/status'
-    mail(to: '98d7fbf0@opayq.com', subject: "#{@kiosk} is disconnected")
+    mail(to: 'alok@3rdsectorit.co.uk', subject: "#{@kiosk.capitalize} kiosk is disconnected")
   end
 end
