@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318132645) do
+ActiveRecord::Schema.define(version: 20160413152627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,8 +70,10 @@ ActiveRecord::Schema.define(version: 20160318132645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "kiosk_id"
+    t.string   "checksum"
   end
 
+  add_index "visits", ["checksum"], name: "index_visits_on_checksum", unique: true, using: :btree
   add_index "visits", ["topic_id"], name: "index_visits_on_topic_id", using: :btree
 
   add_foreign_key "heartbeats", "kiosks"
