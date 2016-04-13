@@ -17,6 +17,7 @@ class DatabaseStufferJob < ApplicationJob
         kiosk_name = Kiosk.find_or_create_by(name: kiosk[0])
         topic.visits.find_or_create_by(time_stamp: time_stamp, kiosk_id: kiosk_name.id)
       end
+      logfile.delete
     end
   end
 end
