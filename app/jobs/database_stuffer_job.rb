@@ -16,7 +16,10 @@ class DatabaseStufferJob < ApplicationJob
         host = Host.find_or_create_by(name: hostname)
         topic = host.topics.find_or_create_by(location: topicnames[0].chomp)
         kiosk_name = Kiosk.find_or_create_by(name: kiosk[0])
+        begin
         topic.visits.find_or_create_by(time_stamp: time_stamp, kiosk_id: kiosk_name.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk_name}"))
+        rescue ActiveRecord::RecordNotUnique
+        end
       end
     end
   end

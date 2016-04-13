@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160413152627) do
   end
 
   add_index "visits", ["checksum"], name: "index_visits_on_checksum", unique: true, using: :btree
+  add_index "visits", ["time_stamp", "kiosk_id"], name: "index_visits_on_time_stamp_and_kiosk_id", unique: true, using: :btree
   add_index "visits", ["topic_id"], name: "index_visits_on_topic_id", using: :btree
 
   add_foreign_key "heartbeats", "kiosks"
