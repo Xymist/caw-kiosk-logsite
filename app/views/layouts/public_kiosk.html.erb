@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @title ? @title : "Community Advice Kiosk" %></title>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  </head>
+
+  <body>
+    <div class="kiosk-container col-xs-12">
+      <%= yield %>
+    </div>
+    <div class="kiosk-footer-container col-xs-12">
+      <%= render 'partials/public_footer' %>
+    </div>
+  </body>
+</html>

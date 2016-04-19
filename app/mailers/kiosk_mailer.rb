@@ -1,5 +1,5 @@
 class KioskMailer < ApplicationMailer
-  default from: 'kioskstatus@3rdsectorit.co.uk'
+  default from: 'kioskstatus@caw-kiosk-logsite.co.uk'
   def panic_email(kiosk)
     @kiosk = kiosk
     @url  = 'http://82.70.248.237/status'

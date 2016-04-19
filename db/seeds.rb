@@ -1,23 +1,50 @@
-kiosks = Kiosk.create([
-  {name: 'gp-godalming',  address: 'Catteshall Mill, Catteshall Road, Godalming, GU7 1JW',           contact: 'Robin Forward - robin.forward@nhs.net'},
-  {name: 'gp-farnham',    address: 'Farnham Centre for Health, Hale Road, Farnham, GU9 9QS',         contact: 'Deji Bajomo - deji.bajomo@property.nhs.uk'},
-  {name: 'gp-cranleigh',  address: 'Cranleigh Medical Practice, 18 High Street, Cranleigh, GU6 8AE', contact: 'Jackie Stockill - jacqueline.stockill@nhs.net'},
-  {name: 'furniturelink', address: 'Unit 4, Deaconsfield, Cathedral Hill, Guildford, GU2 8YT',       contact: 'Various - 01483 506504'},
-  {name: 'ageuk',         address: 'Age UK, William Road, Guildford, GU1 4QZ',                       contact: 'David Hahn - 01483 503414'},
-  {name: 'waverley',      address: 'New Montrose House, 36 Bridge Street, Godalming, GU7 1HP',       contact: 'Michele Taylor - admin@farnhamcab.cabnet.org.uk'},
-  {name: 'ash',           address: 'Ash CA, Ash Hill Road, Ash, Aldershot, GU12 5DP',                contact: 'Karen Creeth - '},
-  {name: 'guildford',     address: 'Guildford CA, 15 Haydon Place, City Centre, Guildford, GU1 4LL', contact: 'Erica Sandford - '}
-  ])
+kiosks = [
+  [ 'gp-godalming',   "Catteshall Mill, Catteshall Road, Godalming, GU7 1JW",            'Robin Forward - robin.forward@nhs.net'],
+  [ 'gp-farnham',     "Farnham Centre for Health, Hale Road, Farnham, GU9 9QS",          'Deji Bajomo - deji.bajomo@property.nhs.uk'],
+  [ 'gp-cranleigh',   "Cranleigh Medical Practice, 18 High Street, Cranleigh, GU6 8AE",  'Jackie Stockill - jacqueline.stockill@nhs.net'],
+  [ 'furniturelink',  "Unit 4, Deaconsfield, Cathedral Hill, Guildford, GU2 8YT",        'Various - 01483 506504'],
+  [ 'ageuk',          "Age UK, William Road, Guildford, GU1 4QZ",                        'David Hahn - 01483 503414'],
+  [ 'waverley',       "New Montrose House, 36 Bridge Street, Godalming, GU7 1HP",        'Michele Taylor - admin@farnhamcab.cabnet.org.uk'],
+  [ 'ash',            "Ash CA, Ash Hill Road, Ash, Aldershot, GU12 5DP",                 'Karen Creeth - '],
+  [ 'guildford',      "Guildford CA, 15 Haydon Place, City Centre, Guildford, GU1 4LL",  'Erica Sandford - erica.sandford@guildfordcab.org.uk']
+  ]
 
-hosts = Host.create([
-  {name: 'gp-godalming-(Kiosk)'},
-  {name: 'gp-farnham-(Kiosk)'},
-  {name: 'gp-cranleigh-(Kiosk)'},
-  {name: 'furniturelink-(Kiosk)'},
-  {name: 'ageuk-(Kiosk)'},
-  {name: 'waverley-(Kiosk)'},
-  {name: 'ash-(Kiosk)'},
-  {name: 'guildford-(Kiosk)'},
-  {name: 'ageuk.co.uk'},
-  {name: 'citizensadvice.org.uk'}
-  ])
+kiosks.each do |name, address, contact|
+  Kiosk.find_or_create_by(:name => name, :address => address, :contact => contact)
+end
+
+hosts = [
+  [ 'gp-godalming-(Kiosk)'],
+  [ 'gp-farnham-(Kiosk)'],
+  [ 'gp-cranleigh-(Kiosk)'],
+  [ 'furniturelink-(Kiosk)'],
+  [ 'ageuk-(Kiosk)'],
+  [ 'waverley-(Kiosk)'],
+  [ 'ash-(Kiosk)'],
+  [ 'guildford-(Kiosk)'],
+  [ 'ageuk.co.uk'],
+  [ 'citizensadvice.org.uk']
+  ]
+
+hosts.each do |name|
+  Host.find_or_create_by(:name => name)
+end
+
+kiosk_topics = [
+  [ "benefits",  "Benefits", "Information on claiming benefits"],
+  [ "work",  "Work", "Work and Employment"],
+  [ "debt",  "Debt", "Help dealing with debt"],
+  [ "consumer",  "Consumer", "Consumer Issues and Complaints"],
+  [ "relationships",  "Relationships", "Family and relationship issues"],
+  [ "housing",  "Housing", "Housing and homelessness"],
+  [ "law_and_rights",  "Law and Rights", "Legal and rights issues"],
+  [ "discrimination",  "Discrimination", "Unfair discrimination issues"],
+  [ "tax",  "Tax", "Issues with taxation"],
+  [ "healthcare",  "Healthcare", "Physical and mental health issues"],
+  [ "education",  "Education", "Education and training"],
+  [ "local_organisations",  "Local Organisations", ""]
+  ]
+
+kiosk_topics.each do |name, label, description|
+  KioskTopic.find_or_create_by(:name => name, :label => label, :description => description)
+end

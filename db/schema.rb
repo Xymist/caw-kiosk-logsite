@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413152627) do
+ActiveRecord::Schema.define(version: 20160419191615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advice_pages", force: :cascade do |t|
+    t.string   "organisation"
+    t.string   "url"
+    t.string   "telephone"
+    t.string   "details"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "kiosks"
+    t.string   "topic"
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -44,6 +55,14 @@ ActiveRecord::Schema.define(version: 20160413152627) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "kiosk_topics", force: :cascade do |t|
+    t.string   "name"
+    t.string   "label"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
   end
 
   create_table "kiosks", force: :cascade do |t|

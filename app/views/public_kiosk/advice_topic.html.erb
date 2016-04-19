@@ -1,0 +1,10 @@
+<% @advice_pages.each do |page|%>
+  <%if page.kiosks.include? @kiosk_id.to_s %>
+    <div class="col-xs-3">
+      <%= link_to page.url, :class => 'col-xs-12 topic-button' do %>
+        <h1><%=page.organisation%></h1>
+        <h3><%=page.details%></h3>
+      <%end%>
+    </div>
+  <%end%>
+<%end%>

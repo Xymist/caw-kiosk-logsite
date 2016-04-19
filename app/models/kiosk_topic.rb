@@ -1,0 +1,2 @@
+class KioskTopic < ApplicationRecord
+end
