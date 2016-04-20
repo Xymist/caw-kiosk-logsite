@@ -12,7 +12,7 @@
         <h1><%=page.organisation%></h1>
         <h3><%=page.details%></h3>
       <%end%>
-      <%= link_to "sip://#{page.telephone}", :class => "col-xs-12 topic-button telephone-button" do %>
+      <%= link_to "sip:#{page.telephone}@10.33.228.250", :class => "col-xs-12 topic-button telephone-button" do %>
         <h3><i class="glyphicon glyphicon-phone-alt"></i>  <%=page.telephone%></h3>
       <%end%>
     </div>
