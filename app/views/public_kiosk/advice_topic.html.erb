@@ -1,4 +1,4 @@
-<% @advice_pages.each do |page|%>
+<% @advice_pages.order(:id).each do |page|%>
   <%if page.kiosks.include? @kiosk_id.to_s and page.telephone == "" %>
     <div class="col-xs-3">
       <%= link_to page.url, :class => 'col-xs-12 topic-button' do %>
