@@ -1,16 +1,16 @@
 kiosks = [
-  [ 'gp-godalming',   "Catteshall Mill, Catteshall Road, Godalming, GU7 1JW",            'Robin Forward - robin.forward@nhs.net'],
-  [ 'gp-farnham',     "Farnham Centre for Health, Hale Road, Farnham, GU9 9QS",          'Deji Bajomo - deji.bajomo@property.nhs.uk'],
-  [ 'gp-cranleigh',   "Cranleigh Medical Practice, 18 High Street, Cranleigh, GU6 8AE",  'Jackie Stockill - jacqueline.stockill@nhs.net'],
-  [ 'furniturelink',  "Unit 4, Deaconsfield, Cathedral Hill, Guildford, GU2 8YT",        'Various - 01483 506504'],
-  [ 'ageuk',          "Age UK, William Road, Guildford, GU1 4QZ",                        'David Hahn - 01483 503414'],
-  [ 'waverley',       "New Montrose House, 36 Bridge Street, Godalming, GU7 1HP",        'Michele Taylor - admin@farnhamcab.cabnet.org.uk'],
-  [ 'ash',            "Ash CA, Ash Hill Road, Ash, Aldershot, GU12 5DP",                 'Karen Creeth - '],
-  [ 'guildford',      "Guildford CA, 15 Haydon Place, City Centre, Guildford, GU1 4LL",  'Erica Sandford - erica.sandford@guildfordcab.org.uk']
+  [ 'gp-godalming',   "Catteshall Mill, Catteshall Road, Godalming, GU7 1JW",            'Robin Forward - robin.forward@nhs.net', 'waverley'],
+  [ 'gp-farnham',     "Farnham Centre for Health, Hale Road, Farnham, GU9 9QS",          'Deji Bajomo - deji.bajomo@property.nhs.uk', 'waverley'],
+  [ 'gp-cranleigh',   "Cranleigh Medical Practice, 18 High Street, Cranleigh, GU6 8AE",  'Jackie Stockill - jacqueline.stockill@nhs.net', 'waverley'],
+  [ 'furniturelink',  "Unit 4, Deaconsfield, Cathedral Hill, Guildford, GU2 8YT",        'Various - 01483 506504', 'guildford'],
+  [ 'ageuk',          "Age UK, William Road, Guildford, GU1 4QZ",                        'David Hahn - 01483 503414', 'guildford'],
+  [ 'waverley',       "New Montrose House, 36 Bridge Street, Godalming, GU7 1HP",        'Michele Taylor - admin@farnhamcab.cabnet.org.uk', 'waverley'],
+  [ 'ash',            "Ash CA, Ash Hill Road, Ash, Aldershot, GU12 5DP",                 'Karen Creeth - ', 'guildford'],
+  [ 'guildford',      "Guildford CA, 15 Haydon Place, City Centre, Guildford, GU1 4LL",  'Erica Sandford - erica.sandford@guildfordcab.org.uk', 'guildford']
   ]
 
-kiosks.each do |name, address, contact|
-  Kiosk.find_or_create_by(:name => name, :address => address, :contact => contact)
+kiosks.each do |name, address, contact, jurisdiction|
+  Kiosk.find_or_create_by(:name => name, :address => address, :contact => contact, :jurisdiction => jurisdiction)
 end
 
 hosts = [

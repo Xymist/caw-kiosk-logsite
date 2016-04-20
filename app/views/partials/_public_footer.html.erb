@@ -2,12 +2,21 @@
     <div class="col-xs-4">
       <a href="https://www.biglotteryfund.org.uk/"><%=image_tag "hi_big_e_lrg_blue-2.jpg", class: "logo-bar-image", alt: "Lottery Logo"%></a>
     </div>
-    <div class="col-xs-4">
-      <a href="http://www.waverleycab.org.uk"><%=image_tag "website_PNG_blue_Waverley.png", class: "logo-bar-image", alt: "CAW Logo"%></a>
-    </div>
-    <div class="col-xs-4">
-      <a href="http://www.waverley.gov.uk"><%=image_tag "logo.jpg", class: "logo-bar-image", alt: "Waverley Logo"%></a>
-    </div>
+    <% if @kiosk.jurisdiction == "waverley" %> <!--Waverley logos only for Waverley kiosks-->
+      <div class="col-xs-4">
+        <a href="http://www.waverleycab.org.uk"><%=image_tag "website_PNG_blue_Waverley.png", class: "logo-bar-image", alt: "CAW Logo"%></a>
+      </div>
+      <div class="col-xs-4">
+        <a href="http://www.waverley.gov.uk"><%=image_tag "logo.jpg", class: "logo-bar-image", alt: "Waverley Logo"%></a>
+      </div>
+    <%elsif @kiosk.jurisdiction == "guildford" %> <!--Guildford logos only for Guildford kiosks-->
+      <div class="col-xs-4">
+        <a href="http://www.guildfordcab.org.uk"><%=image_tag "website_PNG_blue.png", class: "logo-bar-image", alt: "CAB Logo"%></a>
+      </div>
+      <div class="col-xs-4">
+        <a href="https://guildfordadviceservices.org"><%=image_tag "gas-logo-full.png", class: "logo-bar-image", alt: "GAS Logo"%></a>
+      </div>
+    <%end%>
 </div>
 
 <div class="col-xs-5">
