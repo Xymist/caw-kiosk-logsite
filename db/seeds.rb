@@ -52,11 +52,11 @@ kiosk_topics.each do |name, label, description|
 end
 
 advice_pages = [
-  ["Citizens Advice", "https://www.citizensadvice.org.uk/benefits/", "03448487969", "The Citizens Advice Information Site", ["1", "2", "3", "4", "5", "6", "7", "8", "9"], "benefits"],
-  ["Turn 2 Us", "https://www.turn2us.org.uk/Your-Situation","08088022000","Detailed benefits information", ["1", "2", "3", "4", "5", "6", "7", "8", "9"], "benefits"],
-  ["Gov.UK", "http://www.gov.uk/browse/benefits","","The Government benefits guide", ["1", "2", "3", "4", "5", "6", "7", "8", "9"], "benefits"],
-  ["Age UK", "http://www.ageuk.org.uk/money-matters/claiming-benefits/","08001696565","Benefits for older people", ["1", "2", "3", "4", "5", "6", "7", "8", "9"], "benefits"],
-  ["HMRC", "http://www.hmrc.gov.uk","03002003300","Tax and benefits information", ["1", "2", "3", "4", "5", "6", "7", "8", "9"], "benefits"],
+  ["Citizens Advice", "https://www.citizensadvice.org.uk/benefits/", "03448487969", "The Citizens Advice Information Site", ["gp-godalming", "gp-farnham", "gp-cranleigh", "guildford", "ash", "waverley", "furniturelink", "ageuk"], "benefits"],
+  ["Turn 2 Us", "https://www.turn2us.org.uk/Your-Situation","08088022000","Detailed benefits information", ["gp-godalming", "gp-farnham", "gp-cranleigh", "guildford", "ash", "waverley", "furniturelink", "ageuk"], "benefits"],
+  ["Gov.UK", "http://www.gov.uk/browse/benefits","","The Government benefits guide", ["gp-godalming", "gp-farnham", "gp-cranleigh", "guildford", "ash", "waverley", "furniturelink", "ageuk"], "benefits"],
+  ["Age UK", "http://www.ageuk.org.uk/money-matters/claiming-benefits/","08001696565","Benefits for older people", ["gp-godalming", "gp-farnham", "gp-cranleigh", "guildford", "ash", "waverley", "furniturelink", "ageuk"], "benefits"],
+  ["HMRC", "http://www.hmrc.gov.uk","03002003300","Tax and benefits information", ["gp-godalming", "gp-farnham", "gp-cranleigh", "guildford", "ash", "waverley", "furniturelink", "ageuk"], "benefits"],
 ]
 
 advice_pages.each do |organisation, url, telephone, details, kiosks, topic|

@@ -1,6 +1,6 @@
 <% @kiosk_topics.each do |kiosk_topic| %>
   <div class="col-xs-3">
-    <%= link_to "#{@kiosk_id}/#{kiosk_topic.name}", :class => 'col-xs-12 topic-button' do %>
+    <%= link_to "#{@kiosk.name}/#{kiosk_topic.name}", :class => 'col-xs-12 topic-button' do %>
       <h1><%=kiosk_topic.label%></h1>
       <h3><%=kiosk_topic.description%></h3>
     <%end%>
