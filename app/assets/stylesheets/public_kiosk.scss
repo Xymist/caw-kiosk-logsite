@@ -29,6 +29,10 @@
   }
 }
 
+.no-telephone-topic{
+  height: 205px;
+}
+
 .telephone-topic{
   height: 150px;
   h1{
@@ -40,7 +44,8 @@
   height: 50px;
   h3{
     margin-top: 10px;
-  }
+  };
+  margin-top: 5px;
 }
 
 .topic-button>h2,

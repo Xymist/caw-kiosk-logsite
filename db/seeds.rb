@@ -366,6 +366,6 @@ advice_pages = [
 ]
 
 advice_pages.each do |organisation, url, telephone, details, kiosks, topic|
-  a = AdvicePage.find_or_create_by(:organisation => organisation)
-  a.update_attributes(:url => url, :telephone => telephone, :details => details, :kiosks => kiosks, :topic => topic)
+  a = AdvicePage.find_or_create_by(:url => url)
+  a.update_attributes(:organisation => organisation, :telephone => telephone, :details => details, :kiosks => kiosks, :topic => topic)
 end
