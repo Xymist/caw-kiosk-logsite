@@ -1,0 +1,34 @@
+<h1 class="title-line">Kiosk Pages</h1>
+<div class="ui stackable two column grid">
+  <%@kiosk_topics.each do |topic|%>
+  <div class="column">
+    <h2><%=topic.label%></h2>
+    <div class="ui styled fluid accordion">
+      <%@pages.each do |page|%>
+        <%if page.topic == topic.name%>
+          <div class="title">
+            <i class="dropdown icon"></i><%=page.organisation%>
+          </div>
+          <div class="content">
+            <div class="transition hidden">
+              <p>Info: <%=page.details%></p>
+              <p>URL: <%=link_to page.url%></p>
+              <p>Tel: <%=page.telephone%></p>
+              <a href="" class="ui primary button">Edit</a>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+  <%end%>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('#advice_pages_breadcrumb').addClass('active');
+});
+$('.ui.accordion')
+  .accordion()
+;
+</script>

@@ -20,6 +20,7 @@ gem 'groupdate'
 gem 'delayed_job_active_record'
 gem "daemons"
 gem "whenever"
+gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations', branch: 'rails5'
 
 group :development, :test do
   gem 'byebug'

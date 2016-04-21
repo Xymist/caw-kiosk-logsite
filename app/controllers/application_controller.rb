@@ -53,4 +53,10 @@ class ApplicationController < ActionController::Base
     @users = users
   end
 
+  def advice_pages
+    @kiosks = Kiosk.all
+    @kiosk_topics = KioskTopic.all
+    @pages = AdvicePage.all
+  end
+
 end
