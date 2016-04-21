@@ -1,4 +1,5 @@
 class AdvicePagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_advice_page, only: [:show, :edit, :update, :destroy]
 
   # GET /advice_pages

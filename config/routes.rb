@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # mount ActionCable.server => '/cable' # We're not using this just yet
+  devise_for :users
+
   root to: "application#home"
 
   get 'logs', to: "application#logs"
@@ -13,4 +14,5 @@ Rails.application.routes.draw do
   get 'public_kiosk/:kiosk', to: "public_kiosk#home"
   get 'public_kiosk/:kiosk/:topic', to: "public_kiosk#advice_topic"
   get "public_kiosk" => redirect("public_kiosk/waverley")
+
 end

@@ -15,6 +15,7 @@
               <p><strong>Info:</strong> <%=page.details%></p>
               <p><strong>URL:</strong> <%=link_to page.url, page.url%></p>
               <p><strong>Tel:</strong> <%=page.telephone%></p>
+              <%if current_user.admin?%>
               <!--Evil hack for creating a billion different modals and still accessing them all reliably: -->
               <% @w = "<a class='ui primary button' onclick='modaleditpage(#{page.id})'>Edit</a>"%>
               <%= @w.html_safe%>
@@ -24,13 +25,14 @@
                 <%= render 'form', advice_page: page %>
               </div>
               <%= link_to 'Remove', page, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button' %>
+              <%end%>
             </div>
           </div>
         <%end%>
       <%end%>
     </div>
     <p></p>
-    <%if @pages.where(topic: topic.name).count < 12 %>
+    <%if current_user.admin? && @pages.where(topic: topic.name).count < 12 %>
     <!--And again...-->
       <% @y = "<a class='ui primary button pull-right' onclick='modalnewpage(#{topic.id})'>New #{topic.label} Page</a>"%>
       <%=@y.html_safe%>
