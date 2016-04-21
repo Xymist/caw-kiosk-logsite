@@ -1,7 +1,8 @@
 <h1 class="title-line">Kiosk Pages</h1>
 <div class="ui stackable three column grid">
   <%@kiosk_topics.order(:name).each do |topic|%>
-  <div class="column">
+  <% @a = "<div class='column' id='#{topic.name}'>"%>
+  <%= @a.html_safe%>
     <h2><%=topic.label%></h2>
     <div class="ui styled fluid accordion">
       <%@pages.order(:id).each do |page|%>
@@ -59,5 +60,8 @@ function modalnewpage(m) {
 };
 function modaleditpage(n) {
   $('#editpagemodal'+n).modal('show');
+};
+function closemodal() {
+  $('.modal').modal('hide');
 };
 </script>

@@ -21,6 +21,7 @@ gem 'delayed_job_active_record'
 gem "daemons"
 gem "whenever"
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations', branch: 'rails5'
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
 group :development, :test do
   gem 'byebug'

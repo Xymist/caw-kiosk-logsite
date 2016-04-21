@@ -28,7 +28,7 @@
 
     <div class="actions modal-actions">
       <%= f.submit "Save Page", class: "ui green large button pull-right"%>
-      <%= link_to 'Cancel', advice_pages_path, class: 'ui red large button pull-right' %>
+      <button class="ui red large button pull-right" onclick="closemodal()">Cancel</button>
     </div>
   </div>
 <% end %>
