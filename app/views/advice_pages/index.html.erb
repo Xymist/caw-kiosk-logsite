@@ -1,0 +1,63 @@
+<h1 class="title-line">Kiosk Pages</h1>
+<div class="ui stackable three column grid">
+  <%@kiosk_topics.order(:name).each do |topic|%>
+  <div class="column">
+    <h2><%=topic.label%></h2>
+    <div class="ui styled fluid accordion">
+      <%@pages.order(:id).each do |page|%>
+        <%if page.topic == topic.name%>
+          <div class="title">
+            <i class="dropdown icon"></i><%=page.organisation%>
+          </div>
+          <div class="content">
+            <div class="transition hidden">
+              <p><strong>Info:</strong> <%=page.details%></p>
+              <p><strong>URL:</strong> <%=link_to page.url, page.url%></p>
+              <p><strong>Tel:</strong> <%=page.telephone%></p>
+              <!--Evil hack for creating a billion different modals and still accessing them all reliably: -->
+              <% @w = "<a class='ui primary button' onclick='modaleditpage(#{page.id})'>Edit</a>"%>
+              <%= @w.html_safe%>
+              <% @x = "<div class='ui modal advice-modal' id='editpagemodal#{page.id}'>"%>
+              <%= @x.html_safe%>
+                <h1> Edit <%= topic.label%> Page</h1>
+                <%= render 'form', advice_page: page %>
+              </div>
+              <%= link_to 'Remove', page, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button' %>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+    <p></p>
+    <%if @pages.where(topic: topic.name).count < 12 %>
+    <!--And again...-->
+      <% @y = "<a class='ui primary button pull-right' onclick='modalnewpage(#{topic.id})'>New #{topic.label} Page</a>"%>
+      <%=@y.html_safe%>
+      <% @z = "<div class='ui modal advice-modal' id='newpagemodal#{topic.id}'>"%>
+      <%=@z.html_safe%>
+        <h1> Create <%= topic.label%> Page</h1>
+        <%= render 'form', advice_page: AdvicePage.new(topic: topic.name)%>
+      </div>
+      <%else%>
+      <button class="ui disabled button pull-right">
+        Category Full
+      </button>
+    <%end%>
+  </div>
+  <%end%>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('#advice_pages_breadcrumb').addClass('active');
+});
+$('.ui.accordion')
+  .accordion()
+;
+function modalnewpage(m) {
+  $('#newpagemodal'+m).modal('show');
+};
+function modaleditpage(n) {
+  $('#editpagemodal'+n).modal('show');
+};
+</script>

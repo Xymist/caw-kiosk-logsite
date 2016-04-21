@@ -1,0 +1,34 @@
+<%= form_for(advice_page) do |f| %>
+  <% if advice_page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(advice_page.errors.count, "error") %> prohibited this advice_page from being saved:</h2>
+
+      <ul>
+      <% advice_page.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="ui segment">
+    <div class="ui large input">
+    <%= f.text_field :organisation, placeholder: "Organisation" %>
+    </div><br />
+    <div class="ui large input">
+    <%= f.text_field :url, placeholder: "URL"  %>
+    </div><br />
+    <div class="ui large input">
+    <%= f.text_field :telephone, placeholder: "Telephone"  %>
+    </div><br />
+    <div class="ui large input">
+    <%= f.text_field :details, placeholder: "Details"  %>
+    </div><br />
+    <%= f.hidden_field(:topic) %>
+
+    <div class="actions modal-actions">
+      <%= f.submit "Save Page", class: "ui green large button pull-right"%>
+      <%= link_to 'Cancel', advice_pages_path, class: 'ui red large button pull-right' %>
+    </div>
+  </div>
+<% end %>
