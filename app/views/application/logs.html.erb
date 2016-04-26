@@ -3,14 +3,14 @@
   <% @allowed_kiosks.order(:name).each do |kiosk| %>
     <div class="column report-panel">
       <h2><%=kiosk.name.upcase%></h2>
-      <% visit_array = [] %>
+      <% visit_array = {} %>
       <%@hosts.each do |host|
         if host.visits.where(kiosk: kiosk).count > 0
-          visit_array << ["#{host.name}", host.visits.where(kiosk: kiosk).count]
+          visit_array["#{host.name}"] = host.visits.where(kiosk: kiosk).count
         end%>
       <%end%>
-      <%= pie_chart visit_array%>
-      <h3 class="pull-right"><%= link_to("Details", "/logs/#{kiosk.id}")%></h3>
+      <%= pie_chart visit_array.except("gp-godalming-(Kiosk)", "82.70.237.248", "waverley-(Kiosk)")%>
+      <h3 class="pull-right"><%= link_to("Details", "/logs/#{kiosk.name}")%></h3>
     </div>
    <%end%>
 </div>

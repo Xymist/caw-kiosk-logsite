@@ -3,13 +3,13 @@
 
   <div class="column">
     <h3>Visits, by location:</h3>
-    <% visit_array = [] %>
+    <% visit_array = {} %>
     <%@hosts.each do |host|
       if host.visits.where(kiosk: @kiosk).count > 0
-        visit_array << ["#{host.name}", host.visits.where(kiosk: @kiosk).count]
+        visit_array["#{host.name}"] = host.visits.where(kiosk: @kiosk).count
       end%>
     <%end%>
-    <%= pie_chart visit_array%>
+    <%= pie_chart visit_array.except("gp-godalming-(Kiosk)", "82.70.237.248", "waverley-(Kiosk)")%>
   </div>
 
   <div class="column">
@@ -18,7 +18,7 @@
   </div>
 
   <div class="column">
-    <h3>Kiosk Topic Search Frequency</h3>
+    <h3>Kiosk Topic Access Frequency</h3>
     <%topic_array = [] %>
     <%@topics.each do |topic|
       if topic.host.name == @kiosk.name + "-(Kiosk)"
@@ -29,14 +29,16 @@
   </div>
 
   <div class="column">
-    <h3>General Topic Search Frequency</h3>
+    <h3>External Topic Access Frequency</h3>
     <% topic_visits = {} %>
-    <%@topics.each do |topic|
-      location = topic.location
-      if topic_visits[location]
-        topic_visits[location] += 1
-      else
-        topic_visits[location] = 1
+    <%@visits.each do |visit|
+      unless ["82.70.237.248", "waverley", "gp-godalming-(Kiosk)"].include? visit.host.name
+        location = visit.topic.location
+        if topic_visits[location]
+          topic_visits[location] += 1
+        else
+          topic_visits[location] = 1
+        end
       end
     end%>
     <% topic_visits%>

@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     @kiosks = Kiosk.all
     @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
     @disallowed_kiosks = @kiosks - @allowed_kiosks
-    @visits = Visit.all
+    @visits = Visit.where(:kiosk => @allowed_kiosks)
   end
 
   def status
@@ -53,10 +53,10 @@ class ApplicationController < ActionController::Base
   end
 
   def kiosk_log
-    @kiosk = Kiosk.find(params[:id])
+    @kiosk = Kiosk.find_by(name: params[:kiosk])
     @hosts = Host.all
     @title = "Kiosk Data"
-    @visits = Visit.all
+    @visits = Visit.where(kiosk: @kiosk)
     @topics = Topic.all
     @users = users
   end
