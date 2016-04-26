@@ -9,7 +9,7 @@
           visit_array["#{host.name}"] = host.visits.where(kiosk: kiosk).count
         end%>
       <%end%>
-      <%= pie_chart visit_array.except("gp-godalming-(Kiosk)", "82.70.237.248", "waverley-(Kiosk)")%>
+      <%= pie_chart visit_array.except("gp-godalming-(Kiosk)", "82.70.248.237", "waverley-(Kiosk)")%>
       <h3 class="pull-right"><%= link_to("Details", "/logs/#{kiosk.name}")%></h3>
     </div>
    <%end%>
