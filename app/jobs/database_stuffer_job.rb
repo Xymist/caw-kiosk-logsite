@@ -19,9 +19,12 @@ class DatabaseStufferJob < ApplicationJob
         topicnames = split_data[2].split(',')
         host = Host.find_or_create_by(name: hostname)
         if host.name == "82.70.248.237"
-          topic = host.topics.find_or_create_by(location: topicnames[2].chomp)
+          begin
+            topic = host.topics.find_or_create_by(location: topicnames[2])
+          rescue Exception => e
+          end
         else
-          topic = host.topics.find_or_create_by(location: topicnames[0].chomp)
+          topic = host.topics.find_or_create_by(location: topicnames[0])
         end
         kiosk_name = Kiosk.find_or_create_by(name: @kiosk[0])
         begin
