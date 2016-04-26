@@ -1,0 +1,8 @@
+<%
+  @kiosk = params[:kiosk]
+  if @kiosk != nil
+    h = Heartbeat.new
+    h.kiosk = Kiosk.find_by(name: "#{@kiosk}")
+    h.save
+  end
+%>
