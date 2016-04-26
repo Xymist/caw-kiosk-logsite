@@ -19,10 +19,10 @@
 
   <div class="column">
     <h3>Kiosk Topic Access Frequency</h3>
-    <%topic_array = [] %>
+    <%topic_array = {} %>
     <%@topics.each do |topic|
       if ["waverley", "82.70.237.248", "gp-godalming-(Kiosk)"].include? topic.host.name
-        topic_array << ["#{topic.location}", @kiosk.visits.where(topic: topic).count]
+        topic_array["#{topic.location}"] = @kiosk.visits.where(topic: topic).count
       end
     end%>
     <%= pie_chart topic_array%>
