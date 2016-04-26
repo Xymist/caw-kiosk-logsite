@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'logs/:kiosk', to: 'application#kiosk_log', as: 'log'
   get 'home', to: "application#home"
   get 'status', to: "application#status"
-  get 'heartbeat', to: "application#heartbeat"
+  get 'heartbeat', to: "public_kiosk#heartbeat"
 
   resources 'advice_pages'
 

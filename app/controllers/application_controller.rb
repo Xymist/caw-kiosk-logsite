@@ -47,11 +47,6 @@ class ApplicationController < ActionController::Base
     @title = "Kiosk Status"
   end
 
-  def heartbeat
-    render :layout => false
-    @kiosk = params[:kiosk]
-  end
-
   def kiosk_log
     @kiosk = Kiosk.find_by(name: params[:kiosk])
     @hosts = Host.all

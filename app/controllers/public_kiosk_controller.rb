@@ -10,6 +10,11 @@ class PublicKioskController < ActionController::Base
     @advice_pages = AdvicePage.where(topic: params[:topic].to_s)
   end
 
+  def heartbeat
+    render :layout => false
+    @kiosk = params[:kiosk]
+  end
+
   def exit_site
     new_url = params[:exit_url].sub(/^https?\:\/\/(www.)?/,'').split('/')
     new_host = new_url[0]
