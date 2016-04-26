@@ -18,12 +18,11 @@ class DatabaseStufferJob < ApplicationJob
         hostname = split_data[1]
         topicnames = split_data[2].split(',')
         host = Host.find_or_create_by(name: hostname)
-        if host.name == "82.70.248.237"
-          begin
-            topic = host.topics.find_or_create_by(location: topicnames[2])
-          rescue Exception => e
-          end
-        else
+        if host.name == "82.70.248.237" && topicnames.length > 2 # Only true for topic pages
+          topic = host.topics.find_or_create_by(location: topicnames[2])
+        elsif host.name == "82.70.248.237" # Only true for the homepage
+          topic = host.topics.find_or_create_by(location: topicnames[1])
+        else # Anything else is external
           topic = host.topics.find_or_create_by(location: topicnames[0])
         end
         kiosk_name = Kiosk.find_or_create_by(name: @kiosk[0])
