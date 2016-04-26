@@ -21,7 +21,7 @@
     <h3>Kiosk Topic Access Frequency</h3>
     <%topic_array = [] %>
     <%@topics.each do |topic|
-      if topic.host.name == @kiosk.name + "-(Kiosk)"
+      if ["waverley", "82.70.237.248", "gp-godalming-(Kiosk)"].include? topic.host.name
         topic_array << ["#{topic.location}", @kiosk.visits.where(topic: topic).count]
       end
     end%>
