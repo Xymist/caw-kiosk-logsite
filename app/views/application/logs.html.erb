@@ -1,6 +1,6 @@
 <h1 class="title-line">All Logs By Kiosk</h1>
 <div class="ui stackable doubling three column grid">
-  <% @kiosks.order(:name).each do |kiosk| %>
+  <% @allowed_kiosks.order(:name).each do |kiosk| %>
     <div class="column report-panel">
       <h2><%=kiosk.name.upcase%></h2>
       <% visit_array = [] %>

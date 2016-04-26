@@ -7,7 +7,7 @@
   <div class="column">
     <h3 style="text-align: center;">Users Overall</h3>
     <%= content_tag :h1, :style => "text-align: center;", :class => 'counter', :datastop => @users.values.inject(&:+) do %>
-      <%=@users.values.inject(&:+)%>
+      <%=@users.values.inject(&:+) || 0%>
     <% end %>
     <%= pie_chart @users, height: "500px"%>
   </div>
@@ -18,7 +18,7 @@
       <%=@visits.count%>
     <% end %>
     <%kiosk_pageviews = []
-    @kiosks.each do |kiosk|
+    @allowed_kiosks.each do |kiosk|
       kiosk_pageviews << ["#{kiosk.name}", kiosk.visits.count]
     end
     %>

@@ -2,10 +2,20 @@ class AdvicePagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_advice_page, only: [:show, :edit, :update, :destroy]
 
+  before_filter :check_for_cancel, :only => [:create, :update]
+
+  def check_for_cancel
+    if params[:commit] == "Cancel"
+      redirect_to advice_pages_path
+    end
+  end
+
   # GET /advice_pages
   # GET /advice_pages.json
   def index
     @kiosks = Kiosk.all
+    @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
+    @disallowed_kiosks = @kiosks - @allowed_kiosks
     @kiosk_topics = KioskTopic.all
     @pages = AdvicePage.all
     @newpage = AdvicePage.new
@@ -74,6 +84,6 @@ class AdvicePagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advice_page_params
-      params.require(:advice_page).permit(:organisation, :url, :telephone, :details, :topic)
+      params.require(:advice_page).permit(:organisation, :url, :telephone, :details, :topic, :kiosk_ids => [])
     end
 end

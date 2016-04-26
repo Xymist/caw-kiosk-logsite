@@ -2,14 +2,14 @@
     <div class="col-xs-4">
       <a href="https://www.biglotteryfund.org.uk/"><%=image_tag "hi_big_e_lrg_blue-2.jpg", class: "logo-bar-image", alt: "Lottery Logo"%></a>
     </div>
-    <% if @kiosk.jurisdiction == "waverley" %> <!--Waverley logos only for Waverley kiosks-->
+    <% if @kiosk.jurisdiction.name == "waverley" %> <!--Waverley logos only for Waverley kiosks-->
       <div class="col-xs-4">
         <a href="http://www.waverleycab.org.uk"><%=image_tag "website_PNG_blue_Waverley.png", class: "logo-bar-image", alt: "CAW Logo"%></a>
       </div>
       <div class="col-xs-4">
         <a href="http://www.waverley.gov.uk"><%=image_tag "logo.jpg", class: "logo-bar-image", alt: "Waverley Logo"%></a>
       </div>
-    <%elsif @kiosk.jurisdiction == "guildford" %> <!--Guildford logos only for Guildford kiosks-->
+    <%elsif @kiosk.jurisdiction.name == "guildford" %> <!--Guildford logos only for Guildford kiosks-->
       <div class="col-xs-4">
         <a href="http://www.guildfordcab.org.uk"><%=image_tag "website_PNG_blue.png", class: "logo-bar-image", alt: "CAB Logo"%></a>
       </div>
@@ -20,6 +20,6 @@
 </div>
 
 <div class="col-xs-5">
-    <p style="color: #0086B2; font-size: 18px; font-weight: 600; text-align: center">To speak to an organisation, please pick up the handset <br/> and touch the phone number provided</p>
-    <p style="color: #0086B2; font-size: 12px; font-weight: 400" class="pull-right">Design aided by Georgina Wormald</p>
+  <p style="color: #0086B2; font-size: 18px; font-weight: 600; text-align: center">To speak to an organisation, please pick up the handset <br/> and touch the phone number provided</p>
+  <p style="color: #0086B2; font-size: 12px; font-weight: 400" class="pull-right">Built by James Duerden. Design aided by Georgina Wormald</p>
 </div>

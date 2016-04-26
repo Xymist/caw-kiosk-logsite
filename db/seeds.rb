@@ -8,19 +8,31 @@
 # These are the first eight kiosks, created for the pilot. Others may antecede.
 
 kiosks = [
-  ['gp-godalming',   'Catteshall Mill, Catteshall Road, Godalming, GU7 1JW',            'Robin Forward - robin.forward@nhs.net',               'waverley' ],
-  ['gp-farnham',     'Farnham Centre for Health, Hale Road, Farnham, GU9 9QS',          'Deji Bajomo - deji.bajomo@property.nhs.uk',           'waverley' ],
-  ['gp-cranleigh',   'Cranleigh Medical Practice, 18 High Street, Cranleigh, GU6 8AE',  'Jackie Stockill - jacqueline.stockill@nhs.net',       'waverley' ],
-  ['furniturelink',  'Unit 4, Deaconsfield, Cathedral Hill, Guildford, GU2 8YT',        'Various - 01483 506504',                              'guildford'],
-  ['ageuk',          'Age UK, William Road, Guildford, GU1 4QZ',                        'David Hahn - 01483 503414',                           'guildford'],
-  ['waverley',       'New Montrose House, 36 Bridge Street, Godalming, GU7 1HP',        'Michele Taylor - admin@farnhamcab.cabnet.org.uk',     'waverley' ],
-  ['ash',            'Ash CA, Ash Hill Road, Ash, Aldershot, GU12 5DP',                 'Karen Creeth - ',                                     'guildford'],
-  ['guildford',      'Guildford CA, 15 Haydon Place, City Centre, Guildford, GU1 4LL',  'Erica Sandford - erica.sandford@guildfordcab.org.uk', 'guildford']
+  ['gp-godalming',   'Catteshall Mill, Catteshall Road, Godalming, GU7 1JW',            'Robin Forward - robin.forward@nhs.net',               2],
+  ['gp-farnham',     'Farnham Centre for Health, Hale Road, Farnham, GU9 9QS',          'Deji Bajomo - deji.bajomo@property.nhs.uk',           2],
+  ['gp-cranleigh',   'Cranleigh Medical Practice, 18 High Street, Cranleigh, GU6 8AE',  'Jackie Stockill - jacqueline.stockill@nhs.net',       2],
+  ['furniturelink',  'Unit 4, Deaconsfield, Cathedral Hill, Guildford, GU2 8YT',        'Various - 01483 506504',                              1],
+  ['ageuk',          'Age UK, William Road, Guildford, GU1 4QZ',                        'David Hahn - 01483 503414',                           1],
+  ['waverley',       'New Montrose House, 36 Bridge Street, Godalming, GU7 1HP',        'Michele Taylor - admin@farnhamcab.cabnet.org.uk',     2],
+  ['ash',            'Ash CA, Ash Hill Road, Ash, Aldershot, GU12 5DP',                 'Karen Creeth - ',                                     1],
+  ['guildford',      'Guildford CA, 15 Haydon Place, City Centre, Guildford, GU1 4LL',  'Erica Sandford - erica.sandford@guildfordcab.org.uk', 1]
 ]
 
-kiosks.each do |name, address, contact, jurisdiction|
+kiosks.each do |name, address, contact, jurisdiction_id|
   k = Kiosk.find_or_create_by(name: name)
-  k.update_attributes(address: address, contact: contact, jurisdiction: jurisdiction)
+  k.update_attributes(address: address, contact: contact, jurisdiction_id: jurisdiction_id)
+end
+
+################################################################################
+
+jurisdictions = [
+  ['guildford', true, '10.33.228.250'],
+  ['waverley',  true, '10.33.228.250']
+]
+
+jurisdictions.each do |name, telephone, pbx_server|
+  j = Jurisdiction.find_or_create_by(name: name)
+  j.update_attributes(name: name, telephone: telephone, pbx_server: pbx_server)
 end
 
 ################################################################################
@@ -72,115 +84,30 @@ end
 # This is where it gets painful. I hope you have a big screen...
 
 advice_pages = [
-  ['Citizens Advice', 'https://www.citizensadvice.org.uk/benefits/', '03448487969', 'The Citizens Advice Information Site', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'],
-  ['Turn 2 Us', 'https://www.turn2us.org.uk/Your-Situation', '08088022000', 'Detailed benefits information', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'],
-  ['Gov.UK', 'http://www.gov.uk/browse/benefits', '', 'The Government benefits guide', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'],
-  ['Age UK', 'http://www.ageuk.org.uk/money-matters/claiming-benefits/', '08001696565', 'Benefits for older people', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'],
-  ['HMRC', 'http://www.hmrc.gov.uk', '03002003300', 'Tax and benefits information', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'],
-  ['Citizens Advice', 'https://www.citizensadvice.org.uk/work/', '03448487969', 'The Citizens Advice information site', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'],
-  ['Gov.UK', 'http://www.gov.uk/browse/working', '', 'The Government Working Guide', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'],
-  [
-    'Pension Service',
-    'http://www.gov.uk/contact-pension-service',
-    '',
-    'The Government Pensions Advice Service', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'
-  ],
-  [
-    'ACAS',
-    'http://www.acas.org.uk/index.aspx?articleid_1461',
-    '',
-    'Employment relations advice', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'
-  ],
-  [
-    'Tribunal Service',
-    'http://www.acas.org.uk/index.aspx?articleid_1461',
-    '03001231100',
-    'Employment tribunals', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'
-  ],
-  [
-    'Age UK',
-    'http://www.ageuk.org.uk/work-and-learning/',
-    '08001696565',
-    'Employment advice for older people', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'
-  ],
-  [
-    'National Careers Service',
-    'https://nationalcareersservice.direct.gov.uk/Pages/Home.aspx',
-    '',
-    'Help and Advice with Careers', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'
-  ],
-  [
-    'Citizens Advice',
-    'https://www.citizensadvice.org.uk/debt-and-money/',
-    '03448487969',
-    'The Citizens Advice information site', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'
-  ],
-  [
-    'StepChange',
-    'https://www.stepchange.org',
-    '08001381111',
-    'Advice on getting out of debt', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'
-  ],
-  [
-    'Gov.UK',
-    'http://www.gov.uk/government/organisations/insolvency-service',
-    '',
-    'The Government Insolvency Service', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'
-  ],
-  [
-    'Money Advice Service',
-    'http://www.moneyadviceservice.org.uk',
-    '03005005000',
-    'The UK Money Advice Service', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'
-  ],
-  [
-    'Age UK',
-    'http://www.ageuk.org.uk/money-matters/money-management/',
-    '08001696565',
-    'Debt advice for older people', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'
-  ],
-  [
-    'National Debtline',
-    'https://www.nationaldebtline.org/EW/Pages/default.aspx',
-    '08088084000',
-    'Help with managing debt and money', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'
-  ],
-  [
-    'Citizens Advice',
-    'https://www.citizensadvice.org.uk/consumer/',
-    '',
-    'The Citizens Advice information site', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'
-  ],
-  [
-    'Gov.UK',
-    'http://www.gov.uk/consumer-protection-rights/',
-    '',
-    'The Government consumer rights guide', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'
-  ],
-  [
-    'Complaints Commission',
-    'http://www.ukecc.net',
-    '',
-    'The European Complaints Commission', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'
-  ],
-  [
-    'Age UK',
-    'http://www.ageuk.org.uk/money-matters/consumer-advice/',
-    '08001696565',
-    'Consumer advice for older people', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'
-  ],
-  [
-    'Financial Ombudsman',
-    'http://www.financial-ombudsman.org.uk',
-    '08000234567',
-    'The Government consumer rights guide', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'
-  ],
-  [
-    'Citizens Advice',
-    'https://www.citizensadvice.org.uk/relationships/',
-    '03448487969',
-    'The Citizens Advice information site', ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'relationships'
-  ],
+  ['Citizens Advice',          'https://www.citizensadvice.org.uk/benefits/',                                        '03448487969', 'The Citizens Advice Information Site',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'           ],
+  ['Turn 2 Us',                'https://www.turn2us.org.uk/Your-Situation',                                          '08088022000', 'Detailed benefits information',                            ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'           ],
+  ['Gov.UK',                   'http://www.gov.uk/browse/benefits',                                                  '',            'The Government benefits guide',                            ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'           ],
+  ['Age UK',                   'http://www.ageuk.org.uk/money-matters/claiming-benefits/',                           '08001696565', 'Benefits for older people',                                ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'           ],
+  ['HMRC',                     'http://www.hmrc.gov.uk',                                                             '03002003300', 'Tax and benefits information',                             ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'benefits'           ],
+  ['Citizens Advice',          'https://www.citizensadvice.org.uk/work/',                                            '03448487969', 'The Citizens Advice information site',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'               ],
+  ['Gov.UK',                   'http://www.gov.uk/browse/working',                                                   '',            'The Government Working Guide',                             ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'               ],
+  ['Pension Service',          'http://www.gov.uk/contact-pension-service',                                          '',            'The Government Pensions Advice Service',                   ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'               ],
+  ['ACAS',                     'http://www.acas.org.uk/index.aspx?articleid_1461',                                   '',            'Employment relations advice',                              ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'               ],
+  ['Tribunal Service',         'http://www.acas.org.uk/index.aspx?articleid_1461',                                   '03001231100', 'Employment tribunals',                                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'               ],
+  ['Age UK',                   'http://www.ageuk.org.uk/work-and-learning/',                                         '08001696565', 'Employment advice for older people',                       ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'               ],
+  ['National Careers Service', 'https://nationalcareersservice.direct.gov.uk/Pages/Home.aspx',                       '',            'Help and Advice with Careers',                             ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'work'               ],
+  ['Citizens Advice',          'https://www.citizensadvice.org.uk/debt-and-money/',                                  '03448487969', 'The Citizens Advice information site',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'               ],
+  ['StepChange',               'https://www.stepchange.org',                                                         '08001381111', 'Advice on getting out of debt',                            ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'               ],
+  ['Gov.UK',                   'http://www.gov.uk/government/organisations/insolvency-service',                      '',            'The Government Insolvency Service',                        ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'               ],
+  ['Money Advice Service',     'http://www.moneyadviceservice.org.uk',                                               '03005005000', 'The UK Money Advice Service',                              ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'               ],
+  ['Age UK',                   'http://www.ageuk.org.uk/money-matters/money-management/',                            '08001696565', 'Debt advice for older people',                             ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'               ],
+  ['National Debtline',        'https://www.nationaldebtline.org/EW/Pages/default.aspx',                             '08088084000', 'Help with managing debt and money',                        ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'debt'               ],
+  ['Citizens Advice',          'https://www.citizensadvice.org.uk/consumer/',                                        '',            'The Citizens Advice information site',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'           ],
+  ['Gov.UK',                   'http://www.gov.uk/consumer-protection-rights/',                                      '',            'The Government consumer rights guide',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'           ],
+  ['Complaints Commission',    'http://www.ukecc.net',                                                               '',            'The European Complaints Commission',                       ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'           ],
+  ['Age UK',                   'http://www.ageuk.org.uk/money-matters/consumer-advice/',                             '08001696565', 'Consumer advice for older people',                         ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'           ],
+  ['Financial Ombudsman',      'http://www.financial-ombudsman.org.uk',                                              '08000234567', 'The Government consumer rights guide',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'consumer'           ],
+  ['Citizens Advice',          'https://www.citizensadvice.org.uk/relationships/',                                   '03448487969', 'The Citizens Advice information site',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'relationships'      ],
   ['Gov.UK',                   'http://www.gov.uk/child-maintenance',                                                '',            'The Government Child Maintenance Guide',                   ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'relationships'      ],
   ['Family Mediation Council', 'http://www.familymediationcouncil.org.uk/family-mediation/choose-family-mediation/', '',            'Mediation services',                                       ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'relationships'      ],
   ['Relate',                   'https://www.relate.org.uk',                                                          '03001001234', 'Counselling, support and mediation service',               ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'relationships'      ],
@@ -215,7 +142,7 @@ advice_pages = [
   ['NHS Sexual Health',        'http://www.letstalkaboutit.nhs.uk',                                                  '',            'NHS advice on sexual health issues',                       ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'healthcare'         ],
   ['Citizens Advice',          'https://www.citizensadvice.org.uk/education/',                                       '03448487969', 'The Citizens Advice information site',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
   ['Gov.UK',                   'http://www.gov.uk/browse/education',                                                 '',            'The Government Education Guide',                           ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
-  ['Age UK',                   'http:// www.ageuk.org.uk/work-and-learning/further-education-and-training/',         '08001696565', 'Education advice for older people',                        ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
+  ['Age UK',                   'http://www.ageuk.org.uk/work-and-learning/further-education-and-training/',          '08001696565', 'Education advice for older people',                        ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
   ['Education Otherwise',      'http://www.education-otherwise.net',                                                 '08454786345', 'Home Schooling Advice',                                    ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
   ['NUS',                      'http://www.nus.org.uk',                                                              '01625413200', 'National Union of Students',                               ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
   ['IPSEA',                    'http://www.ipsea.org.uk',                                                            '08000184016', 'Special Educational Needs Assistance',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
@@ -225,5 +152,5 @@ advice_pages = [
 
 advice_pages.each do |organisation, url, telephone, details, kiosks, topic|
   a = AdvicePage.find_or_create_by(url: url) # "NAME" IS NOT UNIQUE IN THIS INSTANCE!
-  a.update_attributes(organisation: organisation, telephone: telephone, details: details, kiosks: kiosks, topic: topic)
+  a.update_attributes(organisation: organisation, telephone: telephone, details: details, kiosks: Kiosk.where(:name => kiosks), topic: topic)
 end

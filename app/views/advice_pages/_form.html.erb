@@ -13,22 +13,29 @@
 
   <div class="ui segment">
     <div class="ui large input">
-    <%= f.text_field :organisation, placeholder: "Organisation" %>
+      <%= f.text_field :organisation, placeholder: "Organisation" %>
     </div><br />
     <div class="ui large input">
-    <%= f.text_field :url, placeholder: "URL"  %>
+      <%= f.text_field :url, placeholder: "URL"  %>
     </div><br />
     <div class="ui large input">
-    <%= f.text_field :telephone, placeholder: "Telephone"  %>
+      <%= f.text_field :telephone, placeholder: "Telephone"  %>
     </div><br />
     <div class="ui large input">
-    <%= f.text_field :details, placeholder: "Details"  %>
+      <%= f.text_field :details, placeholder: "Details"  %>
     </div><br />
-    <%= f.hidden_field(:topic) %>
+    <div class="ui large input">
+      <%= f.collection_check_boxes(:kiosk_ids, @allowed_kiosks, :id, :name)%>
+      <div class="hidden">
+        <%= f.collection_check_boxes(:kiosk_ids, @disallowed_kiosks, :id, :name)%>
+      </div>
+    </div><br />
+      <%= f.hidden_field(:topic) %>
 
     <div class="actions modal-actions">
       <%= f.submit "Save Page", class: "ui green large button pull-right"%>
-      <button class="ui red large button pull-right" onclick="closemodal()">Cancel</button>
+      <%= f.submit "Cancel", class: "ui red large button pull-right"%>
     </div>
+
   </div>
 <% end %>

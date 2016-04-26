@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
 
-  def users
+  def users(user_kiosks = Kiosk.all)
     user_count = {}
     last_time = Time.zone.parse('2016-01-01 00:00:01')
 
-    Kiosk.all.each do |kiosk|
+    user_kiosks.each do |kiosk|
       user_count["#{kiosk.name}"] = 0
       visits = Visit.where(kiosk: kiosk).order("time_stamp")
       visits.each do |visit|
@@ -24,8 +24,10 @@ class ApplicationController < ActionController::Base
 
   def home
     @kiosks = Kiosk.all
-    @users = users
-    @visits = Visit.all
+    @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
+    @disallowed_kiosks = @kiosks - @allowed_kiosks
+    @users = users(@allowed_kiosks)
+    @visits = Visit.where(:kiosk => @allowed_kiosks)
     @title = "Home"
   end
 
@@ -33,11 +35,15 @@ class ApplicationController < ActionController::Base
     @hosts = Host.all
     @title = "Logs"
     @kiosks = Kiosk.all
+    @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
+    @disallowed_kiosks = @kiosks - @allowed_kiosks
     @visits = Visit.all
   end
 
   def status
     @kiosks = Kiosk.all
+    @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
+    @disallowed_kiosks = @kiosks - @allowed_kiosks
     @title = "Kiosk Status"
   end
 

@@ -23,7 +23,8 @@ class DatabaseStufferJob < ApplicationJob
         topic.visits.find_or_create_by(time_stamp: time_stamp, kiosk_id: kiosk_name.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk_name}"))
         rescue ActiveRecord::RecordNotUnique
         end
-      end
-    end
-  end
-end
+
+      end #do |data|
+    end #do |logfile|
+  end #perform
+end #Class

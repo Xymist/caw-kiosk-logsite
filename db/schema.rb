@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421231602) do
+ActiveRecord::Schema.define(version: 20160426122920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,16 @@ ActiveRecord::Schema.define(version: 20160421231602) do
     t.string   "details"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.text     "kiosks"
     t.string   "topic"
   end
+
+  create_table "advice_pages_kiosks", id: false, force: :cascade do |t|
+    t.integer "advice_page_id"
+    t.integer "kiosk_id"
+  end
+
+  add_index "advice_pages_kiosks", ["advice_page_id"], name: "index_advice_pages_kiosks_on_advice_page_id", using: :btree
+  add_index "advice_pages_kiosks", ["kiosk_id"], name: "index_advice_pages_kiosks_on_kiosk_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -57,6 +64,22 @@ ActiveRecord::Schema.define(version: 20160421231602) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "jurisdictions", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "telephone"
+    t.string   "pbx_server"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jurisdictions_users", id: false, force: :cascade do |t|
+    t.integer "jurisdiction_id"
+    t.integer "user_id"
+  end
+
+  add_index "jurisdictions_users", ["jurisdiction_id"], name: "index_jurisdictions_users_on_jurisdiction_id", using: :btree
+  add_index "jurisdictions_users", ["user_id"], name: "index_jurisdictions_users_on_user_id", using: :btree
+
   create_table "kiosk_topics", force: :cascade do |t|
     t.string   "name"
     t.string   "label"
@@ -69,10 +92,10 @@ ActiveRecord::Schema.define(version: 20160421231602) do
     t.string   "name"
     t.string   "address"
     t.string   "contact"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.boolean  "notified"
-    t.string   "jurisdiction"
+    t.integer  "jurisdiction_id"
   end
 
   create_table "topics", force: :cascade do |t|

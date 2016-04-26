@@ -1,4 +1,4 @@
-class PublicKioskController < ApplicationController
+class PublicKioskController < ActionController::Base
   def home
     @kiosk_topics = KioskTopic.all
     @kiosk = Kiosk.find_by(name: params[:kiosk])

@@ -15,6 +15,14 @@
               <p><strong>Info:</strong> <%=page.details%></p>
               <p><strong>URL:</strong> <%=link_to page.url, page.url%></p>
               <p><strong>Tel:</strong> <%=page.telephone%></p>
+              <p><strong>Kiosks:</strong></p>
+              <ul>
+                <%page.kiosks.each do |kiosk|%>
+                  <%if @allowed_kiosks.include? kiosk%>
+                    <li><%=kiosk.name.capitalize%></li>
+                  <%end%>
+                <%end%>
+              </ul>
               <%if current_user.admin?%>
               <!--Evil hack for creating a billion different modals and still accessing them all reliably: -->
               <% @w = "<a class='ui primary button' onclick='modaleditpage(#{page.id})'>Edit</a>"%>
@@ -38,7 +46,7 @@
       <%=@y.html_safe%>
       <% @z = "<div class='ui modal advice-modal' id='newpagemodal#{topic.id}'>"%>
       <%=@z.html_safe%>
-        <h1> Create <%= topic.label%> Page</h1>
+        <h1>   Create <%= topic.label%> Page</h1>
         <%= render 'form', advice_page: AdvicePage.new(topic: topic.name)%>
       </div>
       <%else%>
