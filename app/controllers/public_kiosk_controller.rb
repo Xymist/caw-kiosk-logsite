@@ -16,16 +16,12 @@ class PublicKioskController < ActionController::Base
   end
 
   def exit_site
-    new_url = params[:exit_url].sub(/^https?\:\/\/(www.)?/,'').split('/')
-    new_host = new_url[0]
-    new_topic = new_url[1]
-    host = Host.find_or_create_by(name: new_host)
-    topic = host.topics.find_or_create_by(location: new_topic.chomp)
-    kiosk = Kiosk.find_or_create_by(name: params[:kiosk])
-    begin
-      topic.visits.find_or_create_by(time_stamp: time_stamp, kiosk_id: kiosk.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk_name}"))
-    rescue ActiveRecord::RecordNotUnique
-    end
+    @kiosk = Kiosk.find_by(name: params[:kiosk])
+    @topic = params[:topic]
+    @hostname = params[:exit_url].split(".")[1]
+    time_stamp = Time.now
+    kiosk_name = @kiosk.name
+    Visit.create(time_stamp: time_stamp, topic_id: Topic.find_or_create_by(location: @topic, host: Host.find_or_create_by(name: @hostname)).id, kiosk_id: @kiosk.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk_name}"))
     redirect_to params[:exit_url]
   end
 

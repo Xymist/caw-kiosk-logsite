@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get 'public_kiosk/:kiosk', to: "public_kiosk#home"
   get 'public_kiosk/:kiosk/:topic', to: "public_kiosk#advice_topic"
   get "public_kiosk" => redirect("public_kiosk/waverley")
+  get 'public_kiosk/:kiosk/:topic/:exit_url', to: "public_kiosk#exit_site"
 
 end
