@@ -2,7 +2,7 @@
 <div class="ui stackable doubling two column grid">
 
   <div class="column">
-    <h3>Visits, by location:</h3>
+    <h3>External Visits, by Organisation:</h3>
     <% visit_array = {} %>
     <%@hosts.each do |host|
       if host.visits.where(kiosk: @kiosk).count > 0
@@ -13,7 +13,7 @@
   </div>
 
   <div class="column">
-    <h3>Clicks, by hour of day:</h3>
+    <h3>All Clicks, by hour of day:</h3>
     <%= column_chart @kiosk.visits.group_by_hour_of_day(:time_stamp).count %>
   </div>
 
@@ -22,8 +22,8 @@
     <%topic_array = {} %>
     <%@topics.each do |topic|
       if ["82.70.248.237"].include? topic.host.name
-        topic_array["#{topic.location}"] = @kiosk.visits.where(topic: topic).count
-      end
+        topic_array["#{topic.location.capitalize}"] = @kiosk.visits.where(topic: topic).count %>
+      <%end
     end%>
     <%= pie_chart topic_array.except("home")%>
   </div>

@@ -16,7 +16,8 @@ class PublicKioskController < ActionController::Base
   end
 
   def exit_site
-    new_url = params[:exit_url].sub(/^https?\:\/\/(www.)?/,'').split('/')
+    new_url = AdvicePage.find_by(id: params[:exit_url_id]).url
+    split_url = new_url.sub(/^https?\:\/\/(www.)?/,'').split('/')
     new_host = new_url[0]
     new_topic = new_url[1]
     host = Host.find_or_create_by(name: new_host)
@@ -25,8 +26,9 @@ class PublicKioskController < ActionController::Base
     begin
       topic.visits.find_or_create_by(time_stamp: time_stamp, kiosk_id: kiosk.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk_name}"))
     rescue ActiveRecord::RecordNotUnique
+      # find_or_create_by should obviate this, but it's still here because things break otherwise.
     end
-    redirect_to params[:exit_url]
+    redirect_to new_url
   end
 
 end
