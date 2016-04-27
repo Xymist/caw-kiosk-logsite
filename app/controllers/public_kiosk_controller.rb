@@ -1,4 +1,7 @@
 class PublicKioskController < ActionController::Base
+
+  before_filter :set_cache_headers
+
   def home
     @kiosk_topics = KioskTopic.all
     @kiosk = Kiosk.find_by(name: params[:kiosk])
@@ -30,6 +33,12 @@ class PublicKioskController < ActionController::Base
       # find_or_create_by should obviate this, but it's still here because things break otherwise.
     end
     redirect_to new_url
+  end
+
+  def set_cache_headers
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
 
 end
