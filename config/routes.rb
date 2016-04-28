@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  mount PostgresqlLoStreamer::Engine => "/logo_image"
 
   root to: "application#home"
 

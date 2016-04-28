@@ -57,6 +57,23 @@ hosts.each do |name|
 end
 
 ################################################################################
+
+logos = [
+  ['gas-logo-full.png',             "Guildford Advice Services", "https://guildfordadviceservices.org", [Jurisdiction.find_by(name: "guildford")]                                        ],
+  ['hi_big_e_lrg_blue-2.jpg',       "Big Lottery Fund",          "https://www.biglotteryfund.org.uk/",  [Jurisdiction.find_by(name: "guildford"), Jurisdiction.find_by(name: "waverley")]],
+  ['logo.jpg',                      "Waverley Borough Council",  "http://www.waverley.gov.uk",          [Jurisdiction.find_by(name: "waverley")]                                         ],
+  ['website_PNG_blue_Waverley.png', "Citizens Advice Waverley",  "http://www.waverleycab.org.uk",       [Jurisdiction.find_by(name: "waverley")]                                         ],
+  ['website_PNG_blue.png',          "Citizens Advice Guildford", "http://www.guildfordcab.org.uk",      [Jurisdiction.find_by(name: "guildford")]                                        ]
+]
+
+logos.each do |image, title, url, jurisdictions|
+  l = Logo.find_or_create_by(title: title, url: url)
+  l.update_attributes(image: File.open("app/assets/images/#{image}"), title: title, url: url)
+  l.jurisdictions << jurisdictions
+  l.save
+end
+
+################################################################################
 # These topic headings were derived from the Citizens Advice website, after
 # much argument. If you need to change them, do so, but be prepared for dragons.
 

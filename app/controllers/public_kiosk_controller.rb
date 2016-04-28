@@ -5,11 +5,13 @@ class PublicKioskController < ActionController::Base
   def home
     @kiosk_topics = KioskTopic.all
     @kiosk = Kiosk.find_by(name: params[:kiosk])
+    @jurisdiction = @kiosk.jurisdiction
   end
 
   def advice_topic
     @kiosk = Kiosk.find_by(name: params[:kiosk])
     @topic = params[:topic]
+    @jurisdiction = @kiosk.jurisdiction
     @advice_pages = AdvicePage.where(topic: params[:topic].to_s)
   end
 

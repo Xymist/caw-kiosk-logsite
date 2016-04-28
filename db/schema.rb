@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426162550) do
+ActiveRecord::Schema.define(version: 20160428134800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 20160426162550) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "jurisdictions_logos", id: false, force: :cascade do |t|
+    t.integer "jurisdiction_id"
+    t.integer "logo_id"
+  end
+
+  add_index "jurisdictions_logos", ["jurisdiction_id"], name: "index_jurisdictions_logos_on_jurisdiction_id", using: :btree
+  add_index "jurisdictions_logos", ["logo_id"], name: "index_jurisdictions_logos_on_logo_id", using: :btree
+
   create_table "jurisdictions_users", id: false, force: :cascade do |t|
     t.integer "jurisdiction_id"
     t.integer "user_id"
@@ -101,6 +109,14 @@ ActiveRecord::Schema.define(version: 20160426162550) do
   create_table "log_events", force: :cascade do |t|
     t.string   "log_caller"
     t.string   "event"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "logos", force: :cascade do |t|
+    t.integer  "image",      null: false
+    t.string   "title"
+    t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

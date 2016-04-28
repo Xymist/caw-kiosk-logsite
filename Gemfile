@@ -23,6 +23,9 @@ gem "whenever"
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations', branch: 'rails5'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem 'devise'
+gem 'carrierwave-postgresql'
+gem 'carrierwave'
+gem 'postgresql_lo_streamer'
 
 group :development, :test do
   gem 'byebug'
