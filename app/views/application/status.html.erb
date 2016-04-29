@@ -20,8 +20,8 @@
       <%end%>
 
       <h3>Last Data Update:</h3>
-      <% if kiosk.visits.last%>
-        <p><%=kiosk.visits.last.created_at%></p>
+      <% if File.file?("app/assets/kiosk_logs/#{kiosk.name}.log")%>
+        <p><%=File.ctime("app/assets/kiosk_logs/#{kiosk.name}.log")%></p>
       <%else%>
         <h4 class="redtext"><strong>Kiosk Not Initialised</strong></h4>
       <%end%>
