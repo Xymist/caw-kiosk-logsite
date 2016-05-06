@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: 1
+  disability: MyString
+  sex: MyString
+  income: MyString
+  carer: false
+  gp_visits: MyString
+  hospital_time: false
+  problem_type: MyString
+  referral_type: MyString
+  telephone_usage: false
+  feedback: 1
+
+two:
+  year: 1
+  disability: MyString
+  sex: MyString
+  income: MyString
+  carer: false
+  gp_visits: MyString
+  hospital_time: false
+  problem_type: MyString
+  referral_type: MyString
+  telephone_usage: false
+  feedback: 1
