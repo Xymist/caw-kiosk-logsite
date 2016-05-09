@@ -15,7 +15,7 @@ class DatabaseStufferJob < ApplicationJob
       logname = logfile.split("/")
       rescue NoMethodError
       end #begin
-      
+
       @kiosk = logname[-1].split(".")
       @access_data = IO.readlines(logfile)
       @inserted_data = 0
@@ -24,7 +24,7 @@ class DatabaseStufferJob < ApplicationJob
       @access_data.each do |data|
         split_data = data.split("|")
         hostname = split_data[1].sub(/^https?\:\/\/(www.)?/,'').split('/')[0]
-        unless hostname == "82.70.248.237" or @url_array.include? split_data[1]
+        unless hostname == "82.70.248.237" or @url_array.include? split_data[1] or hostname == "logserver.3rdsectorit.co.uk"
           @url_hash[split_data[0]] = split_data[1]
         end # unless hostname
       end #do |data|
