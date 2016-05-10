@@ -1,0 +1,31 @@
+<%= form_for(jurisdiction) do |f| %>
+  <% if jurisdiction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(jurisdiction.errors.count, "error") %> prohibited this jurisdiction from being saved:</h2>
+
+      <ul>
+      <% jurisdiction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="ui segment">
+    <div class="ui large input">
+      <%= f.text_field :name, placeholder: "Name (e.g. 'waverley')" %>
+    </div><br />
+    <div class="ui large input">
+      <%= f.text_field :telephone, placeholder: "URL"  %>
+    </div><br />
+    <div class="ui large input">
+      <%= f.text_field :pbx_server, placeholder: "PBX (e.g. '10.33.228.250')"  %>
+    </div><br />
+
+    <div class="actions">
+      <%= f.submit "Save Page", class: "ui green large button pull-right"%>
+      <%= f.submit "Cancel", class: "ui red large button pull-right"%>
+    </div>
+
+  </div>
+<% end %>

@@ -1,0 +1,32 @@
+<%= form_for(kiosk) do |f| %>
+  <% if kiosk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(kiosk.errors.count, "error") %> prohibited this kiosk from being saved:</h2>
+
+      <ul>
+      <% kiosk.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="ui segment">
+    <div class="ui large input">
+      <%= f.text_field :name, placeholder: "Name (e.g. 'waverley')" %>
+    </div><br />
+    <div class="ui large input">
+      <%= f.text_field :address, placeholder: "Address"  %>
+    </div><br />
+    <div class="ui large input">
+      <%= f.text_field :contact, placeholder: "Contact name and email"  %>
+    </div><br />
+      <%= f.hidden_field(:jurisdiction_id) %>
+
+    <div class="actions">
+      <%= f.submit "Save Kiosk", class: "ui green large button pull-right"%>
+      <%= f.submit "Cancel", class: "ui red large button pull-right"%>
+    </div>
+
+  </div>
+<% end %>
