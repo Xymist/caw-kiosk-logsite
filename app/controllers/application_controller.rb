@@ -56,8 +56,4 @@ class ApplicationController < ActionController::Base
     @users = users
   end
 
-  def kiosk_admin
-    
-  end
-
 end
