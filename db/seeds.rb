@@ -88,8 +88,7 @@ kiosk_topics = [
   ['discrimination',      'Discrimination',      'Unfair discrimination issues'     ],
   ['tax',                 'Tax',                 'Issues with taxation'             ],
   ['healthcare',          'Healthcare',          'Physical and mental health issues'],
-  ['education',           'Education',           'Education and training'           ],
-  ['local_organisations', 'Local Organisations', ''                                 ]
+  ['education',           'Education',           'Education and training'           ]
 ]
 
 kiosk_topics.each do |name, label, description|
@@ -163,11 +162,10 @@ advice_pages = [
   ['Education Otherwise',      'http://www.education-otherwise.net',                                                 '08454786345', 'Home Schooling Advice',                                    ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
   ['NUS',                      'http://www.nus.org.uk',                                                              '01625413200', 'National Union of Students',                               ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
   ['IPSEA',                    'http://www.ipsea.org.uk',                                                            '08000184016', 'Special Educational Needs Assistance',                     ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
-  ['ACE Education',            'http://www.ace-ed.org.uk',                                                           '02088883377', 'Help with choice of schools',                              ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ],
-  ['Waverley Advice Services', 'http://www.getadviceinwaverley.org.uk',                                              '',            'Get advice in Waverley',                                   ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'waverley'                                              ], 'local_organisations']
+  ['ACE Education',            'http://www.ace-ed.org.uk',                                                           '02088883377', 'Help with choice of schools',                              ['gp-godalming', 'gp-farnham', 'gp-cranleigh', 'guildford', 'ash', 'waverley', 'furniturelink', 'ageuk'], 'education'          ]
 ]
 
 advice_pages.each do |organisation, url, telephone, details, kiosks, topic|
-  a = AdvicePage.find_or_create_by(url: url) # "NAME" IS NOT UNIQUE IN THIS INSTANCE!
+  a = AdvicePage.find_or_create_by(url: url) # "organisation" IS NOT UNIQUE IN THIS INSTANCE!
   a.update_attributes(organisation: organisation, telephone: telephone, details: details, kiosks: Kiosk.where(:name => kiosks), topic: topic)
 end
