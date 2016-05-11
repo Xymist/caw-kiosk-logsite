@@ -20,7 +20,6 @@
       <%end%>
         <%if @kiosk.jurisdiction.telephone == true %>
           <%= link_to "sip:#{page.telephone}@#{@kiosk.jurisdiction.pbx_server}", :class => "col-xs-10 col-xs-offset-1 topic-button telephone-button", :id => "#{page.telephone}", :onclick => "calling(#{page.telephone})" do %>
-          <!-- This exposes the IP address of our PBX... maybe not the best idea, but we're out of time, so I'm trusting to the VPN, the firewall and the fact it requires an SSL certificate to log in.-->
             <h3><i class="glyphicon glyphicon-phone-alt"></i>   <%=page.telephone%></h3>
         <%end%>
         <div class="col-xs-10 col-xs-offset-1 topic-button telephone-button calling-indicator hidden" id="<%=page.telephone%>calling">Calling...</div>
