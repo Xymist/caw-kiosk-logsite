@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'kiosk_admin/defaults'
 
   devise_for :users
   mount PostgresqlLoStreamer::Engine => "/logo_image"
@@ -13,7 +12,8 @@ Rails.application.routes.draw do
   get 'heartbeat', to: "public_kiosk#heartbeat"
 
   resources 'advice_pages'
-  resources 'kiosk_admin'
+  resources 'jurisdictions'
+  resources 'kiosks'
 
   get 'public_kiosk/:kiosk', to: "public_kiosk#home"
   get 'public_kiosk/:kiosk/:topic', to: "public_kiosk#advice_topic"

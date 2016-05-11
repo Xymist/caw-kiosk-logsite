@@ -1,4 +1,4 @@
-class KioskAdminController < ApplicationController
+class JurisdictionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_jurisdiction, only: [:show, :edit, :update, :destroy]
 
@@ -6,14 +6,19 @@ class KioskAdminController < ApplicationController
 
   def check_for_cancel
     if params[:commit] == "Cancel"
-      redirect_to kiosk_admin_path
+      redirect_to jurisdictions_path
     end
   end
 
   def index
     @kiosks = Kiosk.all
-    @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
-    @disallowed_kiosks = @kiosks - @allowed_kiosks
+    @unassigned_kiosks = []
+    @kiosks.each do |kiosk|
+      if kiosk.jurisdiction == nil
+        @unassigned_kiosks << kiosk
+      end
+    end
+    @jurisdictions = Jurisdiction.all
     @kiosk_topics = KioskTopic.all
     @pages = AdvicePage.all
     @newpage = AdvicePage.new

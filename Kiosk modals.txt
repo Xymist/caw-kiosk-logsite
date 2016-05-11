@@ -1,0 +1,25 @@
+<%if current_user.admin?%>
+<% @w = "<a class='ui primary button' onclick='modaleditkiosk(#{kiosk.id})'>Edit</a>"%>
+<%= @w.html_safe%>
+<% @x = "<div class='ui modal advice-modal' id='editkioskmodal#{kiosk.id}'>"%>
+<%= @x.html_safe%>
+  <h1> Edit Kiosk</h1>
+  <%= render 'kiosk_form', @kiosk = kiosk %>
+</div>
+<%= link_to 'Remove', kiosk, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button' %>
+<%end%>
+
+<%if current_user.admin? %>
+<!--And again...-->
+  <% @y = "<a class='ui primary button pull-right' onclick='modalnewkiosk(#{jurisdiction.id})'>New Kiosk</a>"%>
+  <%=@y.html_safe%>
+  <% @z = "<div class='ui modal advice-modal' id='newkioskmodal#{jurisdiction.id}'>"%>
+  <%=@z.html_safe%>
+    <h1>  Create New Kiosk</h1>
+    <%= render 'kiosk_form', @kiosk = Kiosk.new(jurisdiction_id: jurisdiction.id)%>
+  </div>
+  <%else%>
+  <button class="ui disabled button pull-right">
+    Category Full
+  </button>
+<%end%>
