@@ -1,0 +1,45 @@
+<h1 class="title-line">Kiosks</h1>
+<div class="ui stackable three column grid">
+  <%@kiosks.order(:name).each do |kiosk|%>
+  <div class='column' id="<%=kiosk.name%>">
+    <h2><%=kiosk.name.capitalize%></h2>
+    <p><strong>Address:</strong> <%=kiosk.address%></p>
+    <p><strong>Contact:</strong> <%=kiosk.contact%></p>
+    <%if current_user.admin? %>
+    <a class='ui primary button pull-right' onclick="modaleditkiosk(<%=kiosk.id%>)">Edit Kiosk</a>
+    <div class='ui modal advice-modal' id="editkioskmodal<%=kiosk.id%>">
+      <h1>   Edit Kiosk</h1>
+      <%= render 'form', kiosk: kiosk%>
+    </div>
+    <%= link_to 'Delete', kiosk, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button pull-right' %>
+    <%end%>
+  </div>
+  <%end%>
+</div>
+
+<%if current_user.admin? %>
+  <p></p>
+  <a class='ui green button pull-right' onclick='modalnewkiosk()'>New Kiosk</a>
+  <div class='ui modal advice-modal' id='newkioskmodal'>
+    <h1>   Create New Kiosk</h1>
+    <%= render 'form', kiosk: Kiosk.new%>
+  </div>
+<%end%>
+
+<script>
+$(document).ready(function() {
+  $('#kiosks_breadcrumb').addClass('active');
+});
+$('.ui.accordion')
+  .accordion()
+;
+function modalnewkiosk() {
+  $('#newkioskmodal').modal('show');
+};
+function modaleditkiosk(n) {
+  $('#editkioskmodal'+n).modal('show');
+};
+function closemodal() {
+  $('.modal').modal('hide');
+};
+</script>
