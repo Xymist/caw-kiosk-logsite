@@ -1,0 +1,112 @@
+<% if notice != nil %>
+  <div class="ui positive message">
+    <h1 class="notice"><%= notice %></h1>
+  </div>
+<% end %>
+<% if alert != nil %>
+  <div class="ui negative message">
+    <h1 class="alert"><%= alert %></h1>
+  </div>
+<% end %>
+
+<%= form_for @form_response, :html => { :class => 'ui large form'} do |f| %>
+  <% if @form_response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@form_response.errors.count, "error") %> prohibited this advice_page from being saved:</h2>
+
+      <ul>
+      <% @form_response.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="ui segment">
+    <div class="ui two column grid">
+      <div class="column">
+        <div class="field">
+          <%= f.label :year, "Year of Birth"%><br />
+          <%= f.select :year, (1900..Time.now.year).to_a.reverse, {}, class: "ui dropdown"%>
+        </div><br />
+
+        <div class="field">
+          <%= f.label :disability, "Disability or Health Problems"%><br />
+          <%= f.select :disability, @disability_options, {}, class: "ui dropdown"%>
+        </div><br />
+
+        <div class="field">
+          <%= f.label :sex, "Gender"%><br />
+          <%= f.select :sex, @sex_options, {}, class: "ui dropdown"%>
+        </div><br />
+
+        <div class="field">
+          <%= f.label :income, "Roughly what is your monthly household income?"%><br />
+          <%= f.select :income, @income_options, {}, class: "ui dropdown"%>
+        </div><br />
+
+        <div class="field">
+          <%= f.label :carer, "Are you a carer or requiring care?"%><br />
+          <%= f.select :carer, @carer_options, {}, class: "ui dropdown"%>
+        </div><br />
+      </div>
+
+      <div class="column">
+
+        <div class="field">
+          <%= f.label :gp_visits, "How many times have you visited the GP or A&E in the last year?"%><br />
+          <%= f.select :gp_visits, (0..52).to_a, {}, class: "ui dropdown" %>
+        </div><br />
+
+        <%=f.label :hospital_time, "Have you spent time in hospital in the last year?"%>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <%= f.label :hospital_time, "Yes"%>
+            <%= f.radio_button :hospital_time, true %>
+          </div>
+          <div class="ui radio checkbox">
+            <%= f.label :hospital_time, "No"%>
+            <%= f.radio_button :hospital_time, false, :checked => true %>
+          </div>
+        </div><br />
+
+        <div class="field">
+          <%= f.label :problem_type, "What did you need help with today?"%><br />
+          <%= f.select :problem_type, @kiosk_topics, {}, class: "ui dropdown"%>
+        </div><br />
+
+        <div class="field">
+          <%= f.label :referral_type, "How did you hear about this kiosk?"%><br />
+          <%= f.select :referral_type, @referral_options, {}, class: "ui dropdown"%>
+        </div><br />
+
+        <%= f.label :telephone_usage, "Did you use the telephone on this kiosk today?"%>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <%= f.label :telephone_usage, "Yes"%>
+            <%= f.radio_button :telephone_usage, true %>
+          </div>
+          <div class="ui radio checkbox">
+            <%= f.label :telephone_usage, "No"%>
+            <%= f.radio_button :telephone_usage, false, :checked => true %>
+          </div>
+        </div><br />
+
+        <div class="field">
+          <%= f.label :feedback, "How useful did you find this kiosk?"%><br />
+          <%= f.select :feedback, @feedback_options.reverse, {}, class: "ui dropdown"%>
+        </div><br />
+
+        <div class="actions">
+          <%= f.submit "Send Feedback", class: "ui green large button pull-right"%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $('select.dropdown').dropdown();
+  $('.ui.radio.checkbox').checkbox();
+</script>

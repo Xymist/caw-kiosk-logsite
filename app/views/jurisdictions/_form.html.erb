@@ -1,0 +1,50 @@
+<%= form_for(jurisdiction) do |f| %>
+  <% if jurisdiction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(jurisdiction.errors.count, "error") %> prohibited this jurisdiction from being saved:</h2>
+
+      <ul>
+      <% jurisdiction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="ui segment">
+  <div class="ui form">
+
+    <%= f.label :name, :value => "Name of Jurisdiction"%><br />
+    <div class="field">
+      <%= f.text_field :name, placeholder: "All lowercase, no spaces (e.g. 'waverley')", :class => "ui input" %>
+    </div><br />
+
+    <%=f.label :telephone, "Does this Jurisdiction have handsets?"%>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <%= f.label :telephone, :value => "Jurisdiction has telephone kiosks"%>
+        <%= f.radio_button :telephone, true %>
+      </div>
+      <div class="ui radio checkbox">
+        <%= f.label :telephone, :value => "Jurisdiction has dumb kiosks"%>
+        <%= f.radio_button :telephone, false, :checked => true %>
+      </div>
+    </div>
+
+    <%= f.label :pbx_server, "PBX IP Address (default if not applicable)" %><br />
+    <div class="field">
+      <%= f.text_field :pbx_server, :value => "10.33.28.250", :class => "ui input" %>
+    </div><br />
+
+    <div class="actions modal-actions">
+      <%= f.submit "Save Page", class: "ui green large button pull-right"%>
+      <%= f.submit "Cancel", class: "ui red large button pull-right"%>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  $('select.dropdown').dropdown();
+  $('.ui.radio.checkbox').checkbox();
+</script>

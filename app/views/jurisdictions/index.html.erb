@@ -1,0 +1,55 @@
+<h1 class="title-line">Jurisdictions</h1>
+<div class="ui stackable three column grid">
+  <%@jurisdictions.order(:name).each do |jurisdiction|%>
+  <% @a = "<div class='column' id='#{jurisdiction.name}'>"%>
+  <%= @a.html_safe%>
+    <h2><%=jurisdiction.name.capitalize%></h2>
+    <div class="ui styled fluid accordion">
+      <%@kiosks.order(:id).each do |kiosk|%>
+        <%if kiosk.jurisdiction == jurisdiction%>
+          <div class="title">
+            <i class="dropdown icon"></i><%=kiosk.name.capitalize%>
+          </div>
+          <div class="content">
+            <div class="transition hidden">
+              <p><strong>Address:</strong> <%=kiosk.address%></p>
+              <p><strong>Contact:</strong> <%=kiosk.contact%></p>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+    <%if current_user.admin? && jurisdiction.kiosks.length == 0 %>
+      <%= link_to 'Delete', kiosk, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button pull-right' %>
+    <%elsif current_user.admin?%>
+      <button class="ui disabled button pull-right">
+        Not Empty
+      </button>
+    <%end%>
+  </div>
+  <%end%>
+</div>
+
+<a class='ui primary button pull-right' onclick='modalnewjurisdiction()'>New Jurisdiction</a>
+<div class='ui modal jurisdiction-modal' id='newjurisdictionmodal'>
+  <h1>   Create New Jurisdiction</h1>
+  <%= render 'form', jurisdiction: Jurisdiction.new()%>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('#jurisdictions_breadcrumb').addClass('active');
+});
+$('.ui.accordion').accordion();
+$('select.dropdown').dropdown();
+$('.ui.radio.checkbox').checkbox();
+function modalnewjurisdiction() {
+  $('#newjurisdictionmodal').modal('show');
+};
+function modalchoosekiosk(n) {
+  $('#choosekioskmodal'+n).modal('show');
+};
+function closemodal() {
+  $('.modal').modal('hide');
+};
+</script>
