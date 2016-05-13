@@ -21,9 +21,12 @@
     <div class="ui large input">
       <%= f.text_field :contact, placeholder: "Contact name and email"  %>
     </div><br />
-      <%= f.hidden_field(:jurisdiction_id) %>
+    <div class="ui large input">
+      <p></p>
+      <%= f.collection_radio_buttons(:jurisdiction_id, @jurisdictions, :id, :name)%>
+    </div><br />
 
-    <div class="actions">
+    <div class="actions modal-actions">
       <%= f.submit "Save Kiosk", class: "ui green large button pull-right"%>
       <%= f.submit "Cancel", class: "ui red large button pull-right"%>
     </div>

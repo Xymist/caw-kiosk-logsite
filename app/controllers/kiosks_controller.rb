@@ -15,6 +15,7 @@ class KiosksController < ApplicationController
     @kiosk_topics = KioskTopic.all
     @pages = AdvicePage.all
     @newpage = AdvicePage.new
+    @jurisdictions = Jurisdiction.all
   end
 
   def show
@@ -30,6 +31,7 @@ class KiosksController < ApplicationController
 
   def create
     @kiosk = Kiosk.new(kiosk_params)
+    @jurisdictions = Jurisdiction.all
 
     respond_to do |format|
       if @kiosk.save
