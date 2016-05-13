@@ -56,11 +56,12 @@ class PublicKioskController < ActionController::Base
   end
 
   def create_feedback
+    @current_kiosk = params[:kiosk]
     @form_response = FormResponse.new(form_response_params)
 
     respond_to do |format|
       if @form_response.save
-        format.html { redirect_to :back, notice: 'Feedback submitted. Thank you!' }
+        format.html { redirect_to "/public_kiosk/#{@current_kiosk}", notice: 'Feedback submitted. Thank you!' }
         format.json { render json: @form_response, status: :created, location: @form_response}
       else
         format.html { redirect_to :back, alert: 'There was a problem; your feedback was not saved.' }
