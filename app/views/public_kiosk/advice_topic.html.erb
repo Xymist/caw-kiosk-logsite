@@ -5,14 +5,15 @@
 %>
 
 <% @advice_pages.order(:id).each do |page|%>
-  <%if page.kiosks.include? @kiosk and page.telephone == "" %>
+<%if page.kiosks.include? @kiosk %>
+  <% if page.telephone == "" or @kiosk.jurisdiction.telephone == false %>
     <div class="col-xs-4">
       <%= link_to "#{@topic}/#{page.id}", :class => 'col-xs-12 topic-button no-telephone-topic' do %>
         <h1><%=page.organisation%></h1>
         <h3><%=page.details%></h3>
       <%end%>
     </div>
-  <%elsif page.kiosks.include? @kiosk %>
+  <% else %>
     <div class="col-xs-4">
       <%= link_to "#{@topic}/#{page.id}", :class => 'col-xs-12 topic-button telephone-topic' do %>
         <h1><%=page.organisation%></h1>
@@ -27,6 +28,7 @@
           <%end%>
       <%end%>
     </div>
+    <%end%>
   <%end%>
 <%end%>
 
