@@ -19,10 +19,10 @@
         <h3><%=page.details%></h3>
       <%end%>
         <%if @kiosk.jurisdiction.telephone == true %>
-          <%= link_to "sip:#{page.telephone}@#{@kiosk.jurisdiction.pbx_server}", :class => "col-xs-10 col-xs-offset-1 topic-button telephone-button", :id => "#{page.telephone}", :onclick => "calling(#{page.telephone})" do %>
+          <%= link_to "sip:#{page.telephone}@#{@kiosk.jurisdiction.pbx_server}", :class => "col-xs-10 col-xs-offset-1 topic-button telephone-button", :id => "#{page.telephone}", :onclick => "calling('#{page.telephone}')" do %>
             <h3><i class="glyphicon glyphicon-phone-alt"></i>   <%=page.telephone%></h3>
           <%end%>
-          <%= link_to "killsip:#{page.telephone}@#{@kiosk.jurisdiction.pbx_server}", :class => "col-xs-10 col-xs-offset-1 topic-button telephone-button calling-indicator hidden", :id => "#{page.telephone}calling", :onclick => "calling(#{page.telephone})" do %>
+          <%= link_to "killsip:#{page.telephone}@#{@kiosk.jurisdiction.pbx_server}", :class => "col-xs-10 col-xs-offset-1 topic-button telephone-button calling-indicator hidden", :id => "#{page.telephone}calling", :onclick => "endCall('#{page.telephone}')" do %>
             <h3>End Call</h3>
           <%end%>
       <%end%>
@@ -32,7 +32,11 @@
 
 <script>
   function calling(id) {
-    $('#'+id).addClass('hidden');
-    $('#'+id+'calling').removeClass('hidden');
+    $('#'+id).hide();
+    $('#'+id+'calling').show();
+  };
+  function endCall(id) {
+    $('#'+id).show();
+    $('#'+id+'calling').hide();
   };
 </script>
