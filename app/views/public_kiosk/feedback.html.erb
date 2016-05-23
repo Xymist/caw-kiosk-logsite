@@ -80,8 +80,7 @@
           <%= f.select :referral_type, @referral_options, {}, class: "ui dropdown"%>
         </div><br />
 
-        <%= f.label :telephone_usage, "Did you use the telephone on this kiosk today?"%>
-        <div class="field">
+        <div class="hidden field">
           <div class="ui radio checkbox">
             <%= f.label :telephone_usage, "Yes"%>
             <%= f.radio_button :telephone_usage, true %>

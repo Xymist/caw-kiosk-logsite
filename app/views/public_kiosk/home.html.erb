@@ -18,14 +18,12 @@
 <% end %>
 
 <% @kiosk_topics.each do |kiosk_topic| %>
-  <%unless kiosk_topic.name == "local_organisations"%> <!--Remove this once that topic and topic members have been purged from the database.-->
-    <div class="col-xs-3">
-      <%= link_to "#{@kiosk.name}/#{kiosk_topic.name}", :class => 'col-xs-12 topic-button' do %>
-        <h1><%=kiosk_topic.label%></h1>
-        <h3><%=kiosk_topic.description%></h3>
-      <%end%>
-    </div>
-  <%end%>
+  <div class="col-xs-3">
+    <%= link_to "#{@kiosk.name}/#{kiosk_topic.name}", :class => 'col-xs-12 topic-button' do %>
+      <h1><%=kiosk_topic.label%></h1>
+      <h3><%=kiosk_topic.description%></h3>
+    <%end%>
+  </div>
 <%end%>
 
 <div class="col-xs-3">
