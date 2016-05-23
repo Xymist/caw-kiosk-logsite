@@ -1,4 +1,4 @@
-server '82.70.248.237', port: 22, roles: [:web, :app, :db], primary: true
+server 'logserver.3rdsectorit.co.uk', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:Xymist/caw-kiosk-logsite.git'
 set :application,     'caw-kiosk-logsite'

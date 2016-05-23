@@ -6,14 +6,14 @@
   <a class="section" href="/status" id="status_breadcrumb">Status</a>
   <i>|</i>
   <a class="section" href="/advice_pages" id="advice_pages_breadcrumb">Kiosk Pages</a>
-  <%if current_user.admin?%>
-  <i>|</i>
-  <a class="section" href="/jurisdictions" id="jurisdictions_breadcrumb">Manage Jurisdictions</a>
-  <i>|</i>
-  <a class="section" href="/kiosks" id="kiosks_breadcrumb">Manage Kiosks</a>
-  <%end%>
   <% if user_signed_in? %>
-  <i>|</i>
-  <%= link_to('Logout', destroy_user_session_path, class: "section", :method => :delete) %>
+    <%if current_user.admin?%>
+    <i>|</i>
+    <a class="section" href="/jurisdictions" id="jurisdictions_breadcrumb">Manage Jurisdictions</a>
+    <i>|</i>
+    <a class="section" href="/kiosks" id="kiosks_breadcrumb">Manage Kiosks</a>
+    <%end%>
+    <i>|</i>
+    <%= link_to('Logout', destroy_user_session_path, class: "section", :method => :delete) %>
   <% end %>
 </div>
