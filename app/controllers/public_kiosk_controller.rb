@@ -46,6 +46,7 @@ class PublicKioskController < ActionController::Base
     @disability_options = ["I am disabled", "Long-term health condition","Not disabled/no known health problems","Unknown/Decline to answer"]
     @sex_options        = ["Male", "Female","Both","Neither","Trans: M->F","Trans: F->M","Other", "Unknown/Decline to answer"]
     @carer_options      = ["In Care", "Paid Carer", "Unpaid Carer", "None of the above", "Unknown/Decline to answer"]
+    @gp_visits_options  = ["0","1-4", "5-9", "10-24", "25+"]
     @income_options     = ["<£400","£400-599", "£600-799", "£800-999", "£1000-1499", "£1500-1999", "£2000-2999", "£3000+"]
     @kiosk_topics       = []
     KioskTopic.all.each do |topic|

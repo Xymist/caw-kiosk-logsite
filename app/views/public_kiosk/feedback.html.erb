@@ -55,7 +55,7 @@
 
         <div class="field">
           <%= f.label :gp_visits, "How many times have you visited the GP or A&E in the last year?"%><br />
-          <%= f.select :gp_visits, (0..52).to_a, {}, class: "ui dropdown" %>
+          <%= f.select :gp_visits, @gp_visits_options, {}, class: "ui dropdown" %>
         </div><br />
 
         <%=f.label :hospital_time, "Have you spent time in hospital in the last year?"%>
