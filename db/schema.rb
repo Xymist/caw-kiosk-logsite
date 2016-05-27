@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504134925) do
+ActiveRecord::Schema.define(version: 20160527141122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,9 @@ ActiveRecord::Schema.define(version: 20160504134925) do
   create_table "advice_pages_kiosks", id: false, force: :cascade do |t|
     t.integer "advice_page_id"
     t.integer "kiosk_id"
+    t.index ["advice_page_id"], name: "index_advice_pages_kiosks_on_advice_page_id", using: :btree
+    t.index ["kiosk_id"], name: "index_advice_pages_kiosks_on_kiosk_id", using: :btree
   end
-
-  add_index "advice_pages_kiosks", ["advice_page_id"], name: "index_advice_pages_kiosks_on_advice_page_id", using: :btree
-  add_index "advice_pages_kiosks", ["kiosk_id"], name: "index_advice_pages_kiosks_on_kiosk_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -46,9 +45,8 @@ ActiveRecord::Schema.define(version: 20160504134925) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
-
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "form_responses", force: :cascade do |t|
     t.integer  "year"
@@ -64,15 +62,16 @@ ActiveRecord::Schema.define(version: 20160504134925) do
     t.integer  "feedback"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "kiosk_id",        null: false
+    t.index ["kiosk_id"], name: "index_form_responses_on_kiosk_id", using: :btree
   end
 
   create_table "heartbeats", force: :cascade do |t|
     t.integer  "kiosk_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["kiosk_id"], name: "index_heartbeats_on_kiosk_id", using: :btree
   end
-
-  add_index "heartbeats", ["kiosk_id"], name: "index_heartbeats_on_kiosk_id", using: :btree
 
   create_table "hosts", force: :cascade do |t|
     t.string   "name"
@@ -91,18 +90,16 @@ ActiveRecord::Schema.define(version: 20160504134925) do
   create_table "jurisdictions_logos", id: false, force: :cascade do |t|
     t.integer "jurisdiction_id"
     t.integer "logo_id"
+    t.index ["jurisdiction_id"], name: "index_jurisdictions_logos_on_jurisdiction_id", using: :btree
+    t.index ["logo_id"], name: "index_jurisdictions_logos_on_logo_id", using: :btree
   end
-
-  add_index "jurisdictions_logos", ["jurisdiction_id"], name: "index_jurisdictions_logos_on_jurisdiction_id", using: :btree
-  add_index "jurisdictions_logos", ["logo_id"], name: "index_jurisdictions_logos_on_logo_id", using: :btree
 
   create_table "jurisdictions_users", id: false, force: :cascade do |t|
     t.integer "jurisdiction_id"
     t.integer "user_id"
+    t.index ["jurisdiction_id"], name: "index_jurisdictions_users_on_jurisdiction_id", using: :btree
+    t.index ["user_id"], name: "index_jurisdictions_users_on_user_id", using: :btree
   end
-
-  add_index "jurisdictions_users", ["jurisdiction_id"], name: "index_jurisdictions_users_on_jurisdiction_id", using: :btree
-  add_index "jurisdictions_users", ["user_id"], name: "index_jurisdictions_users_on_user_id", using: :btree
 
   create_table "kiosk_topics", force: :cascade do |t|
     t.string   "name"
@@ -142,9 +139,8 @@ ActiveRecord::Schema.define(version: 20160504134925) do
     t.integer  "host_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["host_id"], name: "index_topics_on_host_id", using: :btree
   end
-
-  add_index "topics", ["host_id"], name: "index_topics_on_host_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -161,11 +157,10 @@ ActiveRecord::Schema.define(version: 20160504134925) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "approved",               default: false, null: false
+    t.index ["approved"], name: "index_users_on_approved", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["approved"], name: "index_users_on_approved", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "visits", force: :cascade do |t|
     t.datetime "time_stamp"
@@ -174,11 +169,10 @@ ActiveRecord::Schema.define(version: 20160504134925) do
     t.datetime "updated_at", null: false
     t.integer  "kiosk_id"
     t.string   "checksum"
+    t.index ["checksum"], name: "index_visits_on_checksum", unique: true, using: :btree
+    t.index ["time_stamp", "kiosk_id"], name: "index_visits_on_time_stamp_and_kiosk_id", unique: true, using: :btree
+    t.index ["topic_id"], name: "index_visits_on_topic_id", using: :btree
   end
-
-  add_index "visits", ["checksum"], name: "index_visits_on_checksum", unique: true, using: :btree
-  add_index "visits", ["time_stamp", "kiosk_id"], name: "index_visits_on_time_stamp_and_kiosk_id", unique: true, using: :btree
-  add_index "visits", ["topic_id"], name: "index_visits_on_topic_id", using: :btree
 
   add_foreign_key "heartbeats", "kiosks"
 end

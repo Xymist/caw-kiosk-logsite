@@ -87,7 +87,7 @@ class PublicKioskController < ActionController::Base
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_response_params
-      params.require(:form_response).permit(:year,:disability,:sex,:income,:carer,:gp_visits,:hospital_time,:problem_type,:referral_type,:telephone_usage,:feedback)
+      params.require(:form_response).permit(:year,:disability,:sex,:income,:carer,:gp_visits,:hospital_time,:problem_type,:referral_type,:telephone_usage,:feedback, :kiosk_id)
     end
 
   def set_cache_headers

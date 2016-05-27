@@ -12,7 +12,7 @@
 <%= form_for @form_response, :html => { :class => 'ui large form'} do |f| %>
   <% if @form_response.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@form_response.errors.count, "error") %> prohibited this advice_page from being saved:</h2>
+      <h2><%= pluralize(@form_response.errors.count, "error") %> prohibited your feedback from being saved:</h2>
 
       <ul>
       <% @form_response.errors.full_messages.each do |message| %>
@@ -90,6 +90,9 @@
             <%= f.radio_button :telephone_usage, false, :checked => true %>
           </div>
         </div><br />
+        <div class="hidden field">
+          <%=f.hidden_field :kiosk_id, :value => @kiosk.id %>
+        </div>
 
         <div class="field">
           <%= f.label :feedback, "How useful did you find this kiosk?"%><br />
