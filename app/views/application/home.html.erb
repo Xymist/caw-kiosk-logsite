@@ -9,7 +9,20 @@
     <%= content_tag :h1, :style => "text-align: center;", :class => 'counter', :datastop => @users.values.inject(&:+) do %>
       <%=@users.values.inject(&:+) || 0%>
     <% end %>
-    <%= column_chart @users, height: "500px"%>
+
+    <%kiosk_users = []
+    @allowed_kiosks.each do |kiosk|
+      visits = kiosk.visits.order("time_stamp")
+      last_time = Time.zone.parse('2016-01-01 00:00:01')
+      visits.each do |visit|
+        if visit.time_stamp > last_time + 5.minutes
+          kiosk_users["#{kiosk.name}"] += 1
+          last_time = visit.time_stamp
+        end
+      end
+    end%>
+
+    <%= column_chart kiosk_users, height: "500px"%>
   </div>
 
   <div class="column">
