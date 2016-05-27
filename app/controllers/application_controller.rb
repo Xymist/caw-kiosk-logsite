@@ -35,7 +35,6 @@ class ApplicationController < ActionController::Base
     @title = "Kiosk Data"
     @visits = Visit.where(kiosk: @kiosk)
     @topics = Topic.all
-    @users = users
   end
 
 end
