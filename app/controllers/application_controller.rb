@@ -5,28 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
 
-  def users(user_kiosks = Kiosk.all)
-    user_count = {}
-    last_time = Time.zone.parse('2016-01-01 00:00:01')
-
-    user_kiosks.each do |kiosk|
-      user_count["#{kiosk.name}"] = 0
-      visits = Visit.where(kiosk: kiosk).order("time_stamp")
-      visits.each do |visit|
-        if visit.time_stamp > last_time + 5.minutes
-          user_count["#{kiosk.name}"] += 1
-          last_time = visit.time_stamp
-        end
-      end
-    end
-    return user_count
-  end
-
   def home
     @kiosks = Kiosk.all
     @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
     @disallowed_kiosks = @kiosks - @allowed_kiosks
-    @users = users(@allowed_kiosks)
     @visits = Visit.where(:kiosk => @allowed_kiosks)
     @title = "Home"
   end
