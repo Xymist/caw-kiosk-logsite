@@ -10,7 +10,7 @@
       <h3>Last Status Update:</h3>
       <% if kiosk.heartbeats.last%>
         <p><%=kiosk.heartbeats.last.created_at%></p>
-        <% if kiosk.heartbeats.last.created_at > 15.minutes.ago %>
+        <% if kiosk.heartbeats.last.created_at > 15.minutes.ago || kiosk.visits.last.created_at > 15.minutes.ago %>
           <h4 class="greentext"><strong>Connected</strong></h4>
         <%else%>
           <h4 class="redtext"><strong>Disconnected</strong></h4>
@@ -19,11 +19,9 @@
         <h4 class="redtext"><strong>Kiosk Not Initialised</strong></h4>
       <%end%>
 
-      <h3>Last Data Update:</h3>
       <% if File.file?("app/assets/kiosk_logs/#{kiosk.name}.log")%>
+        <h3>Last Data Update:</h3>
         <p><%=File.ctime("app/assets/kiosk_logs/#{kiosk.name}.log")%></p>
-      <%else%>
-        <h4 class="redtext"><strong>Kiosk Not Initialised</strong></h4>
       <%end%>
 
     </div>

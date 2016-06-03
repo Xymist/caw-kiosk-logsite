@@ -25,7 +25,7 @@
         topic_array["#{topic.location.split("_")[0].capitalize}"] = @kiosk.visits.where(topic: topic).count %>
       <%end
     end%>
-    <%= pie_chart topic_array.except("home")%>
+    <%= pie_chart topic_array.except("Home")%>
   </div>
 
   <div class="column">
