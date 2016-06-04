@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'feedback', to: "feedback#overview"
   get 'feedback/:kiosk', to: "feedback#kiosk"
   get 'heartbeat', to: "public_kiosk#heartbeat"
+  get 'heartbeat/:kiosk', to: "public_kiosk#heartbeat"
 
   resources 'advice_pages'
   resources 'jurisdictions'
