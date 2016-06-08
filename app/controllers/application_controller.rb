@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     @disallowed_kiosks = @kiosks - @allowed_kiosks
     @visits = Visit.where(:kiosk => @allowed_kiosks)
     @title = "Home"
+    @feedback_hash = {}
+    @kiosk_ids = []
+    @allowed_kiosks.each do |kiosk| @kiosk_ids << kiosk.id end
+    @feedback_hash["Feedback Responses"] = FormResponse.where(kiosk: @kiosk_ids).count
+    @feedback_hash["Feedback Views"] = Visit.where(topic: Topic.find_by(location: "feedback"), kiosk: @kiosk_ids).count
   end
 
   def logs
@@ -35,6 +40,9 @@ class ApplicationController < ActionController::Base
     @title = "Kiosk Data"
     @visits = Visit.where(kiosk: @kiosk)
     @topics = Topic.all
+    @feedback_hash = {}
+    @feedback_hash["Feedback Responses"] = @kiosk.form_responses.count
+    @feedback_hash["Feedback Views"] = @kiosk.visits.where(topic: Topic.find_by(location: "feedback")).count
   end
 
 end

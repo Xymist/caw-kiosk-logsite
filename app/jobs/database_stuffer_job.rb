@@ -24,7 +24,7 @@ class DatabaseStufferJob < ApplicationJob
       @access_data.each do |data|
         split_data = data.split("|")
         hostname = split_data[1].sub(/^https?\:\/\/(www.)?/,'').split('/')[0]
-        unless hostname == "82.70.248.237" or @url_array.include? split_data[1] or hostname == "logserver.3rdsectorit.co.uk"
+        unless hostname == "82.70.248.237" or @url_array.include? split_data[1] or hostname.include? "logserver"
           @url_hash[split_data[0]] = split_data[1]
         end # unless hostname
       end #do |data|
@@ -43,6 +43,6 @@ class DatabaseStufferJob < ApplicationJob
           end #begin
         end # do |time, url|
       end #do |logfile|
-    LogEvent.create(log_caller: "Database Stuffer", event: "Performed insert of #{@inserted_data} records for #{@kiosk[0].capitalize}")
+    LogEvent.create(log_caller: "Database Stuffer", event: "Performed insert of #{@inserted_data} records for #{@kiosk[0].capitalize}", type: "#{@kiosk[0]} record insertion")
   end #perform
 end #Class

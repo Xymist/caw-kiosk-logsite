@@ -21,7 +21,7 @@
     <h3>Kiosk Topic Access Frequency</h3>
     <%topic_array = {} %>
     <%@topics.each do |topic|
-      if ["82.70.248.237", "logserver.3rdsectorit.co.uk"].include? topic.host.name
+      if ["82.70.248.237", "logserver.3rdsectorit.co.uk"].include? topic.host.name && topic.location != "Feedback"
         topic_array["#{topic.location.split("_")[0].capitalize}"] = @kiosk.visits.where(topic: topic).count %>
       <%end
     end%>
@@ -47,13 +47,18 @@
 
   <div class="column">
     <h3>Pageview History (Day by Day):</h3>
-    <%= line_chart @kiosk.visits.group_by_day(:created_at).count %>
+    <%= scatter_chart @kiosk.visits.group_by_day(:created_at).count %>
   </div>
 
   <div class="column">
     <h3>Pageview History (Cumulative):</h3>
     <% sum = 0 %>
     <%= line_chart @kiosk.visits.group_by_day(:created_at).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge)%>
+  </div>
+
+  <div class="column">
+    <h3>Feedback</h3>
+    <%= column_chart @feedback_hash%>
   </div>
 
 
