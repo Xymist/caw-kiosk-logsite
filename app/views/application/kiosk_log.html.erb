@@ -47,7 +47,7 @@
 
   <div class="column">
     <h3>Pageview History (Day by Day):</h3>
-    <%= scatter_chart @kiosk.visits.group_by_day(:created_at).count %>
+    <%= column_chart @kiosk.visits.group_by_day(:created_at).count %>
   </div>
 
   <div class="column">
