@@ -1,21 +1,27 @@
 <h1 class="title-line">Kiosks</h1>
-<div class="ui stackable three column grid">
-  <%@kiosks.order(:name).each do |kiosk|%>
-  <div class='column' id="<%=kiosk.name%>">
-    <h2><%=kiosk.name.capitalize%></h2>
-    <p><strong>Address:</strong> <%=kiosk.address%></p>
-    <p><strong>Contact:</strong> <%=kiosk.contact%></p>
-    <%if current_user.admin? %>
-    <a class='ui primary button pull-right' onclick="modaleditkiosk(<%=kiosk.id%>)">Edit Kiosk</a>
-    <div class='ui modal advice-modal' id="editkioskmodal<%=kiosk.id%>">
-      <h1>   Edit Kiosk</h1>
-      <%= render 'form', kiosk: kiosk%>
+<%@jurisdictions.each do |jurisdiction|%>
+  <hr />
+  <h1><%=jurisdiction.name.capitalize%></h1>
+  <hr />
+  <div class="ui stackable three column grid">
+    <%jurisdiction.kiosks.order(:name).each do |kiosk|%>
+    <div class='column' id="<%=kiosk.name%>">
+      <h2><%=kiosk.name.capitalize%></h2>
+      <p><strong>Address:</strong> <%=kiosk.address%></p>
+      <p><strong>Contact:</strong> <%=kiosk.contact%></p>
+      <%if current_user.admin? %>
+      <a class='ui primary button pull-right' onclick="modaleditkiosk(<%=kiosk.id%>)">Edit Kiosk</a>
+      <div class='ui modal advice-modal' id="editkioskmodal<%=kiosk.id%>">
+        <h1>   Edit Kiosk</h1>
+        <%= render 'form', kiosk: kiosk%>
+      </div>
+      <%= link_to 'Delete', kiosk, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button pull-right' %>
+      <%end%>
     </div>
-    <%= link_to 'Delete', kiosk, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button pull-right' %>
     <%end%>
   </div>
-  <%end%>
-</div>
+  <br />
+<%end%>
 
 <%if current_user.admin? %>
   <p></p>

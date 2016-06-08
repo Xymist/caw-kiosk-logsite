@@ -46,12 +46,12 @@
   </div>
 
   <div class="column">
-    <h3>Visit History (Day by Day):</h3>
+    <h3>Pageview History (Day by Day):</h3>
     <%= line_chart @kiosk.visits.group_by_day(:created_at).count %>
   </div>
 
   <div class="column">
-    <h3>Visit History (Cumulative):</h3>
+    <h3>Pageview History (Cumulative):</h3>
     <% sum = 0 %>
     <%= line_chart @kiosk.visits.group_by_day(:created_at).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge)%>
   </div>
