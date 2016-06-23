@@ -17,4 +17,5 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require semantic-ui
+//= require noVNC-all
 //= require_tree .
