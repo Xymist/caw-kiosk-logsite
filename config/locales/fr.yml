@@ -1,0 +1,167 @@
+fr:
+  home: ""
+  footer:
+    instructions: ""
+    attributions: ""
+  topics:
+    benefits:
+      label: ""
+      description: ""
+    work:
+      label: ""
+      description: ""
+    debt:
+      label: ""
+      description: ""
+    consumer:
+      label: ""
+      description: ""
+    relationships:
+      label: ""
+      description: ""
+    housing:
+      label: ""
+      description: ""
+    law_and_rights:
+      label: ""
+      description: ""
+    discrimination:
+      label: ""
+      description: ""
+    tax:
+      label: ""
+      description: ""
+    healthcare:
+      label: ""
+      description: ""
+    education:
+      label: ""
+      description: ""
+  organisations:
+    govuk:
+      name: ""
+      benefits: ""
+      work: ""
+      debt: ""
+      consumer: ""
+      relationships: ""
+      housing: ""
+      law_and_rights: ""
+      tax: ""
+      education: ""
+    pensionservice:
+      name: ""
+      work: ""
+    stepchange:
+      name: ""
+      debt: ""
+    tribunalservice:
+      name: ""
+      work: ""
+    ageuk:
+      name: ""
+      benefits: ""
+      work: ""
+      debt: ""
+      consumer: ""
+      relationships: ""
+      housing: ""
+      law_and_rights: ""
+      discrimination: ""
+      tax: ""
+      healthcare: ""
+      education: ""
+    moneyadviceservice:
+      name: ""
+      debt: ""
+    nationaldebtline:
+      name: ""
+      debt: ""
+    citizensadvice:
+      name: ""
+      benefits: ""
+      work: ""
+      debt: ""
+      consumer: ""
+      relationships: ""
+      housing: ""
+      law_and_rights: ""
+      discrimination: ""
+      tax: ""
+      healthcare: ""
+      education: ""
+    complaintscommission:
+      name: ""
+      consumer: ""
+    financialombudsman:
+      name: ""
+      consumer: ""
+    familymediationcouncil:
+      name: ""
+      relationships: ""
+    relate:
+      name: ""
+      relationships: ""
+    childline:
+      name: ""
+      relationships: ""
+    hmrevenuecustoms:
+      name: ""
+      tax: ""
+    nationalcareersservice:
+      name: ""
+      work: ""
+    rasasc:
+      name: ""
+      relationships: ""
+    turn2us:
+      name: ""
+      benefits: ""
+    shelter:
+      name: ""
+      housing: ""
+    ipsea:
+      name: ""
+      education: ""
+    govukimmigration:
+      name: ""
+      law_and_rights: ""
+    powerofattorney:
+      name: ""
+      law_and_rights: ""
+    taxaid:
+      name: ""
+      tax: ""
+    nhschoices:
+      name: ""
+      healthcare: ""
+    healthwatch:
+      name: ""
+      healthcare: ""
+    mind:
+      name: ""
+      healthcare: ""
+    nhssexualhealth:
+      name: ""
+      healthcare: ""
+    stepbystep:
+      name: ""
+      housing: ""
+    clsdirectlegalservice:
+      name: ""
+      law_and_rights: ""
+    womensaid:
+      name: ""
+      relationships: ""
+    educationotherwise:
+      name: ""
+      education: ""
+    nus:
+      name: ""
+      education: ""
+    aceeducation:
+      name: ""
+      education: ""
+  help_us_out: ""
+  leave_feedback: ""
+  end_call: ""

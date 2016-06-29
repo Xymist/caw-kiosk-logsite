@@ -36,27 +36,6 @@ jurisdictions.each do |name, telephone, pbx_server|
 end
 
 ################################################################################
-# We don't really 'need' to do this next bit, DatabaseStufferJob will create
-# them automatically. These are here for testing purposes.
-
-hosts = [
-  ['gp-godalming-(Kiosk)' ],
-  ['gp-farnham-(Kiosk)'   ],
-  ['gp-cranleigh-(Kiosk)' ],
-  ['furniturelink-(Kiosk)'],
-  ['ageuk-(Kiosk)'        ],
-  ['waverley-(Kiosk)'     ],
-  ['ash-(Kiosk)'          ],
-  ['guildford-(Kiosk)'    ],
-  ['ageuk.co.uk'          ],
-  ['citizensadvice.org.uk']
-]
-
-hosts.each do |name|
-  Host.find_or_create_by(name: name)
-end
-
-################################################################################
 
 logos = [
   ['gas-logo-full.png',             "Guildford Advice Services", "https://guildfordadviceservices.org", [Jurisdiction.find_by(name: "guildford")]                                        ],
