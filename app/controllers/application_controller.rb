@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
     @disallowed_kiosks = @kiosks - @allowed_kiosks
     @visits = Visit.where(:kiosk => @allowed_kiosks)
+    @topics = Topic.all
   end
 
   def status
