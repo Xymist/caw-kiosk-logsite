@@ -1,0 +1,125 @@
+<div id="noVNC_control_bar" class="noVNC_status_normal">
+  <div class="noVNC_buttons_left">
+    <%= image_submit_tag("drag.png", :id => "noVNC_view_drag_button", :alt => "Viewport drag", :class => "noVNC_status_button", :title => "Move/Drag Viewport") %>
+  </div>
+
+  <div id="noVNC_status"></div>
+
+  <!--noVNC Buttons-->
+  <div class="noVNC_buttons_right">
+    <%= image_submit_tag("ctrlaltdel.png", :id => "noVNC_sendCtrlAltDel_button", :alt => "Ctrl+Alt+Del", :class => "noVNC_status_button", :title => "Send Ctrl-Alt-Del") %>
+    <%= image_submit_tag("power.png", :id => "noVNC_toggleXvp_button", :alt => "Shutdown/Reboot", :class => "noVNC_status_button", :title => "Shutdown/Reboot") %>
+    <%= image_submit_tag("clipboard.png", :id => "noVNC_clipboard_button", :alt => "Clipboard", :class => "noVNC_status_button", :title => "Clipboard") %>
+    <%= image_submit_tag("fullscreen.png", :id => "noVNC_fullscreen_button", :alt => "Fullscreen", :class => "noVNC_status_button", :title => "Fullscreen") %>
+    <%= image_submit_tag("settings.png", :id => "noVNC_settings_button", :alt => "Settings", :class => "noVNC_status_button", :title => "Settings") %>
+    <%= image_submit_tag("connect.png", :id => "noVNC_connectPanel_button", :alt => "Connect", :class => "noVNC_status_button", :title => "Connect") %>
+    <%= image_submit_tag("disconnect.png", :id => "noVNC_disconnect_button", :alt => "Disconnect", :class => "noVNC_status_button", :title => "Disconnect") %>
+  </div>
+
+  <!-- Popup Status -->
+  <div id="noVNC_popup_status" class="">
+  </div>
+
+  <!-- Clipboard Panel -->
+  <div id="noVNC_clipboard" class="triangle-right top">
+    <textarea id="noVNC_clipboard_text" rows=5>
+    </textarea>
+    <br />
+    <input id="noVNC_clipboard_clear_button" type="button" value="Clear" />
+  </div>
+
+  <!-- XVP Shutdown/Reboot Panel -->
+  <div id="noVNC_xvp" class="triangle-right top">
+    <span id="noVNC_xvp_menu">
+            <input type="button" id="noVNC_xvpShutdown_button" value="Shutdown" />
+            <input type="button" id="noVNC_xvpReboot_button" value="Reboot" />
+            <input type="button" id="noVNC_xvpReset_button" value="Reset" />
+        </span>
+  </div>
+
+  <!-- Settings Panel -->
+  <div id="noVNC_settings" class="triangle-right top">
+    <span id="noVNC_settings_menu">
+            <ul>
+                <li><input id="noVNC_setting_encrypt" type="checkbox" /> Encrypt</li>
+                <li><input id="noVNC_setting_true_color" type="checkbox" checked /> True Color</li>
+                <li><input id="noVNC_setting_cursor" type="checkbox" /> Local Cursor</li>
+                <li><input id="noVNC_setting_clip" type="checkbox" /> Clip to Window</li>
+                <li><input id="noVNC_setting_shared" type="checkbox" /> Shared Mode</li>
+                <li><input id="noVNC_setting_view_only" type="checkbox" /> View Only</li>
+                <hr>
+                <li><input id="noVNC_setting_path" type="input" value="websockify" /> Path</li>
+                <li><label>
+                    <select id="noVNC_setting_resize" name="vncResize">
+                        <option value="off">None</option>
+                        <option value="scale">Local Scaling</option>
+                        <option value="downscale">Local Downscaling</option>
+                        <option value="remote">Remote Resizing</option>
+                    </select> Scaling Mode</label>
+                </li>
+                <li><input id="noVNC_setting_repeaterID" type="input" value="" /> Repeater ID</li>
+                <hr>
+                <!-- Stylesheet selection dropdown -->
+                <li><label><strong>Style: </strong>
+                    <select id="noVNC_setting_stylesheet" name="vncStyle">
+                        <option value="default">default</option>
+                    </select></label>
+                </li>
+
+                <!-- Logging selection dropdown -->
+                <li><label><strong>Logging: </strong>
+                    <select id="noVNC_setting_logging" name="vncLogging">
+                    </select></label>
+                </li>
+                <hr>
+                <li><input type="button" id="noVNC_settings_apply" value="Apply" /></li>
+            </ul>
+        </span>
+  </div>
+
+  <!-- Connection Panel -->
+  <div id="noVNC_controls" class="triangle-right top">
+    <ul>
+      <li>
+        <label><strong>Host: </strong>
+          <input id="noVNC_setting_host" />
+        </label>
+      </li>
+      <li>
+        <label><strong>Port: </strong>
+          <input id="noVNC_setting_port" />
+        </label>
+      </li>
+      <li>
+        <label><strong>Password: </strong>
+          <input id="noVNC_setting_password" type="password" />
+        </label>
+      </li>
+      <li>
+        <label><strong>Token: </strong>
+          <input id="noVNC_setting_token" />
+        </label>
+      </li>
+      <li>
+        <input id="noVNC_connect_button" type="button" value="Connect" />
+      </li>
+    </ul>
+  </div>
+
+</div>
+<!-- End of noVNC_control_bar -->
+
+
+<div id="noVNC_container">
+  <h1 id="noVNC_logo"><span>no</span><br />VNC</h1>
+
+  <!-- HTML5 Canvas -->
+  <div id="noVNC_screen">
+    <canvas id="noVNC_canvas" width="0" height="0">
+      Canvas not supported.
+    </canvas>
+  </div>
+
+</div>
+<!--<script src="include/util.js"></script>
+<script src="include/ui.js"></script>-->

@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
   end
 
   def vncpanel
+    @title = "VNC Panel"
   end
 
 end
