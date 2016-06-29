@@ -2,10 +2,7 @@
 
 
 <h2 style="text-align: center;">Overall System Statistics</h2>
-<h3 style="text-align: center;">These data are not strictly comparable across kiosks. The date at which data collection began is as follows:</h3>
-<% @kiosks.each do |kiosk| %>
-  <h4><%= kiosk.name.upcase %>: <%= kiosk.visits.first.created_at %></h4>
-<% end %>
+<h4 style="text-align: center;">These data are not strictly comparable across kiosks due to differing durations of deployment.<br/> The dates at which data collection began are indicated on the individual kiosk log pages.</h4>
 
 <div class="ui stackable doubling two column grid">
 
