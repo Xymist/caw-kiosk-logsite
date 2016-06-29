@@ -5,7 +5,6 @@
 
   <div id="noVNC_status"></div>
 
-  <!--noVNC Buttons-->
   <div class="noVNC_buttons_right">
     <%= image_submit_tag("ctrlaltdel.png", :id => "noVNC_sendCtrlAltDel_button", :alt => "Ctrl+Alt+Del", :class => "noVNC_status_button", :title => "Send Ctrl-Alt-Del") %>
     <%= image_submit_tag("power.png", :id => "noVNC_toggleXvp_button", :alt => "Shutdown/Reboot", :class => "noVNC_status_button", :title => "Shutdown/Reboot") %>
@@ -16,11 +15,9 @@
     <%= image_submit_tag("disconnect.png", :id => "noVNC_disconnect_button", :alt => "Disconnect", :class => "noVNC_status_button", :title => "Disconnect") %>
   </div>
 
-  <!-- Popup Status -->
   <div id="noVNC_popup_status" class="">
   </div>
 
-  <!-- Clipboard Panel -->
   <div id="noVNC_clipboard" class="triangle-right top">
     <textarea id="noVNC_clipboard_text" rows=5>
     </textarea>
