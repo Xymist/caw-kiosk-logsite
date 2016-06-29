@@ -13,17 +13,6 @@
   </div>
 
   <div class="column">
-    <h3>External Visits, by Organisation:</h3>
-    <% visit_array = {} %>
-    <%@hosts.each do |host|
-      if host.visits.where(kiosk: @kiosk).count > 0 && host.name != "82.70.248.237"
-        visit_array["#{host.name}"] = host.visits.where(kiosk: @kiosk).count
-      end%>
-    <%end%>
-    <%= pie_chart visit_array.except("logserver.3rdsectorit.co.uk")%>
-  </div>
-
-  <div class="column">
     <h3>External Topic Access Frequency</h3>
     <% topic_visits = {} %>
     <%@visits.each do |visit|
@@ -41,29 +30,40 @@
   </div>
 
   <div class="column">
+    <h3>External Visits, by Organisation:</h3>
+    <% visit_array = {} %>
+    <%@hosts.each do |host|
+      if host.visits.where(kiosk: @kiosk).count > 0 && host.name != "82.70.248.237"
+        visit_array["#{host.name}"] = host.visits.where(kiosk: @kiosk).count
+      end%>
+    <%end%>
+    <%= pie_chart visit_array.except("logserver.3rdsectorit.co.uk")%>
+  </div>
+
+  <div class="column">
     <h3>All Clicks, by hour of day:</h3>
     <%= column_chart @kiosk.visits.group_by_hour_of_day(:time_stamp).count %>
   </div>
 
   <div class="column">
     <h3>Pageview History (Day by Day):</h3>
-    <%= column_chart @kiosk.visits.group_by_day(:created_at).count %>
+    <%= column_chart @kiosk.visits.group_by_day(:time_stamp, format: "%B %d, %Y").count %>
   </div>
 
   <div class="column">
     <h3>Pageview History (Weekly):</h3>
-    <%= column_chart @kiosk.visits.group_by_week(:created_at).count %>
+    <%= column_chart @kiosk.visits.group_by_week(:time_stamp, format: "Week %U, %Y").count %>
   </div>
 
   <div class="column">
     <h3>Pageview History (Monthly):</h3>
-    <%= column_chart @kiosk.visits.group_by_month(:created_at).count %>
+    <%= column_chart @kiosk.visits.group_by_month(:time_stamp, format: "%B %Y").count %>
   </div>
 
   <div class="column">
     <h3>Pageview History (Cumulative):</h3>
     <% sum = 0 %>
-    <%= area_chart @kiosk.visits.group_by_day(:created_at).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge)%>
+    <%= area_chart @kiosk.visits.group_by_day(:time_stamp).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge)%>
   </div>
 
   <div class="column">
