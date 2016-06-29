@@ -1,23 +1,167 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  home: "Home"
+  footer:
+    instructions: "To speak to an organisation, please pick up the handset and touch the phone number provided"
+    attributions: "Built by James Duerden. Design aided by Georgina Wormald."
+  topics:
+    benefits:
+      label: "Benefits"
+      description: "Information on Claiming Benefits"
+    work:
+      label: "Work"
+      description: "Work and Employment"
+    debt:
+      label: "Debt"
+      description: "Help Dealing With Debt"
+    consumer:
+      label: "Consumer"
+      description: "Consumer Issues and Complaints"
+    relationships:
+      label: "Relationships"
+      description: "Family and Relationship Issues"
+    housing:
+      label: "Housing"
+      description: "Housing and Homelessness"
+    law_and_rights:
+      label: "Law and Rights"
+      description: "Legal and Rights Issues"
+    discrimination:
+      label: "Discrimination"
+      description: "Unfair Discrimination Issues"
+    tax:
+      label: "Tax"
+      description: "Issues with Taxation"
+    healthcare:
+      label: "Healthcare"
+      description: "Physical and Mental Health Issues"
+    education:
+      label: "Education"
+      description: "Education and Training"
+  organisations:
+    govuk:
+      name: "Gov.UK"
+      benefits: "The Government Benefits Guide"
+      work: "The Government Working Guide"
+      debt: "The Government Insolvency Service"
+      consumer: "The Government Consumer Rights Guide"
+      relationships: "The Government Child Maintenance Guide"
+      housing: "The Government Housing Guide"
+      law_and_rights: "The Government Justice Guide"
+      tax: "The Government Taxation Guide"
+      education: "The Government Education Guide"
+    pensionservice:
+      name: "Pension Service"
+      work: "The Government Pensions Advice Service"
+    stepchange:
+      name: "StepChange"
+      debt: "Advice On Getting Out Of Debt"
+    tribunalservice:
+      name: "Tribunal Service"
+      work: "Employment Tribunal Information"
+    ageuk:
+      name: "Age UK"
+      benefits: "Benefits Advice For Older People"
+      work: "Employment Advice For Older People"
+      debt: "Debt Advice For Older People"
+      consumer: "Consumer Advice For Older People"
+      relationships: "Relationship Advice For Older People"
+      housing: "Housing Advice For Older People"
+      law_and_rights: "Legal Advice For Older People"
+      discrimination: "Discrimination Advice For Older People"
+      tax: "Taxation Advice For Older People"
+      healthcare: "Healthcare Advice For Older People"
+      education: "Education Advice For Older People"
+    moneyadviceservice:
+      name: "Money Advice Service"
+      debt: "The UK Money Advice Service"
+    nationaldebtline:
+      name: "National Debtline"
+      debt: "Help Managing Debt and Money"
+    citizensadvice:
+      name: "Citizens Advice"
+      work: "The Citizens Advice Information Site"
+      debt: "The Citizens Advice Information Site"
+      consumer: "The Citizens Advice Information Site"
+      benefits: "The Citizens Advice Information Site"
+      relationships: "The Citizens Advice Information Site"
+      housing: "The Citizens Advice Information Site"
+      law_and_rights: "The Citizens Advice Information Site"
+      discrimination: "The Citizens Advice Information Site"
+      tax: "The Citizens Advice Information Site"
+      healthcare: "The Citizens Advice Information Site"
+      education: "The Citizens Advice Information Site"
+    complaintscommission:
+      name: "Complaints Commission"
+      consumer: "The European Consumer Complaints Commission"
+    financialombudsman:
+      name: "Financial Ombudsman"
+      consumer: "The Financial Ombudsman Service"
+    familymediationcouncil:
+      name: "Family Mediation Council"
+      relationships: "Mediation Services"
+    relate:
+      name: "Relate"
+      relationships: "Counselling, Support and Mediation Service"
+    childline:
+      name: "Childline"
+      relationships: "Relationship Advice For Young People"
+    hmrevenuecustoms:
+      name: "HM Revenue & Customs"
+      tax: "Tax and Benefits Information"
+    nationalcareersservice:
+      name: "National Careers Service"
+      work: "Help and Advice With Careers"
+    rasasc:
+      name: "RASASC"
+      relationships: "Assistance For Rape and Sexual Abuse Survivors"
+    turn2us:
+      name: "Turn 2 Us"
+      benefits: "Detailed Benefits Entitlement Information"
+    shelter:
+      name: "Shelter"
+      housing: "Advice On Homelessness In England"
+    ipsea:
+      name: "IPSEA"
+      education: "Advice On Special Educational Needs"
+    govukimmigration:
+      name: "Gov.UK Immigration"
+      law_and_rights: "Immigration and Residency Law Guide"
+    powerofattorney:
+      name: "Power of Attorney"
+      law_and_rights: "Advice On Powers Of Attorney"
+    taxaid:
+      name: "TaxAid"
+      tax: "If HMRC Cannot Assist With A Tax Issue"
+    nhschoices:
+      name: "NHS Choices"
+      healthcare: "The National Health Service"
+    healthwatch:
+      name: "Healthwatch"
+      healthcare: "The Health Services Watchdog"
+    mind:
+      name: "Mind"
+      healthcare: "Advice and Assistance With Mental Health Issues"
+    nhssexualhealth:
+      name: "NHS Sexual Health"
+      healthcare: "NHS Advice On Sexual Health Issues"
+    stepbystep:
+      name: "Step by Step"
+      housing: "Advice On Homelessness For Young People"
+    clsdirectlegalservice:
+      name: "CLS Direct Legal Service"
+      law_and_rights: "Legal Advice and Legal Aid"
+    womensaid:
+      name: "Women's Aid"
+      relationships: "Advice and Assistance With Domestic Abuse"
+    educationotherwise:
+      name: "Education Otherwise"
+      education: "Advice On Home Schooling"
+    nus:
+      name: "NUS"
+      education: "National Union of Students"
+    aceeducation:
+      name: "ACE Education"
+      education: "Help Choosing Schools"
+  help_us_out: "Help Us Out"
+  leave_feedback: "Leave feedback for our service"
+  end_call: "End Call"

@@ -50,7 +50,7 @@ class PublicKioskController < ActionController::Base
     @income_options     = ["<£400","£400-599", "£600-799", "£800-999", "£1000-1499", "£1500-1999", "£2000-2999", "£3000+"]
     @kiosk_topics       = []
     KioskTopic.all.each do |topic|
-      @kiosk_topics << topic.label
+      @kiosk_topics << topic.name.capitalize
     end
     @referral_options   = ["Referred by doctor", "Referred by nearby staff", "Just passing by", "Word of mouth", "Poster or flyer"]
     @feedback_options   = ["1 - Entirely Useless","2 - Mostly Useless","3 - Somewhat Helpful","4 - Very Helpful","5 - Extremely Helpful"]

@@ -9,22 +9,24 @@
   <% if page.telephone == "" or @kiosk.jurisdiction.telephone == false %>
     <div class="col-xs-4">
       <%= link_to "#{@topic}/#{page.id}", :class => 'col-xs-12 topic-button no-telephone-topic' do %>
-        <h1><%=page.organisation%></h1>
-        <h3><%=page.details%></h3>
+        <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
+        <h1><%=t "organisations.#{orgname}.name"%></h1>
+        <h3><%=t "organisations.#{orgname}.#{@topic}"%></h3>
       <%end%>
     </div>
   <% else %>
     <div class="col-xs-4">
       <%= link_to "#{@topic}/#{page.id}", :class => 'col-xs-12 topic-button telephone-topic' do %>
-        <h1><%=page.organisation%></h1>
-        <h3><%=page.details%></h3>
+        <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
+        <h1><%=t "organisations.#{orgname}.name"%></h1>
+        <h3><%=t "organisations.#{orgname}.#{@topic}"%></h3>
       <%end%>
         <%if @kiosk.jurisdiction.telephone == true %>
           <%= link_to "sip:#{page.telephone}@#{@kiosk.jurisdiction.pbx_server}", :class => "col-xs-10 col-xs-offset-1 topic-button telephone-button", :id => "#{page.telephone}", :onclick => "calling('#{page.telephone}')" do %>
-            <h3><i class="glyphicon glyphicon-phone-alt"></i>   <%=page.telephone%></h3>
+            <h3><i class="glyphicon glyphicon-phone-alt"></i><span class="telephone-number"><%=page.telephone%></span></h3>
           <%end%>
           <%= link_to "killsip:#{page.telephone}@#{@kiosk.jurisdiction.pbx_server}", :class => "col-xs-10 col-xs-offset-1 topic-button telephone-button calling-indicator", :style => "display: none;", :id => "#{page.telephone}calling", :onclick => "endCall('#{page.telephone}')" do %>
-            <h3>End Call</h3>
+            <h3><%= t :end_call %></h3>
           <%end%>
       <%end%>
     </div>
