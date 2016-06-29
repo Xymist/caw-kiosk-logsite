@@ -26,6 +26,7 @@ gem 'devise'
 gem 'carrierwave-postgresql'
 gem 'carrierwave'
 gem 'postgresql_lo_streamer'
+gem 'blazer'
 
 group :development, :test do
   gem 'byebug'

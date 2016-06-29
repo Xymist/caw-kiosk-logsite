@@ -2,22 +2,6 @@
 <div class="ui stackable doubling two column grid">
 
   <div class="column">
-    <h3>External Visits, by Organisation:</h3>
-    <% visit_array = {} %>
-    <%@hosts.each do |host|
-      if host.visits.where(kiosk: @kiosk).count > 0 && host.name != "82.70.248.237"
-        visit_array["#{host.name}"] = host.visits.where(kiosk: @kiosk).count
-      end%>
-    <%end%>
-    <%= pie_chart visit_array.except("logserver.3rdsectorit.co.uk")%>
-  </div>
-
-  <div class="column">
-    <h3>All Clicks, by hour of day:</h3>
-    <%= column_chart @kiosk.visits.group_by_hour_of_day(:time_stamp).count %>
-  </div>
-
-  <div class="column">
     <h3>Kiosk Topic Access Frequency</h3>
     <%topic_array = {} %>
     <%@topics.each do |topic|
@@ -26,6 +10,17 @@
       <%end
     end%>
     <%= pie_chart topic_array.except("Home")%>
+  </div>
+
+  <div class="column">
+    <h3>External Visits, by Organisation:</h3>
+    <% visit_array = {} %>
+    <%@hosts.each do |host|
+      if host.visits.where(kiosk: @kiosk).count > 0 && host.name != "82.70.248.237"
+        visit_array["#{host.name}"] = host.visits.where(kiosk: @kiosk).count
+      end%>
+    <%end%>
+    <%= pie_chart visit_array.except("logserver.3rdsectorit.co.uk")%>
   </div>
 
   <div class="column">
@@ -46,8 +41,23 @@
   </div>
 
   <div class="column">
+    <h3>All Clicks, by hour of day:</h3>
+    <%= column_chart @kiosk.visits.group_by_hour_of_day(:time_stamp).count %>
+  </div>
+
+  <div class="column">
     <h3>Pageview History (Day by Day):</h3>
     <%= column_chart @kiosk.visits.group_by_day(:created_at).count %>
+  </div>
+
+  <div class="column">
+    <h3>Pageview History (Weekly):</h3>
+    <%= column_chart @kiosk.visits.group_by_week(:created_at).count %>
+  </div>
+
+  <div class="column">
+    <h3>Pageview History (Monthly):</h3>
+    <%= column_chart @kiosk.visits.group_by_month(:created_at).count %>
   </div>
 
   <div class="column">

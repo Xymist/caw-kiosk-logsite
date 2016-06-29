@@ -73,3 +73,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+ENV["BLAZER_DATABASE_URL"] = "postgres://blazer:blazer,./@localhost:5432/caw-kiosk-logsite-production"

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  
   mount PostgresqlLoStreamer::Engine => "/logo_image"
+
+  authenticate :user, lambda { |user| user.admin? } do
+    mount Blazer::Engine, at: "database_admin"
+  end
 
   root to: "application#home"
 
