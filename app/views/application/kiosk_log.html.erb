@@ -1,4 +1,4 @@
-<h1 class="title-line"><%=@kiosk.name.upcase%> - Data begins <%= @kiosk.visits.first.created_at.strftime("%d %B, %Y") %></h1>
+<h1 class="title-line"><%=@kiosk.name.upcase%> <% if @kiosk.visits.first != nil %>- Data begins <%= @kiosk.visits.first.created_at.strftime("%d %B, %Y") %> <%end%></h1>
 
 <div class="ui stackable doubling two column grid">
 

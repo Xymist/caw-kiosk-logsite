@@ -84,6 +84,6 @@ class AdvicePagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advice_page_params
-      params.require(:advice_page).permit(:organisation, :url, :telephone, :details, :topic, :kiosk_ids => [])
+      params.require(:advice_page).permit(:organisation, :url, :telephone, :topic, :kiosk_ids => [])
     end
 end

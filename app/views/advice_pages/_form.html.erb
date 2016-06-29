@@ -22,9 +22,6 @@
       <%= f.text_field :telephone, placeholder: "Telephone"  %>
     </div><br />
     <div class="ui large input">
-      <%= f.text_field :details, placeholder: "Details"  %>
-    </div><br />
-    <div class="ui large input">
       <%= f.collection_check_boxes(:kiosk_ids, @allowed_kiosks, :id, :name)%>
       <div class="hidden">
         <%= f.collection_check_boxes(:kiosk_ids, @disallowed_kiosks, :id, :name)%>

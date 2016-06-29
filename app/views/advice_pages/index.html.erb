@@ -3,7 +3,7 @@
   <%@kiosk_topics.order(:name).each do |topic|%>
   <% @a = "<div class='column' id='#{topic.name}'>"%>
   <%= @a.html_safe%>
-    <h2><%=topic.label%></h2>
+    <h2><%=topic.name.capitalize%></h2>
     <div class="ui styled fluid accordion">
       <%@pages.order(:id).each do |page|%>
         <%if page.topic == topic.name%>
@@ -12,7 +12,8 @@
           </div>
           <div class="content">
             <div class="transition hidden">
-              <p><strong>Info:</strong> <%=page.details%></p>
+              <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
+              <p><strong>Info:</strong> <%=t "organisations.#{orgname}.#{topic}"%></p>
               <p><strong>URL:</strong> <%=link_to page.url, page.url%></p>
               <p><strong>Tel:</strong> <%=page.telephone%></p>
               <p><strong>Kiosks:</strong></p>
@@ -29,7 +30,7 @@
               <%= @w.html_safe%>
               <% @x = "<div class='ui modal advice-modal' id='editpagemodal#{page.id}'>"%>
               <%= @x.html_safe%>
-                <h1> Edit <%= topic.label%> Page</h1>
+                <h1> Edit <%= topic.name.capitalize%> Page</h1>
                 <%= render 'form', advice_page: page %>
               </div>
               <%= link_to 'Remove', page, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button' %>
@@ -42,11 +43,11 @@
     <p></p>
     <%if current_user.admin? && @pages.where(topic: topic.name).count < 12 %>
     <!--And again...-->
-      <% @y = "<a class='ui primary button pull-right' onclick='modalnewpage(#{topic.id})'>New #{topic.label} Page</a>"%>
+      <% @y = "<a class='ui primary button pull-right' onclick='modalnewpage(#{topic.id})'>New #{topic.name.capitalize} Page</a>"%>
       <%=@y.html_safe%>
       <% @z = "<div class='ui modal advice-modal' id='newpagemodal#{topic.id}'>"%>
       <%=@z.html_safe%>
-        <h1>   Create <%= topic.label%> Page</h1>
+        <h1>   Create <%= topic.name.capitalize%> Page</h1>
         <%= render 'form', advice_page: AdvicePage.new(topic: topic.name)%>
       </div>
       <%else%>
