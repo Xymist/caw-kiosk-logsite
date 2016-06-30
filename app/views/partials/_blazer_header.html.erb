@@ -16,6 +16,6 @@
     <a class="section" href="/database_admin" id="database_breadcrumb">Database</a>
     <%end%>
     <i>|</i>
-    <%= link_to('Logout', destroy_user_session_path, class: "section", :method => :delete) %>
+    <a class="section" href="/users/sign_out" data-method="delete">Logout</a>
   <% end %>
 </div>

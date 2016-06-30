@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @title ? @title : "Kiosk Data Repository" %></title>
+
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <%= action_cable_meta_tag %>
+
+    <%= stylesheet_link_tag "blazer/application" %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "blazer/application" %>
+    <script>
+      var runQueriesPath = <%= run_queries_path.to_json.html_safe %>;
+    </script>
+    <% if blazer_maps? %>
+      <%= stylesheet_link_tag "https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" %>
+      <%= javascript_include_tag "https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js" %>
+    <% end %>
+  </head>
+
+  <body>
+    <div class="header-container col-xs-12">
+      <%= render 'partials/blazer_header' %>
+    </div>
+    <div class="main-container col-xs-12">
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+  </body>
+</html>
