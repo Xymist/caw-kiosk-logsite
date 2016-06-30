@@ -20,15 +20,15 @@
 <% @kiosk_topics.each do |kiosk_topic| %>
   <div class="col-xs-3">
     <%= link_to "#{@kiosk.name}/#{kiosk_topic.name}", :class => 'col-xs-12 topic-button' do %>
-      <h1><%= t "topics.#{kiosk_topic.name}.label"%></h1>
-      <h3><%= t "topics.#{kiosk_topic.name}.description"%></h3>
+      <h1><%= t "topics.#{kiosk_topic.name}.label", default: kiosk_topic.name.capitalize%></h1>
+      <h3><%= t "topics.#{kiosk_topic.name}.description", default: kiosk_topic.description%></h3>
     <%end%>
   </div>
 <%end%>
 
 <div class="col-xs-3">
   <%= link_to "#{@kiosk.name}/feedback", :class => 'col-xs-12 topic-button' do %>
-    <h1><%= t :help_us_out %></h1>
-    <h3><%= t :leave_feedback %></h3>
+    <h1><%= t :help_us_out, default: "Help Us Out" %></h1>
+    <h3><%= t :leave_feedback, default: "Leave Feedback About Our Service" %></h3>
   <%end%>
 </div>

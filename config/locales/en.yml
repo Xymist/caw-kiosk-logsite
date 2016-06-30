@@ -40,10 +40,10 @@ en:
   organisations:
     govuk:
       name: "Gov.UK"
-      benefits: "The Government Benefits Guide"
       work: "The Government Working Guide"
       debt: "The Government Insolvency Service"
       consumer: "The Government Consumer Rights Guide"
+      benefits: "The Government Benefits Guide"
       relationships: "The Government Child Maintenance Guide"
       housing: "The Government Housing Guide"
       law_and_rights: "The Government Justice Guide"

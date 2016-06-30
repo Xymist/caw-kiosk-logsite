@@ -8,7 +8,7 @@
 
 <div class="col-xs-5">
   <%if @jurisdiction.telephone == true%>
-    <p style="color: #0086B2; font-size: 18px; font-weight: 600; text-align: center"><%= t "footer.instructions" %></p>
+    <p style="color: #0086B2; font-size: 18px; font-weight: 600; text-align: center"><%= t "footer.instructions", default: "To speak to an organisation, please pick up the handset and touch the number provided" %></p>
   <%end%>
-  <p style="color: #0086B2; font-size: 12px; font-weight: 400" class="pull-right"><%= t "footer.attributions" %></p>
+  <p style="color: #0086B2; font-size: 12px; font-weight: 400" class="pull-right"><%= t "footer.attributions", default: "Built by James Duerden. Design aided by Georgina Wormald." %></p>
 </div>
