@@ -25,7 +25,7 @@
       <%=kiosk_users.values.inject(&:+) || 0%>
     <% end %>
 
-    <%= column_chart kiosk_users, height: "500px"%>
+    <%= column_chart kiosk_users.sort_by{ |k, v| k }.to_h, height: "500px"%>
   </div>
 
   <div class="column">
@@ -33,12 +33,12 @@
     <%= content_tag :h1, :style => "text-align: center;", :class => 'counter', :datastop => @visits.count do %>
       <%=@visits.count%>
     <% end %>
-    <%kiosk_pageviews = []
+    <%kiosk_pageviews = {}
     @allowed_kiosks.each do |kiosk|
-      kiosk_pageviews << ["#{kiosk.name}", kiosk.visits.count]
+      kiosk_pageviews["#{kiosk.name}"] = kiosk.visits.count
     end
     %>
-    <%= column_chart kiosk_pageviews, height: "500px"%>
+    <%= column_chart kiosk_pageviews.sort_by{ |k, v| k }.to_h, height: "500px"%>
   </div>
 
   <div class="column">
