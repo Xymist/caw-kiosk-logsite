@@ -165,3 +165,11 @@ en:
   help_us_out: "Help Us Out"
   leave_feedback: "Leave feedback for our service"
   end_call: "End Call"
+  kiosks:
+    waverley: "Waverley"
+    gp-godalming: "Godalming GP"
+    gp-cranleigh: "Cranleigh GP"
+    gp-farnham: "Farnham GP"
+    ageuk: "Age UK Surrey"
+    ash: "Ash CA"
+    guildford: "Guildford CA"

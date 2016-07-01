@@ -2,7 +2,7 @@
 <div class="ui stackable doubling three column grid">
   <% @allowed_kiosks.order(:name).each do |kiosk| %>
     <div class="column report-panel">
-      <h2><%=kiosk.name.upcase%></h2>
+      <h2><%=t "kiosks.#{kiosk.name}"%></h2>
       <%topic_array = {} %>
       <%@topics.each do |topic|
         if topic.location != "Feedback" and ["82.70.248.237", "logserver.3rdsectorit.co.uk"].include? topic.host.name

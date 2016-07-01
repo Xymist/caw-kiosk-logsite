@@ -6,7 +6,7 @@
   <div class="ui stackable three column grid">
     <%jurisdiction.kiosks.order(:name).each do |kiosk|%>
     <div class='column' id="<%=kiosk.name%>">
-      <h2><%=kiosk.name.capitalize%></h2>
+      <h2><%=t "kiosks.#{kiosk.name}"%></h2>
       <p><strong>Address:</strong> <%=kiosk.address%></p>
       <p><strong>Contact:</strong> <%=kiosk.contact%></p>
       <%if current_user.admin? %>

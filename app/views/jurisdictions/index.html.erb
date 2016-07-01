@@ -8,7 +8,7 @@
       <%@kiosks.order(:id).each do |kiosk|%>
         <%if kiosk.jurisdiction == jurisdiction%>
           <div class="title">
-            <i class="dropdown icon"></i><%=kiosk.name.capitalize%>
+            <i class="dropdown icon"></i><%=t "kiosks.#{kiosk.name}"%>
           </div>
           <div class="content">
             <div class="transition hidden">

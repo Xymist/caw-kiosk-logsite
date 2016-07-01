@@ -11,9 +11,9 @@
     %>
     <div class="column report-panel">
       <% if kiosk_connected %>
-        <h2><%= link_to kiosk.name.upcase, "/vncpanel?host=#{kiosk.ip_address}&port=5900&password=x11vnc" %></h2>
+        <h2><%= link_to t "kiosks.#{kiosk.name}", "/vncpanel?host=#{kiosk.ip_address}&port=5900&password=x11vnc" %></h2>
       <%else%>
-        <h2><%= kiosk.name.upcase %></h2>
+        <h2><%= t "kiosks.#{kiosk.name}" %></h2>
       <%end%>
         <p><strong>Address:</strong></p>
         <p><%=kiosk.address%></p>
