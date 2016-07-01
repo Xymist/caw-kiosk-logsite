@@ -22,7 +22,7 @@
       <h3>Last Status Update:</h3>
       <% if kiosk_initialised%>
         <p><%=kiosk.heartbeats.last.created_at%></p>
-        <% if kiosk_connected or kiosk.visits.last.created_at > 15.minutes.ago%>
+        <% if kiosk_connected %>
           <h4 class="greentext"><strong>Connected</strong></h4>
         <%else%>
           <h4 class="redtext"><strong>Disconnected</strong></h4>
