@@ -62,12 +62,11 @@
 </div>
 
 <script>
-$(document).on('page:load', readyScripts);
-function readyScripts() {
+$(document).ready(function() {
   $('#advice_pages_breadcrumb').addClass('active');
   $('.ui.accordion').accordion();
   $('.ui.checkbox').checkbox();
-};
+});
 
 function modalnewpage(m) {
   $('#newpagemodal'+m).modal('show');

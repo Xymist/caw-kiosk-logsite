@@ -33,11 +33,11 @@
 <%end%>
 
 <script>
-$(document).on('page:load', readyScripts);
-function readyScripts() {
+
+$(document).ready(function() {
   $('#kiosks_breadcrumb').addClass('active');
   $('.ui.accordion').accordion();
-};
+});
 
 function modalnewkiosk() {
   $('#newkioskmodal').modal('show');
