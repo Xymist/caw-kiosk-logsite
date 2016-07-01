@@ -1,17 +1,28 @@
 <h1 class="title-line">Kiosk Status</h1>
 <div class="ui stackable four column grid">
   <% @allowed_kiosks.order(:name).each do |kiosk| %>
+    <%
+    if kiosk.heartbeats.last
+      kiosk_initialised = true
+      if kiosk.heartbeats.last.created_at > 15.minutes.ago
+        kiosk_connected = true
+      end
+    end
+    %>
     <div class="column report-panel">
-      <h2><%=kiosk.name.upcase%></h2>
+      <% if kiosk_connected %>
+        <h2><%= link_to kiosk.name.upcase, "/vncpanel?host=#{kiosk.ip_address}&port=5900&password=x11vnc" %></h2>
+      <%else%>
+        <h2><%= kiosk.name.upcase %></h2>
+      <%end%>
         <p><strong>Address:</strong></p>
         <p><%=kiosk.address%></p>
         <p><strong>Contact:</strong></p>
         <p><%=kiosk.contact%></p>
-      <%= link_to "VNC Access", vncpanel_path(:host => "#{kiosk.ip_address}", :port => "5900", :password => "x11vnc") %>
       <h3>Last Status Update:</h3>
-      <% if kiosk.heartbeats.last%>
+      <% if kiosk_initialised%>
         <p><%=kiosk.heartbeats.last.created_at%></p>
-        <% if kiosk.heartbeats.last.created_at > 15.minutes.ago%>
+        <% if kiosk_connected %>
           <h4 class="greentext"><strong>Connected</strong></h4>
         <%else%>
           <h4 class="redtext"><strong>Disconnected</strong></h4>
