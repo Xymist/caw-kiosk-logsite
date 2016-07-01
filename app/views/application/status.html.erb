@@ -7,6 +7,7 @@
         <p><%=kiosk.address%></p>
         <p><strong>Contact:</strong></p>
         <p><%=kiosk.contact%></p>
+      <%= link_to "VNC Access", vncpanel_path(:host => "#{kiosk.ip_address}", :port => "5900", :password => "x11vnc") %>
       <h3>Last Status Update:</h3>
       <% if kiosk.heartbeats.last%>
         <p><%=kiosk.heartbeats.last.created_at%></p>

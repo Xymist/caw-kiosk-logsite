@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608143844) do
+ActiveRecord::Schema.define(version: 20160701000626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20160608143844) do
     t.string   "organisation"
     t.string   "url"
     t.string   "telephone"
-    t.string   "details"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "topic"
+    t.string   "details"
   end
 
   create_table "advice_pages_kiosks", id: false, force: :cascade do |t|
@@ -31,6 +31,52 @@ ActiveRecord::Schema.define(version: 20160608143844) do
     t.integer "kiosk_id"
     t.index ["advice_page_id"], name: "index_advice_pages_kiosks_on_advice_page_id", using: :btree
     t.index ["kiosk_id"], name: "index_advice_pages_kiosks_on_kiosk_id", using: :btree
+  end
+
+  create_table "blazer_audits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "query_id"
+    t.text     "statement"
+    t.string   "data_source"
+    t.datetime "created_at"
+  end
+
+  create_table "blazer_checks", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "query_id"
+    t.string   "state"
+    t.string   "schedule"
+    t.text     "emails"
+    t.string   "check_type"
+    t.text     "message"
+    t.datetime "last_run_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blazer_dashboard_queries", force: :cascade do |t|
+    t.integer  "dashboard_id"
+    t.integer  "query_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blazer_dashboards", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blazer_queries", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "statement"
+    t.string   "data_source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -103,7 +149,6 @@ ActiveRecord::Schema.define(version: 20160608143844) do
 
   create_table "kiosk_topics", force: :cascade do |t|
     t.string   "name"
-    t.string   "label"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "description"
@@ -117,6 +162,7 @@ ActiveRecord::Schema.define(version: 20160608143844) do
     t.datetime "updated_at",      null: false
     t.boolean  "notified"
     t.integer  "jurisdiction_id"
+    t.string   "ip_address"
   end
 
   create_table "log_events", force: :cascade do |t|

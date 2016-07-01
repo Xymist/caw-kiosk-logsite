@@ -383,7 +383,8 @@ Util._loading_scripts = [];
 Util._pending_scripts = [];
 Util.load_scripts = function (files) {
     "use strict";
-    var head = document.getElementsByTagName('head')[0], script,
+    window.onscriptsload();
+/*    var head = document.getElementsByTagName('head')[0], script,
         ls = Util._loading_scripts, ps = Util._pending_scripts;
 
     var loadFunc = function (e) {
@@ -410,7 +411,7 @@ Util.load_scripts = function (files) {
         }
     };
 
-    for (var f = 0; f < files.length; f++) {
+     for (var f = 0; f < files.length; f++) {
         script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = Util.get_include_uri() + files[f];
@@ -429,7 +430,7 @@ Util.load_scripts = function (files) {
             head.appendChild(script);
         }
         ps.push(script);
-    }
+    } */
 };
 
 

@@ -15,12 +15,6 @@ var UI;
 (function () {
     "use strict";
 
-    // Load supporting scripts
-    window.onscriptsload = function () { UI.load(); };
-    //Util.load_scripts(["webutil.js", "base64.js", "websock.js", "des.js",
-    //                   "keysymdef.js", "keyboard.js", "input.js", "display.js",
-    //                   "rfb.js", "keysym.js", "inflator.js"]);
-
     UI = {
 
         rfb_state: 'loaded',
@@ -229,8 +223,9 @@ var UI;
             $D("noVNC_settings_button").onclick = UI.toggleSettingsPanel;
             $D("noVNC_connectPanel_button").onclick = UI.toggleConnectPanel;
             $D("noVNC_disconnect_button").onclick = UI.disconnect;
-            $D("noVNC_description_button").onclick = UI.toggleConnectPanel;
-
+            if ($D("noVNC_description_button") !== null){
+              $D("noVNC_description_button").onclick = UI.toggleConnectPanel;
+            }
             $D("noVNC_clipboard_text").onfocus = UI.displayBlur;
             $D("noVNC_clipboard_text").onblur = UI.displayFocus;
             $D("noVNC_clipboard_text").onchange = UI.clipboardSend;
@@ -498,7 +493,9 @@ var UI;
         // Open menu
         openSettingsMenu: function() {
             // Close the description panel
-            $D('noVNC_description').style.display = "none";
+            if ($D('noVNC_description') !== null){
+              $D('noVNC_description').style.display = "none";
+            }
             // Close clipboard panel if open
             if (UI.clipboardOpen === true) {
                 UI.toggleClipboardPanel();
@@ -528,7 +525,9 @@ var UI;
         //   On close, settings are applied
         toggleSettingsPanel: function() {
             // Close the description panel
-            $D('noVNC_description').style.display = "none";
+            if ($D('noVNC_description') !== null){
+              $D('noVNC_description').style.display = "none";
+            }
             if (UI.settingsOpen) {
                 UI.settingsApply();
                 UI.closeSettingsMenu();
@@ -664,7 +663,9 @@ var UI;
         // Show the connection settings panel/menu
         toggleConnectPanel: function() {
             // Close the description panel
-            $D('noVNC_description').style.display = "none";
+            if ($D('noVNC_description') !== null) {
+              $D('noVNC_description').style.display = "none";
+            }
             // Close connection settings if open
             if (UI.settingsOpen === true) {
                 UI.settingsApply();
@@ -1235,7 +1236,7 @@ var UI;
                 UI.rfb.get_mouse().set_touchButton(num);
             }
 
-            var blist = [0, 1,2,4];
+            var blist = [0,1,2,4];
             for (var b = 0; b < blist.length; b++) {
                 var button = $D('noVNC_mouse_button' + blist[b]);
                 if (blist[b] === num) {
@@ -1285,5 +1286,8 @@ var UI;
  *    /MISC
  * ==============
  */
+    };
+    window.onscriptsload = function () {
+      UI.load();
     };
 })();

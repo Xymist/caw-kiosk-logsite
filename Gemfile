@@ -27,7 +27,6 @@ gem 'carrierwave-postgresql'
 gem 'carrierwave'
 gem 'postgresql_lo_streamer'
 gem 'prawn'
-gem 'novnc-rails', github: 'MOZGIII/novnc-rails'
 
 group :development, :test do
   gem 'byebug'

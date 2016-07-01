@@ -16,8 +16,12 @@
       <%= render 'partials/header' %>
     </div>
     <div class="main-container col-xs-12">
+      <% if notice != nil %>
        <p class="notice"><%= notice %></p>
+      <%end%>
+      <% if alert != nil %>
        <p class="alert"><%= alert %></p>
+      <%end%>
       <%= yield %>
     </div>
   </body>
