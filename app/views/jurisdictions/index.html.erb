@@ -37,12 +37,14 @@
 </div>
 
 <script>
-$(document).ready(function() {
+$(document).on('page:load', readyScripts);
+function readyScripts() {
   $('#jurisdictions_breadcrumb').addClass('active');
-});
-$('.ui.accordion').accordion();
-$('select.dropdown').dropdown();
-$('.ui.radio.checkbox').checkbox();
+  $('.ui.accordion').accordion();
+  $('select.dropdown').dropdown();
+  $('.ui.radio.checkbox').checkbox();
+};
+
 function modalnewjurisdiction() {
   $('#newjurisdictionmodal').modal('show');
 };

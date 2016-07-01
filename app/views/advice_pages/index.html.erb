@@ -13,7 +13,7 @@
           <div class="content">
             <div class="transition hidden">
               <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
-              <p><strong>Info:</strong> <%=t "organisations.#{orgname}.#{topic}"%></p>
+              <p><strong>Info:</strong> <%=t "organisations.#{orgname}.#{topic.name}"%></p>
               <p><strong>URL:</strong> <%=link_to page.url, page.url%></p>
               <p><strong>Tel:</strong> <%=page.telephone%></p>
               <p><strong>Kiosks:</strong></p>
@@ -62,15 +62,13 @@
 </div>
 
 <script>
-$(document).ready(function() {
+$(document).on('page:load', readyScripts);
+function readyScripts() {
   $('#advice_pages_breadcrumb').addClass('active');
-});
-$('.ui.accordion')
-  .accordion()
-;
-$('.ui.checkbox')
-  .checkbox()
-;
+  $('.ui.accordion').accordion();
+  $('.ui.checkbox').checkbox();
+};
+
 function modalnewpage(m) {
   $('#newpagemodal'+m).modal('show');
 };
