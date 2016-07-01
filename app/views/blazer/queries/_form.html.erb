@@ -64,8 +64,10 @@
 <div id="results"></div>
 
 <script>
-$(document).on('page:load', initDbAccess);
-
+  $(document).ready(function() {
+    initDbAccess();
+  });
+  
   function initDbAccess(){
   var editor = ace.edit("editor");
   editor.setTheme("ace/theme/twilight");
