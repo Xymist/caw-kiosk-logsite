@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'logs/:kiosk', to: 'application#kiosk_log', as: 'log'
   get 'home', to: "application#home"
   get 'status', to: "application#status"
+  get 'vncpanel', to: "application#vncpanel"
   get 'feedback', to: "feedback#overview"
   get 'feedback/:kiosk', to: "feedback#kiosk"
   get 'heartbeat', to: "public_kiosk#heartbeat"

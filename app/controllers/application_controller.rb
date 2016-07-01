@@ -46,4 +46,8 @@ class ApplicationController < ActionController::Base
     @feedback_hash["Feedback Views"] = @kiosk.visits.where(topic: Topic.find_by(location: "feedback")).count
   end
 
+  def vncpanel
+    @title = "VNC Panel"
+  end
+
 end

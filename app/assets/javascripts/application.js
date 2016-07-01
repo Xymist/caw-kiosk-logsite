@@ -17,4 +17,17 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require semantic-ui
+//= require util
+//= require webutil
+//= require base64
+//= require websock
+//= require des
+//= require keysymdef
+//= require keyboard
+//= require input
+//= require display
+//= require rfb
+//= require keysym
+//= require inflator
+//= require ui
 //= require_tree .

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630011941) do
+ActiveRecord::Schema.define(version: 20160701000626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20160630011941) do
     t.datetime "updated_at",      null: false
     t.boolean  "notified"
     t.integer  "jurisdiction_id"
+    t.string   "ip_address"
   end
 
   create_table "log_events", force: :cascade do |t|
