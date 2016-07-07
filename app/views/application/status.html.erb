@@ -8,6 +8,9 @@
         kiosk_connected = true
       end
     end
+    if kiosk.visits.last and kiosk.visits.last.created_at > 10.minutes.ago
+        kiosk_in_use = true
+    end
     %>
     <div class="column report-panel">
       <% if kiosk_connected %>
@@ -22,7 +25,7 @@
       <h3>Last Status Update:</h3>
       <% if kiosk_initialised%>
         <p><%=kiosk.heartbeats.last.created_at%></p>
-        <% if kiosk_connected %>
+        <% if kiosk_connected or kiosk_in_use %>
           <h4 class="greentext"><strong>Connected</strong></h4>
         <%else%>
           <h4 class="redtext"><strong>Disconnected</strong></h4>

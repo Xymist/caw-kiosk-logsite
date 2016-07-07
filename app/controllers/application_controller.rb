@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+  #protect_from_forgery with: :exception
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:receive_log]
 
   def home
     @kiosks = Kiosk.all
@@ -44,6 +45,28 @@ class ApplicationController < ActionController::Base
     @feedback_hash = {}
     @feedback_hash["Feedback Responses"] = @kiosk.form_responses.count
     @feedback_hash["Feedback Views"] = @kiosk.visits.where(topic: Topic.find_by(location: "feedback")).count
+  end
+
+  def receive_log
+    head :ok
+    @url_array = []
+    AdvicePage.all.each do |page|
+      @url_array << "#{page.url}"
+    end
+    @kiosk = Kiosk.find_or_create_by(name: params[:kiosk])
+    @url = params[:url]
+    @unix_timestamp = params[:timestamp]
+    @hostname = @url.sub(/^https?\:\/\/(www.)?/,'').split('/')[0]
+    @topicpath = @url.sub(/^https?\:\/\/(www.)?/,'').sub(@hostname + '/','')
+    @host = Host.find_or_create_by(name: @hostname)
+    @topic = @host.topics.find_or_create_by(location: @topicpath)
+
+    unless @url_array.include? @url or hostname.include? "logserver" # These should be taken care of when the user makes the clicks.
+      begin
+        @visit = @topic.visits.find_or_create_by(time_stamp: Time.at(@unix_timestamp), kiosk_id: @kiosk.id, checksum: Digest::MD5.hexdigest("#{@unix_timestamp}|#{@kiosk.name}"))
+      rescue ActiveRecord::RecordNotUnique
+      end #begin
+    end
   end
 
   def vncpanel

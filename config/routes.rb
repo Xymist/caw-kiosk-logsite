@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  
+
   mount PostgresqlLoStreamer::Engine => "/logo_image"
 
   authenticate :user, lambda { |user| user.admin? } do
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
 
   root to: "application#home"
+
+  post 'visitupload/:kiosk', to: 'application#receive_log'
 
   get 'logs', to: "application#logs"
   get 'logs/:kiosk', to: 'application#kiosk_log', as: 'log'

@@ -25,7 +25,7 @@ class DatabaseStufferJob < ApplicationJob
         split_data = data.split("|")
         hostname = split_data[1].sub(/^https?\:\/\/(www.)?/,'').split('/')[0]
         unless hostname == "82.70.248.237" or @url_array.include? split_data[1] or hostname.include? "logserver"
-          @url_hash[split_data[0]] = split_data[1]
+          @url_hash[split_data[0]] = split_data[1] #Time stamp = address
         end # unless hostname
       end #do |data|
 
