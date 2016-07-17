@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     @host = Host.find_or_create_by(name: @hostname)
     @topic = @host.topics.find_or_create_by(location: @topicpath)
 
-    unless @url_array.include? @url or hostname.include? "logserver" # These should be taken care of when the user makes the clicks.
+    unless @url_array.include? @url or @hostname.include? "logserver" # These should be taken care of when the user makes the clicks.
       begin
         @visit = @topic.visits.find_or_create_by(time_stamp: Time.at(@unix_timestamp), kiosk_id: @kiosk.id, checksum: Digest::MD5.hexdigest("#{@unix_timestamp}|#{@kiosk.name}"))
       rescue ActiveRecord::RecordNotUnique

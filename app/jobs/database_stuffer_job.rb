@@ -1,4 +1,6 @@
 class DatabaseStufferJob < ApplicationJob
+
+
   queue_as :default
   require 'digest/md5'
 
