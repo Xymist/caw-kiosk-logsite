@@ -50,12 +50,13 @@ class ApplicationController < ActionController::Base
   def receive_log
     head :ok
     @url_array = []
-    AdvicePage.all.each do |page|
+    AdvicePage.all.each do |page| # Do I really want to build this every time we receive a click?!
       @url_array << "#{page.url}"
     end
     @kiosk = Kiosk.find_or_create_by(name: params[:kiosk])
     @url = params[:url]
     @unix_timestamp = params[:timestamp]
+    @kiosk.ip_address = params[:kiosk_ip]
     @hostname = @url.sub(/^https?\:\/\/(www.)?/,'').split('/')[0]
     @topicpath = @url.sub(/^https?\:\/\/(www.)?/,'').sub(@hostname + '/','')
     @host = Host.find_or_create_by(name: @hostname)
