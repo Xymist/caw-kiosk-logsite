@@ -57,6 +57,9 @@ class ApplicationController < ActionController::Base
     @url = params[:url]
     @unix_timestamp = params[:timestamp]
     @kiosk.ip_address = params[:kiosk_ip]
+    @kiosk.save # This updates the ip_address field, BEFORE we check whether the
+    # visit is to one of the internal links. That ensures that the VPN IP is
+    # always kept up to date.
     @hostname = @url.sub(/^https?\:\/\/(www.)?/,'').split('/')[0]
     @topicpath = @url.sub(/^https?\:\/\/(www.)?/,'').sub(@hostname + '/','')
     @host = Host.find_or_create_by(name: @hostname)
