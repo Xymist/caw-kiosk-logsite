@@ -3,7 +3,7 @@
   <%@kiosk_topics.order(:name).each do |topic|%>
   <% @a = "<div class='column' id='#{topic.name}'>"%>
   <%= @a.html_safe%>
-    <h2><%=topic.name.capitalize%></h2>
+    <h2><%=t "topics.#{topic.name}.label"%></h2>
     <div class="ui styled fluid accordion">
       <%@pages.order(:id).each do |page|%>
         <%if page.topic == topic.name%>

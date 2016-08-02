@@ -32,11 +32,28 @@ en:
       label: "Tax"
       description: "Issues with Taxation"
     healthcare:
-      label: "Healthcare"
+      label: "Health & Wellbeing"
       description: "Physical and Mental Health Issues"
     education:
       label: "Education"
       description: "Education and Training"
+    caring:
+      label: "Caring"
+      description: "Advice for Carers"
+    befriending:
+      label: "Befriending & Carers' Groups"
+    dementia:
+      label: "Dementia"
+      description: "Dementia Information, Care & Support"
+    edinburgh:
+      label: "City of Edinburgh"
+      description: "Council Services"
+    ericliddell:
+      label: "Eric Liddell Centre"
+      description: "Help and Services"
+    citizensadvice:
+      label: "Citizens Advice"
+      description: "Resources from Citizens Advice"
   organisations:
     govuk:
       name: "Gov.UK"
@@ -162,6 +179,61 @@ en:
     aceeducation:
       name: "ACE Education"
       education: "Help Choosing Schools"
+    nhs24:
+      name: "NHS 24"
+      healthcare: "Scotland's 24 Hour Telehealth Service"
+    scottishgovernment:
+      name: "Scottish Government"
+      healthcare: "Health and Wellbeing Outcomes"
+    healthyeating:
+      name: "Healthy Eating"
+      healthcare: "Nutrition Guidance"
+    vocal:
+      name: "VOCAL"
+      caring: "Voice of Carers Across Lothian"
+    carersscotland:
+      name: "Carers Scotland"
+    localcarerssupportgroups:
+      name: "Local Carers' Support Groups"
+    befriendingnetworks:
+      name: "Befriending Networks"
+    carerinformation:
+      name: "Carer Information"
+    nhslcst:
+      name: "NHS Lothian Carer Support Team"
+    alzheimerscotland:
+      name: "Alzheimer Scotland"
+    dementiafriendsscotland:
+      name: "Dementia Friends Scotland"
+    scottishdementiaworkinggroup:
+      name: "Scottish Dementia Working Group"
+    agescotland:
+      name: "Age Scotland"
+      benefits: "Benefits Advice for Older People"
+    housingbenefit:
+      name: "Housing Benefit"
+    carersallowance:
+      name: "Carers Allowance"
+    cascotland:
+      name: "Citizens Advice Scotland"
+    caegorgiedalry:
+      name: "Gorgie/Dalrie Citizens Advice"
+    consumeradvice:
+      name: "Consumer Advice"
+      citizensadvice: "Citizens Advice Scotland Consumer Pages"
+    socialcareandhealth:
+      name: "Health & Social Care"
+    adultsandolderpeople:
+      name: "Adults & Older People"
+    childrenandfamilies:
+      name: "Children & Families"
+    dementiadaycare:
+      name: "Dementia Day Care"
+    carerbefriending:
+      name: "Carer Befriending"
+    lunchbreaks:
+      name: "Lunch Breaks"
+      ericliddell: "For Carers and The People They Care For"
   help_us_out: "Help Us Out"
   leave_feedback: "Leave feedback for our service"
   end_call: "End Call"
