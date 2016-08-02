@@ -41,7 +41,8 @@ en:
       label: "Caring"
       description: "Advice for Carers"
     befriending:
-      label: "Befriending & Carers' Groups"
+      label: "Befriending"
+      description: "Friendly Support for Carers"
     dementia:
       label: "Dementia"
       description: "Dementia Information, Care & Support"
