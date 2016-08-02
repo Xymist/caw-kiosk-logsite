@@ -77,6 +77,6 @@ class JurisdictionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jurisdiction_params
-      params.require(:jurisdiction).permit(:name, :telephone, :pbx_server, :kiosk_topic_ids)
+      params.require(:jurisdiction).permit(:name, :telephone, :pbx_server, :kiosk_topic_ids => [])
     end
 end

@@ -33,7 +33,7 @@
     <%= f.collection_check_boxes(:kiosk_topic_ids, @kiosk_topics, :id, :name) do |box|%>
       <%= box.label class:"ui checkbox advice-checkbox" do %>
          <%= box.check_box + box.text.capitalize %>
-      <%end%>
+      <% end %>
     <% end %>
 
     <%= f.label :pbx_server, "PBX IP Address (default if not applicable)" %><br />
