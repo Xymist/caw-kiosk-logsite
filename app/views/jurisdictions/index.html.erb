@@ -20,7 +20,7 @@
       <%end%>
     </div>
     <%if current_user.admin? && jurisdiction.kiosks.length == 0 %>
-      <%= link_to 'Delete', kiosk, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button pull-right' %>
+      <%= link_to 'Delete', jurisdiction, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button pull-right' %>
     <%elsif current_user.admin?%>
       <button class="ui disabled button pull-right">
         Not Empty
