@@ -55,6 +55,9 @@ en:
     citizensadvice:
       label: "Citizens Advice"
       description: "Resources from Citizens Advice"
+    landingpage:
+      label: "Landing Page Links"
+      description: ""
   organisations:
     govuk:
       name: "Gov.UK"
@@ -108,6 +111,7 @@ en:
       tax: "The Citizens Advice Information Site"
       healthcare: "The Citizens Advice Information Site"
       education: "The Citizens Advice Information Site"
+      landingpage: "The Citizens Advice Information Site"
     complaintscommission:
       name: "Complaints Commission"
       consumer: "The European Consumer Complaints Commission"
@@ -235,15 +239,10 @@ en:
     lunchbreaks:
       name: "Lunch Breaks"
       ericliddell: "For Carers and The People They Care For"
+    makingadvicework:
+      name: "Making Advice Work"
+      landingpage: "Calderdale Local Information Portal"
   help_us_out: "Help Us Out"
-  custom:
-    calderdale:
-      internal:
-        title: "Making Advice Work"
-        subtitle: "Calderdale Local Information Portal"
-      external:
-        title: "Advice Guide"
-        subtitle: "Citizens Advice Information Portal"
   leave_feedback: "Leave feedback for our service"
   end_call: "End Call"
   kiosks:
