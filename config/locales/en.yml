@@ -55,7 +55,7 @@ en:
     citizensadvice:
       label: "Citizens Advice"
       description: "Resources from Citizens Advice"
-    landingpage:
+    landing_page:
       label: "Landing Page Links"
       description: ""
   organisations:
@@ -254,3 +254,4 @@ en:
     ash: "Ash CA"
     guildford: "Guildford CA"
     ericliddell: "Eric Liddell Centre"
+    calderdale: "Calderdale CA"
