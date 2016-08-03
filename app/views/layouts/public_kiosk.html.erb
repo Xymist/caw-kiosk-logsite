@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    "kiosks/#{@kiosk.name}"%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
 

@@ -17,7 +17,7 @@
   </div>
 <% end %>
 
-<% @jurisdiction.kiosk_topics.each do |kiosk_topic| %>
+<% @jurisdiction.kiosk_topics.order(:name).each do |kiosk_topic| %>
   <div class="col-xs-3">
     <%= link_to "#{@kiosk.name}/#{kiosk_topic.name}", :class => 'col-xs-12 topic-button' do %>
       <h1><%= t "topics.#{kiosk_topic.name}.label", default: kiosk_topic.name.capitalize%></h1>

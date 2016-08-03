@@ -21,6 +21,11 @@ class PublicKioskController < ActionController::Base
     @kiosk = params[:kiosk]
   end
 
+  def landing_page
+    @kiosk = Kiosk.find_by(name: params[:kiosk])
+    @jurisdiction = @kiosk.jurisdiction
+  end
+
   def exit_site
     new_url = AdvicePage.find_by(id: params[:exit_url_id]).url
     split_url = new_url.sub(/^https?\:\/\/(www.)?/,'').split('/')
