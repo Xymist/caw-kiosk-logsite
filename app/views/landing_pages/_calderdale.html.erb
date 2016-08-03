@@ -2,8 +2,8 @@
   time_stamp = Time.now
   kiosk_name = @kiosk.name
   last_visit = Visit.last
-  unless last_visit.topic.location == "home" #Kill duplicates due to Firefox refreshes
-    Visit.create(time_stamp: time_stamp, topic_id: Topic.find_or_create_by(location: "home", host: Host.find_or_create_by(name: "82.70.248.237")).id, kiosk_id: @kiosk.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk_name}"))
+  unless last_visit.topic.location == "landing_page" #Kill duplicates due to Firefox refreshes
+    Visit.create(time_stamp: time_stamp, topic_id: Topic.find_or_create_by(location: "landing_page", host: Host.find_or_create_by(name: "logserver.3rdsectorit.co.uk")).id, kiosk_id: @kiosk.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk_name}"))
   end
 %>
 
