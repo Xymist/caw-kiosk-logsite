@@ -236,6 +236,14 @@ en:
       name: "Lunch Breaks"
       ericliddell: "For Carers and The People They Care For"
   help_us_out: "Help Us Out"
+  custom:
+    calderdale:
+      internal:
+        title: "Making Advice Work"
+        subtitle: "Calderdale Local Information Portal"
+      external:
+        title: "Advice Guide"
+        subtitle: "Citizens Advice Information Portal"
   leave_feedback: "Leave feedback for our service"
   end_call: "End Call"
   kiosks:

@@ -34,11 +34,11 @@ class PublicKioskController < ActionController::Base
     time_stamp = Time.now
     host = Host.find_or_create_by(name: new_host)
     topic = new_topic ? host.topics.find_or_create_by(location: new_topic.chomp) : Topic.find_or_create_by(location: params[:topic], host: host)
-    kiosk = Kiosk.find_or_create_by(name: params[:kiosk])
+    kiosk = Kiosk.find_by(name: params[:kiosk])
     begin
       topic.visits.find_or_create_by(time_stamp: time_stamp, kiosk_id: kiosk.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk.name}"))
     rescue ActiveRecord::RecordNotUnique
-      # find_or_create_by should obviate this, but it's still here because things break otherwise.
+      # TODO: find_or_create_by should obviate this, but it's still here because things break otherwise. I do not know why.
     end
     redirect_to new_url
   end
