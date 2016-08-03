@@ -25,6 +25,7 @@ class PublicKioskController < ActionController::Base
     @kiosk = Kiosk.find_by(name: params[:kiosk])
     @jurisdiction = @kiosk.jurisdiction
     @specialtopic = "landingpage"
+    @advice_pages = AdvicePage.where(topic: params[:topic])
   end
 
   def exit_site

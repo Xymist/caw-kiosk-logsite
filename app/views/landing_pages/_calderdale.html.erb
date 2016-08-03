@@ -7,15 +7,14 @@
   end
 %>
 
-<div class="col-xs-6" id="calderdale-btn-internal">
-  <%= link_to "landing_page/96", :class => 'col-xs-12 topic-button' do %>
-    <h1><%= t "organisations.#{orgname}.name"%></h1>
-    <h3><%= t "organisations.#{orgname}.landingpage"%></h3>
+<% @advice_pages.order(:id).each do |page|%>
+  <%if page.kiosks.include? @kiosk %>
+    <div class="col-xs-6" id="calderdale-btn-internal">
+      <%= link_to "landing_page/#{page.id}", :class => 'col-xs-12 topic-button' do %>
+        <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
+        <h1><%= t "organisations.#{orgname}.name"%></h1>
+        <h3><%= t "organisations.#{orgname}.landingpage"%></h3>
+      <%end%>
+    </div>
   <%end%>
-</div>
-<div class="col-xs-6" id="calderdale-btn-external">
-  <%= link_to "landing_page/95", :class => 'col-xs-12 topic-button' do %>
-    <h1><%= t "organisations.#{orgname}.name"%></h1>
-    <h3><%= t "organisations.#{orgname}.landingpage"%></h3>
-  <%end%>
-</div>
+<%end%>
