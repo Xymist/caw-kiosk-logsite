@@ -16,7 +16,7 @@
   <div class="column">
     <h3>External Topic Access Frequency</h3>
     <% topic_visits = {} %>
-    <%@visits.each do |visit|
+    <%@kiosk.visits.each do |visit|
       unless ["82.70.248.237", "logserver.3rdsectorit.co.uk"].include? visit.host.name || visit.topic.location == "landing_page"
         location = visit.topic.location
         if topic_visits[location]
