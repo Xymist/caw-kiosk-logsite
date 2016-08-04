@@ -1,8 +1,7 @@
 <h1 class="title-line">Kiosk Pages</h1>
 <div class="ui stackable three column grid">
   <%@kiosk_topics.order(:name).each do |topic|%>
-  <% @a = "<div class='column' id='#{topic.name}'>"%>
-  <%= @a.html_safe%>
+  <div class='column' id='<%=topic.name%>'>
     <h2><%=t "topics.#{topic.name}.label"%></h2>
     <div class="ui styled fluid accordion">
       <%@pages.order(:id).each do |page|%>
@@ -25,13 +24,10 @@
                 <%end%>
               </ul>
               <%if current_user.admin?%>
-              <!--Evil hack for creating a billion different modals and still accessing them all reliably: -->
-              <% @w = "<a class='ui primary button' onclick='modaleditpage(#{page.id})'>Edit</a>"%>
-              <%= @w.html_safe%>
-              <% @x = "<div class='ui modal advice-modal' id='editpagemodal#{page.id}'>"%>
-              <%= @x.html_safe%>
+              <a class='ui primary button' onclick='modaleditpage(<%=page.id%>)'>Edit</a>
+              <div class='ui modal advice-modal' id='editpagemodal<%=page.id%>'>
                 <br />
-                <h1 style="padding-left: 1em;">Edit <%= topic.name.capitalize%> Page</h1>
+                <h1 style="padding-left: 1em;">Edit <%= t "topics.#{topic.name}.label"%> Page</h1>
                 <%= render 'form', advice_page: page %>
               </div>
               <%= link_to 'Remove', page, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red button' %>
@@ -43,13 +39,10 @@
     </div>
     <p></p>
     <%if current_user.admin? && @pages.where(topic: topic.name).count < 12 %>
-    <!--And again...-->
-      <% @y = "<a class='ui primary button pull-right' onclick='modalnewpage(#{topic.id})'>New #{topic.name.capitalize} Page</a>"%>
-      <%=@y.html_safe%>
-      <% @z = "<div class='ui modal advice-modal' id='newpagemodal#{topic.id}'>"%>
-      <%=@z.html_safe%>
+      <a class='ui primary button pull-right' onclick='modalnewpage(<%=topic.id%>)'>New <%=t "topics.#{topic.name}.label"%> Page</a>
+      <div class='ui modal advice-modal' id='newpagemodal<%=topic.id%>'>
         <br />
-        <h1 style="padding-left: 1em;">Create <%= topic.name.capitalize%> Page</h1>
+        <h1 style="padding-left: 1em;">Create <%=t "topics.#{topic.name}.label"%> Page</h1>
         <%= render 'form', advice_page: AdvicePage.new(topic: topic.name)%>
       </div>
       <%else%>

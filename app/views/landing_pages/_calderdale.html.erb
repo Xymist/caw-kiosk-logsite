@@ -1,18 +1,13 @@
-<%
-  time_stamp = Time.now
-  kiosk_name = @kiosk.name
-  last_visit = Visit.last
-  unless last_visit.topic.location == "landing_page" #Kill duplicates due to Firefox refreshes
-    Visit.create(time_stamp: time_stamp, topic_id: Topic.find_or_create_by(location: "landing_page", host: Host.find_or_create_by(name: "logserver.3rdsectorit.co.uk")).id, kiosk_id: @kiosk.id, checksum: Digest::MD5.hexdigest("#{time_stamp}|#{kiosk_name}"))
-  end
-%>
-
 <% @advice_pages.order(:id).each do |page|%>
   <%if page.kiosks.include? @kiosk %>
-    <div class="col-xs-6" id="calderdale-btn-internal">
+    <div class="col-xs-6" id="calderdale-btn">
       <%= link_to "landing_page/#{page.id}", :class => 'col-xs-12 topic-button' do %>
         <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
-        <h1><%= t "organisations.#{orgname}.name"%></h1>
+        <%if @jurisdiction.has_button_logos == true && page.image.file != nil%>
+          <%=image_tag("#{page.image}", height: "90", style: "margin-top: 15px;")%>
+        <%else%>
+          <h1><%= t "organisations.#{orgname}.name"%></h1>
+        <%end%>
         <h3><%= t "organisations.#{orgname}.landingpage"%></h3>
       <%end%>
     </div>
