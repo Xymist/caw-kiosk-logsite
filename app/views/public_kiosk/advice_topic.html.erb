@@ -10,7 +10,11 @@
     <div class="col-xs-4">
       <%= link_to "#{@topic}/#{page.id}", :class => 'col-xs-12 topic-button no-telephone-topic' do %>
         <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
-        <h1><%=t "organisations.#{orgname}.name", default: page.organisation%></h1>
+        <%if @jurisdiction.has_button_logos == true && page.image.file != nil%>
+          <%=image_tag("#{page.image}", height: "90", style: "margin-top: 15px;")%>
+        <%else%>
+          <h1><%=t "organisations.#{orgname}.name", default: page.organisation%></h1>
+        <%end%>
         <h3><%=t "organisations.#{orgname}.#{@topic}", default: page.details%></h3>
       <%end%>
     </div>

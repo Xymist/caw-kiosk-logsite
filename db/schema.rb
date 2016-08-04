@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802121110) do
+ActiveRecord::Schema.define(version: 20160804143051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160802121110) do
     t.datetime "updated_at",   null: false
     t.string   "topic"
     t.string   "details"
+    t.integer  "image"
   end
 
   create_table "advice_pages_kiosks", id: false, force: :cascade do |t|
@@ -128,8 +129,9 @@ ActiveRecord::Schema.define(version: 20160802121110) do
     t.string   "name"
     t.boolean  "telephone"
     t.string   "pbx_server"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "has_button_logos", default: false, null: false
   end
 
   create_table "jurisdictions_kiosk_topics", id: false, force: :cascade do |t|
