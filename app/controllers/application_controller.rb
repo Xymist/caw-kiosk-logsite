@@ -40,7 +40,20 @@ class ApplicationController < ActionController::Base
     @kiosk = Kiosk.find_by(name: params[:kiosk])
     @hosts = Host.all
     @title = "Kiosk Data"
-    @visits = Visit.where(kiosk: @kiosk)
+    internal_hostnames = ["82.70.248.237", "logserver.3rdsectorit.co.uk"]
+    @topic_visits = {}
+    @kiosk.visits.each do |visit|
+      if internal_hostnames.include? visit.host.name || visit.topic.location == "landing_page"
+        # Nothing
+      else
+        location = visit.topic.location
+        if @topic_visits[location]
+          @topic_visits[location] += 1
+        else
+          @topic_visits[location] = 1
+        end
+      end
+    end
     @topics = Topic.all
     @feedback_hash = {}
     @feedback_hash["Feedback Responses"] = @kiosk.form_responses.count
