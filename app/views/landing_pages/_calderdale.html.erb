@@ -1,7 +1,7 @@
 <% @advice_pages.order(:id).each do |page|%>
   <%if page.kiosks.include? @kiosk %>
     <div class="col-xs-6" id="calderdale-btn">
-      <%= link_to "landing_page/#{page.id}", :class => 'col-xs-12 topic-button' do %>
+      <%= link_to site_exit_path("calderdale","landing_page",page.id), :class => 'col-xs-12 topic-button' do %>
         <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
         <%if @jurisdiction.has_button_logos == true && page.image.file != nil%>
           <%=image_tag("#{page.image}", height: "90", style: "margin-top: 15px;")%>

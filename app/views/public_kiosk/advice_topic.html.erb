@@ -8,10 +8,10 @@
 <%if page.kiosks.include? @kiosk %>
   <% if page.telephone == "" or @kiosk.jurisdiction.telephone == false %>
     <div class="col-xs-4">
-      <%= link_to "#{@topic}/#{page.id}", :class => 'col-xs-12 topic-button no-telephone-topic' do %>
+      <%= link_to site_exit_path(@kiosk.name, @topic, page.id), :class => 'col-xs-12 topic-button no-telephone-topic' do %>
         <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
         <%if @jurisdiction.has_button_logos == true && page.image.file != nil%>
-          <%=image_tag("#{page.image}", height: "90", style: "margin-top: 15px;")%>
+          <%=image_tag(page.image, height: "90", style: "margin-top: 15px;")%>
         <%else%>
           <h1><%=t "organisations.#{orgname}.name", default: page.organisation%></h1>
         <%end%>
@@ -20,7 +20,7 @@
     </div>
   <% else %>
     <div class="col-xs-4">
-      <%= link_to "#{@topic}/#{page.id}", :class => 'col-xs-12 topic-button telephone-topic' do %>
+      <%= link_to site_exit_path(@kiosk.name, @topic, page.id), :class => 'col-xs-12 topic-button telephone-topic' do %>
         <% orgname = page.organisation.downcase.gsub(" ","").gsub("'","").gsub(".","").gsub("&","")%>
         <h1><%=t "organisations.#{orgname}.name", default: page.organisation%></h1>
         <h3><%=t "organisations.#{orgname}.#{@topic}", default: page.details%></h3>
