@@ -13,8 +13,13 @@ development:
   database: caw-kiosk-logsite-development
 
 test:
-  <<: *default
-  database: db/test.sqlite3
+    adapter: postgresql
+    encoding: unicode
+    host: localhost
+    username: caw
+    password: caw,./
+    pool: 5
+    database: caw-kiosk-logsite-test
 
 production:
   adapter: postgresql
