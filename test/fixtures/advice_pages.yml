@@ -6,6 +6,7 @@ one:
   url: MyString
   telephone: MyString
   details: MyString
+  kiosk_id: 1
 
 two:
   topic: MyString
@@ -13,3 +14,4 @@ two:
   url: MyString
   telephone: MyString
   details: MyString
+  kiosk_id: 1

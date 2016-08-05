@@ -12,6 +12,7 @@ one:
   referral_type: MyString
   telephone_usage: false
   feedback: 1
+  kiosk_id: 1
 
 two:
   year: 1
@@ -25,3 +26,4 @@ two:
   referral_type: MyString
   telephone_usage: false
   feedback: 1
+  kiosk_id: 1
