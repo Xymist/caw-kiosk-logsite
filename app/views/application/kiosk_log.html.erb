@@ -14,7 +14,7 @@
   </div>
 
   <div class="column">
-    <h3>External Topic Access Frequency</h3>
+    <h3>External Page Access Frequency</h3>
     <% @topic_visits %>
     <%= pie_chart @topic_visits.except("home", "landing_page")%>
   </div>
@@ -24,7 +24,7 @@
     <% visit_array = {} %>
     <%@hosts.each do |host|
       if host.visits.where(kiosk: @kiosk).count > 0 && host.name != "82.70.248.237"
-        visit_array["#{host.name}"] = host.visits.where(kiosk: @kiosk).count
+        visit_array[host.name] = host.visits.where(kiosk: @kiosk).count
       end%>
     <%end%>
     <%= pie_chart visit_array.except("logserver.3rdsectorit.co.uk")%>
@@ -54,7 +54,7 @@
     <h3>Pageview History (Cumulative):</h3>
     <% sum = 0 %>
     <%= area_chart @kiosk.visits.group_by_day(:time_stamp).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge)%>
-  </div>
+  </div> 
 
   <div class="column">
     <h3>Feedback</h3>

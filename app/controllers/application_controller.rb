@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
     # visit is to one of the internal links. That ensures that the VPN IP is
     # always kept up to date.
     @hostname = @url.sub(/^https?\:\/\/(www.)?/,'').split('/')[0]
-    @topicpath = @url.sub(/^https?\:\/\/(www.)?/,'').sub(@hostname + '/','')
+    @topicpath = @url.sub(/^https?\:\/\/(www.)?/,'').sub(@hostname + '/','') #REALLY? WTF was I doing?
     @host = Host.find_or_create_by(name: @hostname)
     @topic = @host.topics.find_or_create_by(location: @topicpath)
 
