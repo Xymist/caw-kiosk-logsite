@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PDF Report</title>
+
+    <%= javascript_include_tag "https://www.google.com/jsapi"%>
+    <%= wicked_pdf_stylesheet_link_tag    'pdf_reports', media: 'all'%>
+    <%= wicked_pdf_javascript_include_tag 'application','chartkick'%>
+    <%= csrf_meta_tags%>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
