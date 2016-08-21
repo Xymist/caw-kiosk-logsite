@@ -2,7 +2,7 @@
 
 <div>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>Kiosk Topic Access Frequency</h3>
     <%topic_array = {} %>
     <%@topics.each do |topic|
@@ -10,20 +10,20 @@
         topic_array["#{topic.location.split("_")[0].capitalize}"] = @kiosk.visits.where(topic: topic).count %>
       <%end
     end%>
-    <%= pie_chart(topic_array.except("Home"), {"library": {"height": "300", "width": "550"}})%>
+    <%= pie_chart(topic_array.except("Home"), {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>External Page Access Frequency</h3>
     <% @topic_visits %>
-    <%= pie_chart(@topic_visits.except("home", "landing_page"), {"library": {"height": "300", "width": "550"}})%>
+    <%= pie_chart(@topic_visits.except("home", "landing_page"), {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>External Visits, by Organisation:</h3>
     <% visit_array = {} %>
     <%@hosts.each do |host|
@@ -31,53 +31,53 @@
         visit_array[host.name] = host.visits.where(kiosk: @kiosk).count
       end%>
     <%end%>
-    <%= pie_chart(visit_array.except("logserver.3rdsectorit.co.uk"), {"library": {"height": "300", "width": "550"}})%>
+    <%= pie_chart(visit_array.except("logserver.3rdsectorit.co.uk"), {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>All Clicks, by hour of day:</h3>
-    <%= column_chart @kiosk.visits.group_by_hour_of_day(:time_stamp).count , {"library": {"height": "300", "width": "550"}}%>
+    <%= column_chart @kiosk.visits.group_by_hour_of_day(:time_stamp).count , {"library": {"height": "350", "width": "650"}}%>
   </div>
   <br/>
   <br/>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>Pageview History (Day by Day):</h3>
-    <%= column_chart @kiosk.visits.group_by_day(:time_stamp, format: "%B %d, %Y").count, {"library": {"height": "300", "width": "550"}} %>
+    <%= column_chart @kiosk.visits.group_by_day(:time_stamp, format: "%B %d, %Y").count, {"library": {"height": "350", "width": "650"}} %>
   </div>
   <br/>
   <br/>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>Pageview History (Weekly):</h3>
-    <%= column_chart @kiosk.visits.group_by_week(:time_stamp, format: "Week %U, %Y").count, {"library": {"height": "300", "width": "550"}} %>
+    <%= column_chart @kiosk.visits.group_by_week(:time_stamp, format: "Week %U, %Y").count, {"library": {"height": "350", "width": "650"}} %>
   </div>
   <br/>
   <br/>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>Pageview History (Monthly):</h3>
-    <%= column_chart @kiosk.visits.group_by_month(:time_stamp, format: "%B %Y").count, {"library": {"height": "300", "width": "550"}} %>
+    <%= column_chart @kiosk.visits.group_by_month(:time_stamp, format: "%B %Y").count, {"library": {"height": "350", "width": "650"}} %>
   </div>
   <br/>
   <br/>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>Pageview History (Cumulative):</h3>
     <% sum = 0 %>
-    <%= area_chart @kiosk.visits.group_by_day(:time_stamp).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge), {"library": {"height": "300", "width": "550"}}%>
+    <%= area_chart @kiosk.visits.group_by_day(:time_stamp).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge), {"library": {"height": "350", "width": "650"}}%>
   </div>
   <br/>
   <br/>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>Feedback</h3>
-    <%= column_chart @feedback_hash, {"library": {"height": "300", "width": "550"}}%>
+    <%= column_chart @feedback_hash, {"library": {"height": "350", "width": "650"}}%>
   </div>
 
-  <div class="column" style="width: 100%; height: 465px;">
+  <div class="column" style="width: 100%; height: 450px;">
     <h3>Raw Data:</h3>
     <%
     last_time = Time.zone.parse('2016-01-01 00:00:01')
