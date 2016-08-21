@@ -28,7 +28,8 @@ gem 'carrierwave-postgresql'
 gem 'carrierwave'
 gem 'postgresql_lo_streamer'
 gem 'blazer'
-gem 'prawn'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary-edge'
 
 group :development, :test do
   gem 'byebug'

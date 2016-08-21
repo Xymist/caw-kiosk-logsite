@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources 'jurisdictions'
   resources 'kiosks'
 
-  get  'public_kiosk/:kiosk', to: "public_kiosk#home"
+  get  'public_kiosk/:kiosk', to: "public_kiosk#home", as: "public_kiosk_home"
   get  'public_kiosk/:kiosk/feedback', to: "public_kiosk#feedback", as: "form_responses"
   post 'public_kiosk/:kiosk/feedback', to: "public_kiosk#create_feedback"
   get  'public_kiosk/:kiosk/landing_page', to: "public_kiosk#landing_page", as: "landing_page"

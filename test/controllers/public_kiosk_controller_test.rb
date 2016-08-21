@@ -7,7 +7,7 @@ class PublicKioskControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get advice_topic" do
-    get public_kiosk_advice_topic_url
+    get advice_topic_url
     assert_response :success
   end
 

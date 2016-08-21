@@ -1,5 +1,5 @@
 <h1 class="title-line"><%= t "kiosks.#{@kiosk.name}"%> <% if @kiosk.visits.first != nil %>- Data begins <%= @kiosk.visits.first.created_at.strftime("%d %B, %Y") %> <%end%></h1>
-
+<h5><%= link_to "Print-friendly PDF version", log_path(@kiosk.name, :format => "pdf") %></h5>
 <div class="ui stackable doubling two column grid">
 
   <div class="column">
@@ -54,7 +54,7 @@
     <h3>Pageview History (Cumulative):</h3>
     <% sum = 0 %>
     <%= area_chart @kiosk.visits.group_by_day(:time_stamp).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge)%>
-  </div> 
+  </div>
 
   <div class="column">
     <h3>Feedback</h3>

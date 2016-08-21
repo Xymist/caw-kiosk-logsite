@@ -58,6 +58,14 @@ class ApplicationController < ActionController::Base
     @feedback_hash = {}
     @feedback_hash["Feedback Responses"] = @kiosk.form_responses.count
     @feedback_hash["Feedback Views"] = @kiosk.visits.where(topic: Topic.find_by(location: "feedback")).count
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "kiosk_log",
+        layout: 'kiosk_log_pdf.html.erb',
+        javascript_delay: 1000
+      end
+    end
   end
 
   def receive_log
