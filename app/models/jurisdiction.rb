@@ -4,5 +4,5 @@ class Jurisdiction < ApplicationRecord
   has_and_belongs_to_many :logos
   has_and_belongs_to_many :kiosk_topics
 
-  validates_presence_of :name
+  validates :name, presence: true
 end

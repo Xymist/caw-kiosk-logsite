@@ -2,12 +2,10 @@ class KiosksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_kiosk, only: [:show, :edit, :update, :destroy]
 
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, only: [:create, :update]
 
   def check_for_cancel
-    if params[:commit] == "Cancel"
-      redirect_to kiosks_path
-    end
+    redirect_to kiosks_path if params[:commit] == 'Cancel'
   end
 
   def index
@@ -19,11 +17,9 @@ class KiosksController < ApplicationController
   end
 
   def show
-
   end
 
   def new
-
   end
 
   def edit
@@ -65,13 +61,14 @@ class KiosksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_kiosk
-      @kiosk = Kiosk.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def kiosk_params
-      params.require(:kiosk).permit(:name, :address, :contact, :notified, :jurisdiction_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_kiosk
+    @kiosk = Kiosk.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def kiosk_params
+    params.require(:kiosk).permit(:name, :address, :contact, :notified, :jurisdiction_id)
+  end
 end

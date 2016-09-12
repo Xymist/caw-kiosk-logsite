@@ -5,5 +5,5 @@ class Kiosk < ApplicationRecord
   belongs_to :jurisdiction
   has_and_belongs_to_many :advice_pages
 
-  validates_presence_of :name, :address, :contact, :jurisdiction_id
+  validates :name, :address, :contact, :jurisdiction_id, presence: true
 end

@@ -2,21 +2,17 @@ class JurisdictionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_jurisdiction, only: [:show, :edit, :update, :destroy]
 
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, only: [:create, :update]
 
   def check_for_cancel
-    if params[:commit] == "Cancel"
-      redirect_to jurisdictions_path
-    end
+    redirect_to jurisdictions_path if params[:commit] == 'Cancel'
   end
 
   def index
     @kiosks = Kiosk.all
     @unassigned_kiosks = []
     @kiosks.each do |kiosk|
-      if kiosk.jurisdiction == nil
-        @unassigned_kiosks << kiosk
-      end
+      @unassigned_kiosks << kiosk if kiosk.jurisdiction.nil?
     end
     @jurisdictions = Jurisdiction.all
     @kiosk_topics = KioskTopic.all
@@ -25,11 +21,9 @@ class JurisdictionsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
-
   end
 
   def edit
@@ -70,13 +64,14 @@ class JurisdictionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_jurisdiction
-      @jurisdiction = Jurisdiction.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def jurisdiction_params
-      params.require(:jurisdiction).permit(:name, :telephone, :pbx_server, :kiosk_topic_ids => [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_jurisdiction
+    @jurisdiction = Jurisdiction.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def jurisdiction_params
+    params.require(:jurisdiction).permit(:name, :telephone, :pbx_server, kiosk_topic_ids: [])
+  end
 end

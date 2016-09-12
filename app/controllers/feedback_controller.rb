@@ -1,5 +1,4 @@
 class FeedbackController < ApplicationController
-
   def overview
     @kiosks = Kiosk.all
     @jurisdictions = Jurisdiction.all
@@ -10,5 +9,4 @@ class FeedbackController < ApplicationController
     @kiosk = Kiosk.find_by(name: params[:kiosk])
     @form_responses = FormResponse.where(kiosk: @kiosk.id)
   end
-
 end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.3.1"
+ruby '2.3.1'
 
 gem 'rails', '>= 5.0.0.beta1'
 gem 'sqlite3'
@@ -19,8 +19,8 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'chartkick'
 gem 'groupdate'
 gem 'delayed_job_active_record'
-gem "daemons"
-gem "whenever"
+gem 'daemons'
+gem 'whenever'
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations', branch: 'rails5'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem 'devise'
@@ -33,6 +33,7 @@ gem 'wkhtmltopdf-binary-edge'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rubocop'
 end
 
 group :development do

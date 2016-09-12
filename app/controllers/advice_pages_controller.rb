@@ -2,19 +2,17 @@ class AdvicePagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_advice_page, only: [:show, :edit, :update, :destroy]
 
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, only: [:create, :update]
 
   def check_for_cancel
-    if params[:commit] == "Cancel"
-      redirect_to advice_pages_path
-    end
+    redirect_to advice_pages_path if params[:commit] == 'Cancel'
   end
 
   # GET /advice_pages
   # GET /advice_pages.json
   def index
     @kiosks = Kiosk.all
-    @allowed_kiosks = Kiosk.where(:jurisdiction => current_user.jurisdictions)
+    @allowed_kiosks = Kiosk.where(jurisdiction: current_user.jurisdictions)
     @disallowed_kiosks = @kiosks - @allowed_kiosks
     @kiosk_topics = KioskTopic.all
     @pages = AdvicePage.all
@@ -24,12 +22,10 @@ class AdvicePagesController < ApplicationController
   # GET /advice_pages/1
   # GET /advice_pages/1.json
   def show
-
   end
 
   # GET /advice_pages/new
   def new
-
   end
 
   # GET /advice_pages/1/edit
@@ -77,13 +73,14 @@ class AdvicePagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_advice_page
-      @advice_page = AdvicePage.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def advice_page_params
-      params.require(:advice_page).permit(:organisation, :url, :telephone, :topic, :image, :details, :kiosk_ids => [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_advice_page
+    @advice_page = AdvicePage.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def advice_page_params
+    params.require(:advice_page).permit(:organisation, :url, :telephone, :topic, :image, :details, kiosk_ids: [])
+  end
 end
