@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     internal_hostnames = ['82.70.248.237', 'logserver.3rdsectorit.co.uk']
     @topic_visits = {}
     @kiosk.visits.each do |visit|
-      if internal_hostnames.include? visit.host.name || visit.topic.location == 'landing_page'
+      if (internal_hostnames.include? visit.host.name) || (visit.topic.location == 'landing_page')
         # Nothing
       else
         location = visit.topic.location
@@ -64,6 +64,7 @@ class ApplicationController < ActionController::Base
         render pdf: 'kiosk_log',
                layout: 'kiosk_log_pdf.html.erb',
                javascript_delay: 1000
+               
       end
     end
   end
@@ -86,12 +87,16 @@ class ApplicationController < ActionController::Base
     @host = Host.find_or_create_by(name: @hostname)
     @topic = @host.topics.find_or_create_by(location: @topicpath)
 
-    unless @url_array.include?(@url) || @hostname.include?('logserver') # These should be taken care of when the user makes the clicks.
-      begin
-        @visit = @topic.visits.find_or_create_by(time_stamp: Time.at.utc(@unix_timestamp), kiosk_id: @kiosk.id, checksum: Digest::MD5.hexdigest("#{@unix_timestamp}|#{@kiosk.name}"))
-      rescue ActiveRecord::RecordNotUnique
-      end # begin
-    end
+    addvisit
+  end
+
+  def addvisit
+    return if @url_array.include?(@url) || @hostname.include?('logserver')
+    begin
+      @visit = @topic.visits.find_or_create_by(time_stamp: Time.at.utc(@unix_timestamp), kiosk_id: @kiosk.id, checksum: Digest::MD5.hexdigest("#{@unix_timestamp}|#{@kiosk.name}"))
+    rescue ActiveRecord::RecordNotUnique => rnu
+      errors << rnu
+    end # begin
   end
 
   def vncpanel

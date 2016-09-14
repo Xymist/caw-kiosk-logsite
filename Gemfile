@@ -34,6 +34,7 @@ gem 'wkhtmltopdf-binary-edge'
 group :development, :test do
   gem 'byebug'
   gem 'rubocop'
+  gem 'rubocop-rspec', require: false
 end
 
 group :development do

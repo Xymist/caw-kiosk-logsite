@@ -1,0 +1,72 @@
+
+# Offense count: 243
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 316
+
+# Offense count: 12
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 37
+
+# Offense count: 1
+# Configuration parameters: CountKeywordArgs.
+Metrics/ParameterLists:
+  Max: 6
+
+# Offense count: 1
+# Configuration parameters: Include.
+# Include: app/**/*.rb, config/**/*.rb, lib/**/*.rb
+Rails/Exit:
+  Exclude:
+    - 'lib/**/*.rake'
+    - 'config/deploy.rb'
+
+# Offense count: 8
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/HasAndBelongsToMany:
+  Exclude:
+    - 'app/models/advice_page.rb'
+    - 'app/models/jurisdiction.rb'
+    - 'app/models/kiosk.rb'
+    - 'app/models/kiosk_topic.rb'
+    - 'app/models/logo.rb'
+    - 'app/models/user.rb'
+
+# Offense count: 2
+# Configuration parameters: Include.
+# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
+Rails/Output:
+  Exclude:
+    - 'config/deploy.rb'
+
+# Offense count: 2
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: strict, flexible
+Rails/TimeZone:
+  Exclude:
+    - 'app/controllers/public_kiosk_controller.rb'
+    - 'app/jobs/database_stuffer_job.rb'
+
+# Offense count: 1
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: nested, compact
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/test_helper.rb'
+
+# Offense count: 64
+Style/Documentation:
+  Enabled: false
+
+# Offense count: 6
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
+# SupportedStyles: slashes, percent_r, mixed
+Style/RegexpLiteral:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/public_kiosk_controller.rb'
+    - 'app/jobs/database_stuffer_job.rb'
