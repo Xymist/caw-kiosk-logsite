@@ -29,6 +29,19 @@ Rails.application.routes.draw do
   resources 'jurisdictions'
   resources 'kiosks'
 
+  resources :pdf_charts do
+    collection do
+      get 'kiosk_topic_access_frequency'
+      get 'external_page_access_frequency'
+      get 'external_visits_by_organisation'
+      get 'all_clicks_by_hour_of_day'
+      get 'pageview_history_by_day'
+      get 'pageview_history_by_week'
+      get 'pageview_history_cumulative'
+      get 'feedback'
+    end
+  end
+
   get 'public_kiosk/:kiosk', to: 'public_kiosk#home',
                              as: 'public_kiosk_home'
   get 'public_kiosk/:kiosk/feedback', to: 'public_kiosk#feedback',
