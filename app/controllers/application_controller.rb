@@ -38,13 +38,14 @@ class ApplicationController < ActionController::Base
 
   def kiosk_log
     @kiosk = Kiosk.find_by(name: params[:kiosk])
+    @month_visits = @kiosk.visits.where("created_at >= ?",Time.zone.now.beginning_of_month)
     @hosts = Host.all
     @title = 'Kiosk Data'
     internal_hostnames = ['82.70.248.237', 'logserver.3rdsectorit.co.uk']
     @topic_visits = {}
-    @kiosk.visits.each do |visit|
+    @month_visits.each do |visit|
       if (internal_hostnames.include? visit.host.name) || (visit.topic.location == 'landing_page')
-        # Nothing
+        # Nothing. TODO: This really ought to be an 'unless'.
       else
         location = visit.topic.location
         if @topic_visits[location]
@@ -57,14 +58,14 @@ class ApplicationController < ActionController::Base
     @topics = Topic.all
     @feedback_hash = {}
     @feedback_hash['Feedback Responses'] = @kiosk.form_responses.count
-    @feedback_hash['Feedback Views'] = @kiosk.visits.where(topic: Topic.find_by(location: 'feedback')).count
+    @feedback_hash['Feedback Views'] = @month_visits.where(topic: Topic.find_by(location: 'feedback')).count
     respond_to do |format|
       format.html
       format.pdf do
         render pdf: 'kiosk_log',
                layout: 'kiosk_log_pdf.html.erb',
                javascript_delay: 1000
-               
+
       end
     end
   end
