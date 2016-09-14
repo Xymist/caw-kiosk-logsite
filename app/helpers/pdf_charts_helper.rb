@@ -1,0 +1,2 @@
+module PdfChartsHelper
+end

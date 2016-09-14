@@ -4,71 +4,56 @@
 
   <div class="column" style="width: 100%; height: 450px;">
     <h3>Kiosk Topic Access Frequency</h3>
-    <%topic_array = {} %>
-    <%@topics.each do |topic|
-      if topic.location != "Feedback" and ["82.70.248.237", "logserver.3rdsectorit.co.uk"].include? topic.host.name
-        topic_array["#{topic.location.split("_")[0].capitalize}"] = @month_visits.where(topic: topic).count %>
-      <%end
-    end%>
-
-    <%= pie_chart(topic_array.except("Home"), {"library": {"height": "350", "width": "650"}})%>
+    <%= pie_chart(kiosk_topic_access_frequency_pdf_charts_path, {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
 
   <div class="column" style="width: 100%; height: 450px;">
     <h3>External Page Access Frequency</h3>
-    <% @topic_visits %>
-    <%= pie_chart(@topic_visits.except("home", "landing_page"), {"library": {"height": "350", "width": "650"}})%>
+    <%= pie_chart(external_page_access_frequency_pdf_charts_path, {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
 
   <div class="column" style="width: 100%; height: 450px;">
     <h3>External Visits, by Organisation:</h3>
-    <% visit_array = {} %>
-    <%@hosts.each do |host|
-      if host.name != "logserver.3rdsectorit.co.uk"
-        visit_array[host.name] = @month_visits.joins(:topic).where(:topics => {:host_id => host.id}).count
-      end%>
-    <%end%>
-    <%= pie_chart(visit_array, {"library": {"height": "350", "width": "650"}})%>
+    <%= pie_chart(external_visits_by_organisation_pdf_charts_path, {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
 
   <div class="column" style="width: 100%; height: 450px;">
     <h3>All Clicks, by hour of day:</h3>
-    <%= column_chart @month_visits.group_by_hour_of_day(:time_stamp).count , {"library": {"height": "350", "width": "650"}}%>
+    <%= column_chart(all_clicks_by_hour_of_day_pdf_charts_path, {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
 
   <div class="column" style="width: 100%; height: 450px;">
     <h3>Pageview History (Day by Day):</h3>
-    <%= column_chart @month_visits.group_by_day(:time_stamp, format: "%B %d, %Y").count, {"library": {"height": "350", "width": "650"}} %>
+    <%= column_chart(pageview_history_by_day_pdf_charts_path, {"library": {"height": "350", "width": "650"}}) %>
   </div>
   <br/>
   <br/>
 
   <div class="column" style="width: 100%; height: 450px;">
     <h3>Pageview History (Weekly):</h3>
-    <%= column_chart @month_visits.group_by_week(:time_stamp, format: "Week %U, %Y").count, {"library": {"height": "350", "width": "650"}} %>
+    <%= column_chart(pageview_history_by_week_pdf_charts_path, {"library": {"height": "350", "width": "650"}}) %>
   </div>
   <br/>
   <br/>
 
   <div class="column" style="width: 100%; height: 450px;">
     <h3>Pageview History (Cumulative):</h3>
-    <% sum = 0 %>
-    <%= area_chart @month_visits.group_by_day(:time_stamp).count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (sum += y)} }.reduce({}, :merge), {"library": {"height": "350", "width": "650"}}%>
+    <%= area_chart(pageview_history_cumulative_pdf_charts_path, {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
 
   <div class="column" style="width: 100%; height: 450px;">
     <h3>Feedback</h3>
-    <%= column_chart @feedback_hash, {"library": {"height": "350", "width": "650"}}%>
+    <%= column_chart(feedback_pdf_charts_path, {"library": {"height": "350", "width": "650"}})%>
   </div>
 
   <div class="column" style="width: 100%; height: 450px;">
