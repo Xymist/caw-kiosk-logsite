@@ -4,7 +4,7 @@ class ReportMailer < ApplicationMailer
   default from: 'kioskreports@logserver.3rdsectorit.co.uk'
 
   def report_email(kiosk)
-    @kiosk = Kiosk.where(name: kiosk)
+    @kiosk = Kiosk.find_by(name: kiosk)
 
     month = Date.yesterday.strftime('%B')
     @month_visits = @kiosk.visits.where('visits.created_at >= ?', Date.yesterday.beginning_of_month)
