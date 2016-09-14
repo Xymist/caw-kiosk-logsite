@@ -40,8 +40,8 @@ class ReportMailer < ApplicationMailer
           render_to_string(pdf: "Kiosk_Usage_#{kiosk}_#{month}",
                            template: 'application/kiosk_log.pdf.erb',
                            layout: 'kiosk_log_pdf.html.erb',
-                           kiosk: kiosk,
-                           javascript_delay: 5000)
+                           kiosk: kiosk),
+          javascript_delay: 5000
         )
       end
     end
