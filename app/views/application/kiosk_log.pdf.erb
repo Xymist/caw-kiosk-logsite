@@ -28,7 +28,7 @@
     <h3>External Visits, by Organisation:</h3>
     <% visit_array = {} %>
     <%@hosts.each do |host|
-      if host.name != ( "82.70.248.237" || "logserver.3rdsectorit.co.uk" )
+      if host.name != "logserver.3rdsectorit.co.uk"
         visit_array[host.name] = @month_visits.joins(:topic).where(:topics => {:host_id => host.id}).count
       end%>
     <%end%>
