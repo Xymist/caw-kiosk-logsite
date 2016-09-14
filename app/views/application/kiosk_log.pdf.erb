@@ -28,11 +28,9 @@
     <h3>External Visits, by Organisation:</h3>
     <% visit_array = {} %>
     <%@hosts.each do |host|
-      unless ["logserver.3rdsectorit.co.uk", "82.70.248.237"].contains? host.name
         visit_array[host.name] = @month_visits.joins(:topic).where(:topics => {:host_id => host.id}).count
-      end%>
     <%end%>
-    <%= pie_chart(visit_array, {"library": {"height": "350", "width": "650"}})%>
+    <%= pie_chart(visit_array.except("logserver.3rdsectorit.co.uk", "82.70.248.237"), {"library": {"height": "350", "width": "650"}})%>
   </div>
   <br/>
   <br/>
