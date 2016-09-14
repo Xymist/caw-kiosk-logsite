@@ -29,7 +29,7 @@
     <% visit_array = {} %>
     <%@month_visits.each do |visit|
       if visit.host.name != ( "82.70.248.237" || "logserver.3rdsectorit.co.uk" )
-        visit_array[visit.host.name] = @month_visits.where(host: visit.host).count
+        visit_array[visit.host.name] = @month_visits.where(host: visit.topic.host).count
       end%>
     <%end%>
     <%= pie_chart(visit_array, {"library": {"height": "350", "width": "650"}})%>
