@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 
   def kiosk_log
     @kiosk = Kiosk.find_by(name: params[:kiosk])
-    @month_visits = @kiosk.visits.where("created_at >= ?",Time.zone.now.beginning_of_month)
+    @month_visits = @kiosk.visits.where("visits.created_at >= ?",Time.zone.now.beginning_of_month)
     @hosts = Host.all
     @title = 'Kiosk Data'
     internal_hostnames = ['82.70.248.237', 'logserver.3rdsectorit.co.uk']
