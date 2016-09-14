@@ -2,8 +2,8 @@ inherit_from: .rubocop_todo.yml
 require: rubocop-rspec
 AllCops:
   Include:
-    - **/Rakefile
-    - **/config.ru
+    - '**/Rakefile'
+    - '**/config.ru'
     - lib/**/*.rake
   Exclude:
     - db/schema.rb
